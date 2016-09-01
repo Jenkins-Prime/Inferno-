@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour {
-
 	//public int startingLives;
 	private int lifeCounter;
 	private Text theText;
@@ -13,53 +12,41 @@ public class LifeManager : MonoBehaviour {
 	public float waitAfterGameOver;
 	public int maxLives;
 
-
 	// Use this for initialization
 	void Start () {
-	
 		theText = GetComponent<Text> ();
-
 		lifeCounter = PlayerPrefs.GetInt ("PlayerCurrentLives");
-
 		player = FindObjectOfType<PlayerController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (lifeCounter > maxLives)
-		{
+		if (lifeCounter > maxLives) {
 			lifeCounter = maxLives;
 		}
-
-
-		if (lifeCounter < 0) 
-		{
+			
+		if (lifeCounter < 0) {
 			gameOverScreen.SetActive (true);
 			player.gameObject.SetActive(false);
 		}
 
 		theText.text = "x " + lifeCounter;
 
-		if (gameOverScreen.activeSelf) 
-		{
+		if (gameOverScreen.activeSelf)  {
 			waitAfterGameOver -= Time.deltaTime;
 		}
 
-		if (waitAfterGameOver < 0) 
-		{
+		if (waitAfterGameOver < 0)  {
 			Application.LoadLevel (gameOverLoadLevel);
 		}
 	}
 
-	public void GiveLife()
-	{
+	public void GiveLife() {
 		lifeCounter++;
 		PlayerPrefs.SetInt ("PlayerCurrentLives", lifeCounter);
 	}
 
-	public void TakeLife()
-	{
+	public void TakeLife() {
 		lifeCounter--;
 		PlayerPrefs.SetInt ("PlayerCurrentLives", lifeCounter);
 	}

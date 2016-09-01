@@ -2,18 +2,16 @@
 using System.Collections;
 using UnityEngine.UI;
 public class TimeManager : MonoBehaviour {
-
 	public float startingTime;
-	private float countingTime;
-	private Text theText;
-	private HealthManager healthManager;
 
-	private PauseMenu thePauseMenu;
+	float countingTime;
 
+	Text theText;
+	HealthManager healthManager;
+	PauseMenu thePauseMenu;
 
 	// Use this for initialization
-	void Start () 
-	{
+	void Start () {
 		theText = GetComponent<Text> ();
 		thePauseMenu = FindObjectOfType<PauseMenu> ();
 		countingTime = startingTime;
@@ -23,25 +21,19 @@ public class TimeManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (thePauseMenu.isPaused) 
-		{
+		if (thePauseMenu.isPaused)
 			return;
-			}
 		
 		countingTime -= Time.deltaTime;
 
-		if(countingTime <= 0) 
-		{
+		if(countingTime <= 0) {
 			healthManager.KillPlayer();
 		}
 
 		theText.text = "" + Mathf.Round (countingTime);
-
 	}
 
-	public void ResetTime(){
-	
+	public void ResetTime() {
 		countingTime = startingTime;
 	}
 }
