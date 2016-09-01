@@ -2,22 +2,21 @@
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
-
-    public PlayerController player;
     public bool isFollowing;
-    public float xOffset;
-    public float yOffset;
+	[SerializeField] float xOffset;
+	[SerializeField] float yOffset;
+
+	Transform player;
 
 	// Use this for initialization
 	void Start () {
-        player = FindObjectOfType<PlayerController>();
+		player = GameObject.FindGameObjectWithTag ("Player").transform;
         isFollowing = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void LateUpdate () {
         if (isFollowing)
-            transform.position = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + yOffset, transform.position.z);
+            transform.position = new Vector3(player.position.x + xOffset, player.position.y + yOffset, transform.position.z);
 	}
 }

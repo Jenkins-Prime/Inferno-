@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float jumpHeight = 3.5f;
 	[SerializeField] float knockBackSpeed = 2f;
 	[SerializeField] float climbSpeed = 2f;
+<<<<<<< HEAD
+=======
+
+>>>>>>> Cleaning_up_the_code
 
 	[Header("Check Variables")]
 	[SerializeField] LayerMask groundLayer;
@@ -21,11 +25,16 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float groundCheckRadius = 0.1f;
 	[SerializeField] float knockBackLength = 0.2f;
 
+	[Header("Head Stomp Variables")]
+	[SerializeField] int damageToGive;
+	[SerializeField] float enemyBounceHeight = 2f;
+
+	[Header("Ranged Attack Variables")]
 	public Transform firePoint;
 	public GameObject bullet;
+	[SerializeField] float shotDelay = 2f;
 
-	public float shotDelay = 360f;
-	float shotDelayCounter;
+	[Header("Other")]
 	public AudioClip jumpClip;
 
 	bool grounded;
@@ -37,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 	Vector2 knockBackVelocity;
 	float gravityStore;
 	float knockBackTimer;
-	public bool knockFromRight;
+	float shotTimer;
 
 	Animator anim;
 	AudioSource audio;
@@ -101,6 +110,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter2D (Collider2D other) {
+		if (other.tag == "Enemy")  {
+			//Add a check to see if enemy can be hurt with headstomp
+			other.GetComponent<EnemyHealthManager> ().giveDamage (damageToGive);
+			rb2D.velocity = new Vector2 (rb2D.velocity.x, enemyBounceHeight);
+		}
+	}
+
 	//===== Private Functions =====
 	bool KnockBackCheck() {
 		if (knockBack) {
@@ -136,38 +153,18 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void AttackCheck() {
-		//===== Change all the things here (probably with coroutines) =====
+		if (Input.GetButtonDown ("Fire1")) {
+			anim.SetBool ("Firing", true);
 
-		//Fire animator var set (merge those two with the below if)
-		if (Input.GetButtonDown("Fire1")) {
-			anim.SetBool("Firing", true);
-		} else if (!Input.GetButtonDown("Fire1")) {
-			anim.SetBool("Firing", false);
-		}
-
-		//Fire (change instantiate in later point for optimization)
-		if (Input.GetButtonDown("Fire1"))
-			Instantiate(bullet, firePoint.position, firePoint.rotation);
-		shotDelayCounter = shotDelay;
-
-		//Arbitary if merge with the above
-		if(Input.GetButtonDown("Fire1")) {
-			shotDelayCounter -= Time.deltaTime;
-
-			//What? Remove the above instantiate
-			if (shotDelayCounter <= 0) {
-				shotDelayCounter = shotDelay;
-				Instantiate(bullet, firePoint.position, firePoint.rotation);
+			if (shotTimer > 0) {
+				shotTimer -= Time.deltaTime; //change this to time.delta
+			} else {
+				Instantiate (bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
+				shotTimer = shotDelay;
 			}
-		}
-
-		//Arbitary check, this can be handled better throught the animator
-		if (anim.GetBool ("Sword"))
-			anim.SetBool ("Sword", false);
-
-		//Melee animator var
-		if(Input.GetButtonDown("Fire2")) {
-			anim.SetBool("Sword", true);
+		} else if (Input.GetButtonDown ("Fire2")) {
+			//Melee code here
+			//anim.SetBool("Sword", true);
 		}
 	}
 		
