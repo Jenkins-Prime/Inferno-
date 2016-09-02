@@ -1,42 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(PlayerData))]
+
 public class PlayerController : MonoBehaviour {
-	//Change Notes: 
-	//Changed any public variable that has no use to be accessed by other scripts to a private, if the variable should be changed in the editor then added [SerializeField].
-	//Changed GroundCheck to Update, since input is handled in update
-	//Changed any movement line to the fixedupdate, in order to achieve a smooth movement.
-	//Add a lot of functions in order to make update() function easy to read.
-	//Removed any GetComponent<>() call in the update, it's less cpu heavy to cache a variable in the start()
+	public PlayerData playerData;
 
-	[Header("Movement Variables")]
-	[SerializeField] float moveSpeed = 2f;
-	[SerializeField] float jumpHeight = 3.5f;
-	[SerializeField] float knockBackSpeed = 2f;
-	[SerializeField] float climbSpeed = 2f;
-// <<<<<<< HEAD
-// =======
-
-// >>>>>>> Cleaning_up_the_code
-
-	[Header("Check Variables")]
 	[SerializeField] LayerMask groundLayer;
 	[SerializeField] Transform groundCheck;
 	[SerializeField] float groundCheckRadius = 0.1f;
-	[SerializeField] float knockBackLength = 0.2f;
+	[SerializeField] Transform firePoint;
 
-	[Header("Head Stomp Variables")]
-	[SerializeField] int damageToGive;
-	[SerializeField] float enemyBounceHeight = 2f;
-
-	[Header("Ranged Attack Variables")]
-	public Transform firePoint;
-	public GameObject bullet;
-	[SerializeField] float shotDelay = 2f;
-
-	[Header("Other")]
-	public AudioClip jumpClip;
-
+	bool isDead;
 	bool grounded;
 	bool doubleJumped;
 	bool jump;
@@ -49,13 +24,15 @@ public class PlayerController : MonoBehaviour {
 	float shotTimer;
 
 	Animator anim;
-	AudioSource audio;
+	AudioSource audioSource;
+	Renderer rend;
 	Rigidbody2D rb2D;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+		rend = GetComponent<Renderer> ();
 		rb2D = GetComponent<Rigidbody2D>();
 
 		gravityStore = rb2D.gravityScale;
@@ -68,8 +45,12 @@ public class PlayerController : MonoBehaviour {
 			return;
 		}
 
+		if (isDead) { //improve this
+			return;
+		}
+
 		if (KnockBackCheck ()) {
-			inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //GetInput
+			inputVector = InputManager.MainStick(); //GetInput
 			anim.SetFloat("Speed", Mathf.Abs(inputVector.x));
 
 			GroundCheck ();
@@ -86,18 +67,21 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void FixedUpdate() {
-		if (knockBack) {
+		if (isDead) {
+			rb2D.velocity = Vector2.zero;
+		} else if (knockBack) {
 			rb2D.velocity = knockBackVelocity;
 		} else if(onLadder) { 
-			rb2D.velocity = new Vector2(inputVector.x * moveSpeed, inputVector.y * climbSpeed);
+			rb2D.velocity = new Vector2(inputVector.x * playerData.moveSpeed, inputVector.y * playerData.climbSpeed);
 		} else if (jump) {
-			rb2D.velocity = new Vector2 (inputVector.x * moveSpeed, jumpHeight);
+			rb2D.velocity = new Vector2 (inputVector.x * playerData.moveSpeed, playerData.jumpHeight);
 			jump = false;
 		} else {
-			rb2D.velocity = new Vector2 (inputVector.x * moveSpeed, rb2D.velocity.y);
+			rb2D.velocity = new Vector2 (inputVector.x * playerData.moveSpeed, rb2D.velocity.y);
 		}
 	}
 
+	//===== Move those two to moving platform with ontrigger extra
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.transform.tag == "Platforms")  {
 			transform.parent = other.transform;
@@ -109,12 +93,13 @@ public class PlayerController : MonoBehaviour {
 			transform.parent = null;
 		}
 	}
+	//=====
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Enemy")  {
 			//Add a check to see if enemy can be hurt with headstomp
-			other.GetComponent<EnemyHealthManager> ().giveDamage (damageToGive);
-			rb2D.velocity = new Vector2 (rb2D.velocity.x, enemyBounceHeight);
+			other.GetComponent<EnemyHealthManager> ().giveDamage (playerData.damageToGive);
+			rb2D.velocity = new Vector2 (rb2D.velocity.x, playerData.enemyBounceHeight);
 		}
 	}
 
@@ -140,12 +125,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void JumpCheck() {
-		if(Input.GetButtonDown("Jump")) { //Jump Check
+		if(InputManager.JumpButton()) { //Jump Check
 			if(grounded) { //First jump
-				audio.PlayOneShot(jumpClip, 1.0f);
+				audioSource.PlayOneShot(playerData.jumpClip, 1.0f);
 				jump = true;
 			} else if(!doubleJumped) { //Second Jump
-				audio.PlayOneShot(jumpClip, 0.5f);
+				audioSource.PlayOneShot(playerData.jumpClip, 0.5f);
 				doubleJumped = true;
 				jump = true;
 			}
@@ -153,31 +138,48 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void AttackCheck() {
-		if (Input.GetButtonDown ("Fire1")) {
+		if (InputManager.FireButton()) {
 			anim.SetBool ("Firing", true);
 
-			if (shotTimer > 0) {
-				shotTimer -= Time.deltaTime; //change this to time.delta
-			} else {
-				Instantiate (bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
-				shotTimer = shotDelay;
+			if(shotTimer <= 0) { //change this to bool values
+				Instantiate (playerData.bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
+				shotTimer = playerData.shotDelay;
 			}
-		} else if (Input.GetButtonDown ("Fire2")) {
+		} else if (InputManager.MeleeButton()) {
 			//Melee code here
 			//anim.SetBool("Sword", true);
 		}
+
+		//Move To a better place
+		if (shotTimer > 0)
+			shotTimer -= Time.deltaTime;
 	}
 		
 	//===== Public functions used from other scripts =====
+	public void KillPlayer(bool kill) {
+		if (kill) { //kill player
+			isDead = true;
+			rb2D.gravityScale = 0f;
+			rend.enabled = false;
+		} else { //revive player
+			isDead = false;
+			rb2D.gravityScale = gravityStore;
+			rend.enabled = true;
+			knockBack = false;
+		}
+	}
+
 	public void PlayerKnockBack(Vector3 attacker) {
 		knockBack = true;
-		knockBackTimer = knockBackLength;
+		knockBackTimer = playerData.knockBackLength;
 
 		if(transform.position.x < attacker.x) {
-			knockBackVelocity = new Vector2(-knockBackSpeed, knockBackSpeed);
+			knockBackVelocity = new Vector2(-playerData.knockBackSpeed, playerData.knockBackSpeed);
 		} else {
-			knockBackVelocity = new Vector2(knockBackSpeed, knockBackSpeed);		
+			knockBackVelocity = new Vector2(playerData.knockBackSpeed, playerData.knockBackSpeed);		
 		}
+
+		audioSource.PlayOneShot (playerData.hurtClip, 1f);
 	}
 
 	public void EnterLadderZone() {
