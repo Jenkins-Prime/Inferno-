@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour {
 	float countingTime;
 
 	Text theText;
-	HealthManager healthManager;
+	//HealthManager healthManager;
 	PauseMenu thePauseMenu;
 
 	// Use this for initialization
@@ -15,7 +15,7 @@ public class TimeManager : MonoBehaviour {
 		theText = GetComponent<Text> ();
 		thePauseMenu = FindObjectOfType<PauseMenu> ();
 		countingTime = startingTime;
-		healthManager = FindObjectOfType<HealthManager> ();
+		//healthManager = FindObjectOfType<HealthManager> ();
 
 	}
 	
@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour {
 		countingTime -= Time.deltaTime;
 
 		if(countingTime <= 0) {
-			healthManager.KillPlayer();
+		//	healthManager.KillPlayer();
 		}
 
 		theText.text = "" + Mathf.Round (countingTime);

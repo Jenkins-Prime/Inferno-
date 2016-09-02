@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class MovingPlatform : MonoBehaviour {
-
 	public GameObject platform;
 	public float moveSpeed;
 	public Transform currentpoint;
@@ -18,15 +17,12 @@ public class MovingPlatform : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		platform.transform.position = Vector3.MoveTowards (platform.transform.position, currentpoint.position, Time.deltaTime * moveSpeed);
-		if (platform.transform.position == currentpoint.position) 
-		{
+		if (platform.transform.position == currentpoint.position)  {
 			pointSelection++;
 
-			if (pointSelection == points.Length) 
-			{
+			if (pointSelection == points.Length)  {
 				pointSelection = 0;
 			}
-		
 		}
 
 		currentpoint = points [pointSelection];

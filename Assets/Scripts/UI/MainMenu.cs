@@ -2,50 +2,25 @@
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-    
-	public string startLevel;
+	GameController gController;
 
-	public string levelSelect;
-
-	public int playerLives;
-
-	public int playerHealth;
-
-	public string level1Tag;
-
-
-
-public void NewGame()
-	{
-
-		PlayerPrefs.DeleteAll();
-		PlayerPrefs.SetInt ("PlayerCurrentLives", playerLives);
-		PlayerPrefs.SetInt ("CurrentPlayerScore", 0);
-		PlayerPrefs.SetInt ("PlayerCurrentHealth", playerHealth);
-		PlayerPrefs.SetInt ("PlayerMaxHealth", playerHealth);
-		PlayerPrefs.SetInt(level1Tag, 1);
-		PlayerPrefs.SetInt ("PlayerLevelSelectPosition", 0);
-		Application.LoadLevel(startLevel);
+	void Start() {
+		gController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
 	}
 
-public void LevelSelect()
-	{
-		PlayerPrefs.SetInt ("PlayerCurrentLives", playerLives);
-		PlayerPrefs.SetInt ("CurrentPlayerScore", 0);
-		PlayerPrefs.SetInt ("PlayerCurrentHealth", playerHealth);
-		PlayerPrefs.SetInt ("PlayerMaxHealth", playerHealth);
-		PlayerPrefs.SetInt(level1Tag, 1);
-		if(!PlayerPrefs.HasKey("PlayerLevelSelectPosition"))
-			{
-			PlayerPrefs.SetInt ("PlayerLevelSelectPosition", 0);
-			}
-
-			
-		Application.LoadLevel(levelSelect);
+	public void NewGame() {
+		//add onclick fx
+		gController.NewGame ();
 	}
 
-public void QuitGame()
-	{
+	public void LoadGame() {
+		//add onclick fx
+		gController.LoadGame ();
+	}
+
+	public void QuitGame() {
+		//add onclick sfx
+		//add confirm msg
 		Debug.Log ("Game Exited");
 		Application.Quit();
 	}

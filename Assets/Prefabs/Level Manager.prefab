@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11400168}
   m_Layer: 0
   m_Name: Level Manager
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,14 +40,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f066a0230173ddf49bb98007d930fbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCheckpoint: {fileID: 0}
-  deathparticle: {fileID: 186778, guid: 56096669fc7a1384fbdb8cc07b342253, type: 2}
-  respawnanim: {fileID: 133084, guid: 047672a71133e4d47bbba1564e5453ed, type: 2}
+  deathParticle: {fileID: 186778, guid: 56096669fc7a1384fbdb8cc07b342253, type: 2}
+  respawnParticle: {fileID: 133084, guid: 047672a71133e4d47bbba1564e5453ed, type: 2}
+  maxLives: 10
+  maxHealth: 5
+  maxScore: 100
+  deathDelay: 1
   respawnDelay: 1
   pointPenaltyOnDeath: 100
-  camcontrol: {fileID: 0}
-  respawnAnimDelay: 1
-  healthManager: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
