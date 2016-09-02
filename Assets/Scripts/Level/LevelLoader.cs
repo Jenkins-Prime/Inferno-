@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LevelLoader : MonoBehaviour {
-	public string levelToLoad;
+/*	public string levelToLoad;
 	public string levelTag;
 
 	bool playerInZone;
@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Submit") && playerInZone == true)  {
+		if (InputManager && playerInZone == true)  {
 			LoadLevel ();
 		}
 	}
@@ -34,5 +34,5 @@ public class LevelLoader : MonoBehaviour {
 		if (other.name == "Player")  {
 			playerInZone = false;
 		}
-	}
+	}*/
 }

@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (KnockBackCheck ()) {
-			inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //GetInput
+			inputVector = InputManager.MainStick(); //GetInput
 			anim.SetFloat("Speed", Mathf.Abs(inputVector.x));
 
 			GroundCheck ();
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void JumpCheck() {
-		if(Input.GetButtonDown("Jump")) { //Jump Check
+		if(InputManager.JumpButton()) { //Jump Check
 			if(grounded) { //First jump
 				audioSource.PlayOneShot(playerData.jumpClip, 1.0f);
 				jump = true;
@@ -138,14 +138,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void AttackCheck() {
-		if (Input.GetButtonDown ("Fire1")) {
+		if (InputManager.FireButton()) {
 			anim.SetBool ("Firing", true);
 
 			if(shotTimer <= 0) { //change this to bool values
 				Instantiate (playerData.bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
 				shotTimer = playerData.shotDelay;
 			}
-		} else if (Input.GetButtonDown ("Fire2")) {
+		} else if (InputManager.MeleeButton()) {
 			//Melee code here
 			//anim.SetBool("Sword", true);
 		}

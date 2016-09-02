@@ -49,7 +49,7 @@ public class LevelSelectManager : MonoBehaviour {
 	}
 
 	void Update () {
-		float input = Input.GetAxisRaw ("Horizontal");
+		float input = InputManager.MainStickX ();
 
 		if (input > 0) {
 			//find right node
@@ -64,7 +64,7 @@ public class LevelSelectManager : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown ("Submit")) {
+		if (InputManager.ActionButton()) {
 			//need to change that
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("TestScene"); 
 		}

@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour {
 			Time.timeScale = 1f;
 		}
 	
-		if (Input.GetButtonDown("Cancel")) 
+		if (InputManager.PauseButton()) 
 		{
 			isPaused = !isPaused;
 		}
