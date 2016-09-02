@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float jumpHeight = 3.5f;
 	[SerializeField] float knockBackSpeed = 2f;
 	[SerializeField] float climbSpeed = 2f;
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
 
->>>>>>> Cleaning_up_the_code
+// >>>>>>> Cleaning_up_the_code
 
 	[Header("Check Variables")]
 	[SerializeField] LayerMask groundLayer;
