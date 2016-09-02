@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour {
 	public List<FloorData> floors;
 	public int curFloor;
 
+	public int levelNumber;
+
 	void Awake() {
 		//Singleton pattern
 		if (instance == null)
@@ -58,5 +60,15 @@ public class GameController : MonoBehaviour {
 //		}
 
 //		Application.LoadLevel(levelSelect);
+	}
+
+	public void LoadFloorParams() {
+		levelNumber = PlayerPrefs.GetInt (floors[curFloor].floorSceneName + "/LevelNumber");
+		for (int i = 0; i < levelNumber; i++) {
+			PlayerPrefs.GetInt (floors[curFloor].floorSceneName + "/Level" + i + "Unlocked");
+			//PlayerPrefs.GetString (floors[curFloor].floorSceneName + "/Level" + i + "Name");
+			//PlayerPrefs.GetString (floors[curFloor].floorSceneName + "/Level" + i + "SceneName");
+			//floors[curFloor]
+		}
 	}
 }

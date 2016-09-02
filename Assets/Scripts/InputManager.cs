@@ -2,11 +2,11 @@
 using System.Collections;
 
 public static class InputManager {
-	public static float MainStickX() {
+	static float MainStickX() {
 		return Input.GetAxisRaw ("Horizontal");
 	}
 
-	public static float MainStickY() {
+	static float MainStickY() {
 		return Input.GetAxisRaw ("Vertical");
 	}
 
@@ -26,7 +26,7 @@ public static class InputManager {
 		return Input.GetButtonDown ("Fire2");
 	}
 
-	public static bool ActionButton() {
+	public static bool ConfirmButton() {
 		return Input.GetButtonDown ("Submit");
 	}
 

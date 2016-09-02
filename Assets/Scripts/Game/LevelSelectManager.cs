@@ -1,106 +1,99 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LevelSelectManager : MonoBehaviour {
-	//playerPos
-	//or curNode pos
-	//for lvl1 (leftNode = null, rightNode = lvl2)
-	//for lvl2 (leftNode = (lvl1), rightNode = null)
-	public Transform player;
-	public Transform[] levels;
-	int curLevel;
-	int minLevel;
-	int maxLevel;
+	public float yOffset;
+	public Text panelText;
+	public LevelNode currentNode;
+	public float moveSpeed = 2f;
 
-	/*
-	public string[] levelTags;
-	public GameObject[] locks;
-	public bool[] levelUnlocked;
-	public int positionSelector;
-	public float distanceBelowLock;
-	public string[] levelName;
-	public float moveSpeed;
-	private bool isPressed;
-	*/
+	bool playerMoving;
+
+	Animator playerAnim;
+	GameController gameController;
 
 	void Start () {
-		curLevel = 0;
-		minLevel = 0;
-		maxLevel = levels.Length - 1;
-		player.position = levels [curLevel].position;
+		playerMoving = false;
 
-		/*for(int i = 0; i < levelTags.Length; i++) {
-			if(PlayerPrefs.GetInt(levelTags[i]) == null) {
-				levelUnlocked[i] = false;
-			} else if (PlayerPrefs.GetInt(levelTags[i]) == 0) {
-				levelUnlocked[i] = false;
-			} else {
-				levelUnlocked[i] = true;
-			}
+		playerAnim = GameObject.FindGameObjectWithTag ("Player").GetComponent<Animator> ();
+		gameController = GameController.instance;
 
-			if(levelUnlocked[i]) {
-				locks[i].SetActive (false);
-			}
-		}
-
-		positionSelector = PlayerPrefs.GetInt("PlayerLevelSelectPosition");
-		transform.position = locks[positionSelector].transform.position + new Vector3(0, distanceBelowLock, 0);
-		*/
+		SetLevelNode (currentNode);
+		currentNode.isUnlocked = true; //Just to avoid bugs
 	}
 
 	void Update () {
-		float input = InputManager.MainStickX ();
+		if (playerMoving)
+			MovePlayerToNode (currentNode);
+		else
+			CheckInput ();
+	}
 
-		if (input > 0) {
-			//find right node
-			if (curLevel < maxLevel) {
-				curLevel++;
-				player.position = levels [curLevel].position;
-			}
-		} else if(input < 0) {
-			if (curLevel > minLevel) {
-				curLevel--;
-				player.position = levels [curLevel].position;
-			}
+	void MovePlayerToNode(LevelNode node) {
+		Vector3 target = node.transform.position;
+		target.y += yOffset;
+		if (Vector3.Distance (playerAnim.transform.position, target) > 0.1f) {
+			playerAnim.transform.position = Vector3.MoveTowards (playerAnim.transform.position, target, moveSpeed * Time.deltaTime);
+		} else {
+			SetLevelNode (node);
 		}
+	}
 
-		if (InputManager.ActionButton()) {
-			//need to change that
-			UnityEngine.SceneManagement.SceneManager.LoadScene ("TestScene"); 
+	void SetLevelNode(LevelNode node) {
+		Vector3 target = node.transform.position;
+		target.y += yOffset;
+		playerAnim.transform.position = target;
+		playerMoving = false;
+		playerAnim.SetBool ("isMoving", false);
+
+		panelText.text = node.name;
+		currentNode = node;
+		currentNode.SetCurrentNodeSprite (true);
+	}
+
+	void CheckInput() {
+		Vector2 input = InputManager.MainStick ();
+
+		if (input.x > 0) { //Pressed Right
+			if (currentNode.rightNode != null && currentNode.rightNode.isUnlocked) {
+				playerMoving = true;
+				playerAnim.SetBool ("isMoving", true);
+				if (playerAnim.transform.localScale.x < 0) //Turn player if needed
+					playerAnim.transform.localScale = new Vector3 (1f, 1f, 1f);
+
+				currentNode.SetCurrentNodeSprite (false);
+				currentNode = currentNode.rightNode;
+			}
+		} else if (input.x < 0) { //Pressed left
+			if (currentNode.leftNode != null && currentNode.leftNode.isUnlocked) {
+				playerMoving = true;
+				playerAnim.SetBool ("isMoving", true);
+				if (playerAnim.transform.localScale.x > 0) //Turn player if needed
+					playerAnim.transform.localScale = new Vector3 (-1f, 1f, 1f);
+
+				currentNode.SetCurrentNodeSprite (false);
+				currentNode = currentNode.leftNode;
+			}
+		} else if (input.y > 0) { //Pressed up
+			if (currentNode.upNode != null && currentNode.upNode.isUnlocked) {
+				playerMoving = true;
+				playerAnim.SetBool ("isMoving", true);
+
+				currentNode.SetCurrentNodeSprite (false);
+				currentNode = currentNode.upNode;
+			}
+		} else if (input.y < 0) { //Pressed down
+			if (currentNode.downNode != null && currentNode.downNode.isUnlocked) {
+				playerMoving = true;
+				playerAnim.SetBool ("isMoving", true);
+
+				currentNode.SetCurrentNodeSprite (false);
+				currentNode = currentNode.downNode;
+			}
+		} else if (InputManager.ConfirmButton()) { //Pressed confirm button to play level
+			SceneManager.LoadScene (currentNode.levelSceneName); 
 		}
-
-		/*if(!isPressed) {
-			if(Input.GetAxis("Horizontal") > 0.25f) {
-				positionSelector +=1;
-				isPressed = true;
-			}
-
-			if(Input.GetAxis("Horizontal") < -0.25f) {
-				positionSelector -=1;
-				isPressed = true;
-			}
-
-			if(positionSelector >= levelTags.Length) {
-				positionSelector = levelTags.Length - 1;
-			}
-
-			if(positionSelector < 0)
-				positionSelector = 0;
-		}
-
-		if(isPressed) {
-			if(Input.GetAxis("Horizontal") < 0.25f && Input.GetAxis("Horizontal") > -0.25f) {
-				isPressed = false;
-			}
-		}
-
-		transform.position = Vector3.MoveTowards(transform.position, locks[positionSelector].transform.position + new Vector3(0, distanceBelowLock, 0), moveSpeed * Time.deltaTime);
-
-		if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump")) {
-			if(levelUnlocked[positionSelector]) {
-				PlayerPrefs.SetInt("PlayerLevelSelectPosition", positionSelector);
-				Application.LoadLevel(levelName[positionSelector]);
-			}
-		}*/
 	}
 }
