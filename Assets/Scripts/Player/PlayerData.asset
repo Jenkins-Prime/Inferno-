@@ -15,10 +15,10 @@ MonoBehaviour:
   jumpHeight: 3.5
   knockBackSpeed: 2
   climbSpeed: 2
-  damageToGive: 0
-  enemyBounceHeight: 2
-  firePoint: {fileID: 0}
-  bullet: {fileID: 0}
-  shotDelay: 2
-  jumpClip: {fileID: 0}
   knockBackLength: 0.2
+  damageToGive: 1
+  enemyBounceHeight: 2
+  bullet: {fileID: 112686, guid: e02db096322e9624abc577c7b204e95e, type: 2}
+  shotDelay: 0.5
+  hurtClip: {fileID: 8300000, guid: 1053e8294aaf05a40a07b31d60aa9952, type: 3}
+  jumpClip: {fileID: 8300000, guid: 92300500dfe10174cb9d84f03753be74, type: 3}

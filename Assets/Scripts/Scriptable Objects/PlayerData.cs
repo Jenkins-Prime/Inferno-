@@ -8,6 +8,7 @@ public class PlayerData : ScriptableObject {
 	public float jumpHeight = 3.5f;
 	public float knockBackSpeed = 2f;
 	public float climbSpeed = 2f;
+	public float knockBackLength = 0.2f;
 
 	[Header("Head Stomp Variables")]
 	public int damageToGive = 1;
@@ -17,7 +18,7 @@ public class PlayerData : ScriptableObject {
 	public GameObject bullet;
 	public float shotDelay = 2f;
 
-	[Header("Other")]
+	[Header("Audio Clips")]
+	public AudioClip hurtClip;
 	public AudioClip jumpClip;
-	public float knockBackLength = 0.2f;
 }

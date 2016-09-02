@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float groundCheckRadius = 0.1f;
 	[SerializeField] Transform firePoint;
 
+	bool isDead;
 	bool grounded;
 	bool doubleJumped;
 	bool jump;
@@ -23,13 +24,15 @@ public class PlayerController : MonoBehaviour {
 	float shotTimer;
 
 	Animator anim;
-	AudioSource audio;
+	AudioSource audioSource;
+	Renderer rend;
 	Rigidbody2D rb2D;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+		rend = GetComponent<Renderer> ();
 		rb2D = GetComponent<Rigidbody2D>();
 
 		gravityStore = rb2D.gravityScale;
@@ -39,6 +42,10 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Time.timeScale == 0f) { //change this to a bool isPaused on LevelManager script
+			return;
+		}
+
+		if (isDead) { //improve this
 			return;
 		}
 
@@ -60,7 +67,9 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void FixedUpdate() {
-		if (knockBack) {
+		if (isDead) {
+			rb2D.velocity = Vector2.zero;
+		} else if (knockBack) {
 			rb2D.velocity = knockBackVelocity;
 		} else if(onLadder) { 
 			rb2D.velocity = new Vector2(inputVector.x * playerData.moveSpeed, inputVector.y * playerData.climbSpeed);
@@ -72,6 +81,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	//===== Move those two to moving platform with ontrigger extra
 	void OnCollisionEnter2D(Collision2D other) {
 		if (other.transform.tag == "Platforms")  {
 			transform.parent = other.transform;
@@ -83,6 +93,7 @@ public class PlayerController : MonoBehaviour {
 			transform.parent = null;
 		}
 	}
+	//=====
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Enemy")  {
@@ -116,10 +127,10 @@ public class PlayerController : MonoBehaviour {
 	void JumpCheck() {
 		if(Input.GetButtonDown("Jump")) { //Jump Check
 			if(grounded) { //First jump
-				audio.PlayOneShot(playerData.jumpClip, 1.0f);
+				audioSource.PlayOneShot(playerData.jumpClip, 1.0f);
 				jump = true;
 			} else if(!doubleJumped) { //Second Jump
-				audio.PlayOneShot(playerData.jumpClip, 0.5f);
+				audioSource.PlayOneShot(playerData.jumpClip, 0.5f);
 				doubleJumped = true;
 				jump = true;
 			}
@@ -130,9 +141,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown ("Fire1")) {
 			anim.SetBool ("Firing", true);
 
-			if (shotTimer > 0) {
-				shotTimer -= Time.deltaTime; //change this to time.delta
-			} else {
+			if(shotTimer <= 0) { //change this to bool values
 				Instantiate (playerData.bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
 				shotTimer = playerData.shotDelay;
 			}
@@ -140,9 +149,26 @@ public class PlayerController : MonoBehaviour {
 			//Melee code here
 			//anim.SetBool("Sword", true);
 		}
+
+		//Move To a better place
+		if (shotTimer > 0)
+			shotTimer -= Time.deltaTime;
 	}
 		
 	//===== Public functions used from other scripts =====
+	public void KillPlayer(bool kill) {
+		if (kill) { //kill player
+			isDead = true;
+			rb2D.gravityScale = 0f;
+			rend.enabled = false;
+		} else { //revive player
+			isDead = false;
+			rb2D.gravityScale = gravityStore;
+			rend.enabled = true;
+			knockBack = false;
+		}
+	}
+
 	public void PlayerKnockBack(Vector3 attacker) {
 		knockBack = true;
 		knockBackTimer = playerData.knockBackLength;
@@ -152,6 +178,8 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			knockBackVelocity = new Vector2(playerData.knockBackSpeed, playerData.knockBackSpeed);		
 		}
+
+		audioSource.PlayOneShot (playerData.hurtClip, 1f);
 	}
 
 	public void EnterLadderZone() {

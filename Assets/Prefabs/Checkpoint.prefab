@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 456326}
-  - 114: {fileID: 11479816}
   - 58: {fileID: 5860372}
-  m_Layer: 0
+  - 114: {fileID: 11479816}
+  m_Layer: 11
   m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -55,7 +55,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055e92cc41e17f24f8322914208b40a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

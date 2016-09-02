@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour {
 		if (other.GetComponent<PlayerController>() == null)
 			return;
 
-		HealthManager.HurtPlayer (-healthToGive);
+		//HealthManager.HurtPlayer (-healthToGive);
 		Instantiate(healthParticles, transform.position, transform.rotation);
 		soulSoundEffect.Play();
 		Destroy(gameObject);

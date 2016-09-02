@@ -2,51 +2,39 @@
 using System.Collections;
 
 public class EnemyBulletController : MonoBehaviour {
-    
-	public float speed;
-	
-	public PlayerController player;
-	
+	[SerializeField] float speed = 3f;
+	[SerializeField] int damageAmount = 1;
+
 	//public GameObject enemyDeathEffect;
-	
 	public GameObject impactEffect;
-	
 	//public int pointsForKill;
 
-	
-	public int damageToGive;
-	
-	private Rigidbody2D myrigidbody2D;
-	
+	Rigidbody2D rb2D;
+	PlayerController pController;
+	LevelManager levelManager;
+
 	// Use this for initialization
 	void Start () {
-		player = FindObjectOfType<PlayerController>();
+		rb2D = GetComponent<Rigidbody2D>();
+		pController = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
+		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 
-		myrigidbody2D = GetComponent<Rigidbody2D>();
-
-		if(player.transform.localScale.x < transform.position.x)
-		{
+		if(pController.transform.localScale.x < transform.position.x) {
 			transform.localRotation = Quaternion.Euler (0, 180, 0);
 			speed = -speed;
-		}
-		else
-		{
+		} else {
 			transform.localRotation = Quaternion.Euler (0, 0, 0);
 		
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		myrigidbody2D.velocity = new Vector2(speed, myrigidbody2D.velocity.y);
+
+	void FixedUpdate () {
+		rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
 	}
 	
-	void OnTriggerEnter2D(Collider2D other)
-	{
-		if(other.tag == "Player")
-		{
-			
-			HealthManager.HurtPlayer(damageToGive);
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.tag == "Player") {
+			levelManager.DecreaseHealth (damageAmount);
 		}
 		
 		Instantiate(impactEffect, transform.position, transform.rotation);

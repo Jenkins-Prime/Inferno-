@@ -256,7 +256,6 @@ GameObject:
   m_Component:
   - 224: {fileID: 22487234}
   - 114: {fileID: 11403666}
-  - 114: {fileID: 11495202}
   m_Layer: 5
   m_Name: Health Bar
   m_TagString: Untagged
@@ -274,7 +273,6 @@ GameObject:
   - 224: {fileID: 22476830}
   - 222: {fileID: 22283538}
   - 114: {fileID: 11478176}
-  - 114: {fileID: 11463698}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -293,9 +291,10 @@ GameObject:
   - 223: {fileID: 22372950}
   - 114: {fileID: 11446266}
   - 114: {fileID: 11439158}
+  - 114: {fileID: 114000010217898324}
   m_Layer: 5
   m_Name: Main HUD
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,22 +575,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Points:'
---- !u!114 &11463698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 181686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a3dfc8457423024da39ff7e890c3814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverScreen: {fileID: 176560}
-  player: {fileID: 0}
-  gameOverLoadLevel: Title_Menu
-  waitAfterGameOver: 4
-  maxLives: 5
 --- !u!114 &11467584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -751,20 +734,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Time:'
---- !u!114 &11495202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9eec94a260b9a4197f09207b08ef7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPlayerHealth: 5
-  isDead: 0
-  healthBar: {fileID: 11403666}
 --- !u!114 &11498154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -982,7 +951,7 @@ RectTransform:
   - {fileID: 22479578}
   - {fileID: 22476830}
   m_Father: {fileID: 22444336}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 598, y: -271}
@@ -1002,7 +971,7 @@ RectTransform:
   - {fileID: 22496212}
   - {fileID: 22408214}
   m_Father: {fileID: 22444336}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 419.63, y: -271}
@@ -1037,11 +1006,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 22418218}
   - {fileID: 22482918}
   - {fileID: 22414454}
-  - {fileID: 22457140}
+  - {fileID: 22418218}
   - {fileID: 22483836}
+  - {fileID: 22457140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -1063,7 +1032,7 @@ RectTransform:
   - {fileID: 22467134}
   - {fileID: 22437246}
   m_Father: {fileID: 22444336}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -1.3600001, y: 3}
@@ -1155,7 +1124,7 @@ RectTransform:
   - {fileID: 22411202}
   - {fileID: 22487234}
   m_Father: {fileID: 22444336}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 597.14, y: -243.6}
@@ -1175,7 +1144,7 @@ RectTransform:
   - {fileID: 22414410}
   - {fileID: 22497314}
   m_Father: {fileID: 22444336}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 627.1, y: -241.7}
@@ -1248,3 +1217,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 188058}
   m_IsPrefabParent: 1
+--- !u!114 &114000010217898324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250c719b1e02de046a6eea3664cb3c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 11403666}
+  lifeText: {fileID: 11478176}
+  timeText: {fileID: 11480520}
+  scoreText: {fileID: 11467584}
