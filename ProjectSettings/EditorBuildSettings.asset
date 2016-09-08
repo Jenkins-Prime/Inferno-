@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title_Menu.unity
   - enabled: 1
-    path: Assets/Scenes/FloorDungeonScene.unity
+    path: Assets/Scenes/Floor Dungeon/FloorDungeonScene.unity
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/Floor Dungeon/TestScene.unity

@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class LevelNode : MonoBehaviour {
+	public int levelIndex;
+
 	[Header ("UI Params")]
 	public Sprite currentNode;
 	public Sprite unlockedNode;
-
-	[Header ("Level loading")]
-	public string levelSceneName;
-	public bool isUnlocked;
-	public int startTime;
 
 	[Header ("Connected Nodes")]
 	public LevelNode leftNode;
@@ -17,8 +14,12 @@ public class LevelNode : MonoBehaviour {
 	public LevelNode upNode;
 	public LevelNode downNode;
 
+	Level level;
+
 	void Awake () { //Needs to be Awake and not start
-		if (isUnlocked) {
+		level = GameController.instance.LoadLevelData(levelIndex);
+
+		if (level.isUnlocked) {
 			SetCurrentNodeSprite (false);
 		}
 	}
@@ -28,5 +29,13 @@ public class LevelNode : MonoBehaviour {
 			GetComponent<SpriteRenderer>().sprite = currentNode;
 		else
 			GetComponent<SpriteRenderer>().sprite = unlockedNode;
+	}
+
+	public string SceneName() {
+		return level.sceneName;
+	}
+
+	public bool IsUnlocked() {
+		return level.isUnlocked;
 	}
 }

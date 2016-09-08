@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692558, g: 0.49678743, b: 0.57508624, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.57508564, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -169,7 +169,6 @@ GameObject:
   - 223: {fileID: 75340251}
   - 114: {fileID: 75340250}
   - 114: {fileID: 75340249}
-  - 114: {fileID: 75340253}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -259,17 +258,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &75340253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 75340248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 866e7f6b3b13549448b477e6abc41494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &180513823
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +473,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &428618344 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+    type: 2}
+  m_PrefabInternal: {fileID: 2081562237}
+  m_Script: {fileID: 11500000, guid: 6c0ff81c08c23f24584097523f269e37, type: 3}
 --- !u!1 &570684114
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +641,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 75340253}
+      - m_Target: {fileID: 428618344}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -849,8 +843,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 75340253}
-        m_MethodName: 
+      - m_Target: {fileID: 428618344}
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2945,7 +2939,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 75340253}
+      - m_Target: {fileID: 428618344}
         m_MethodName: NewGame
         m_Mode: 1
         m_Arguments:
@@ -3083,6 +3077,16 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013090914374, guid: d275697eef5ec8b439e72c95c9f1abfd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3114,6 +3118,66 @@ Prefab:
     - target: {fileID: 4000013090914374, guid: d275697eef5ec8b439e72c95c9f1abfd, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].name
+      value: Dungeon Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].sceneName
+      value: FloorDungeonScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[0].name
+      value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[1].name
+      value: Level 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[2].name
+      value: Level 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[3].name
+      value: Level 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[4].name
+      value: Level 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[1].name
+      value: Floor 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[5].name
+      value: Level 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[6].name
+      value: Level 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[0].sceneName
+      value: TestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levels.Array.data[0].startTime
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d275697eef5ec8b439e72c95c9f1abfd, type: 2}
