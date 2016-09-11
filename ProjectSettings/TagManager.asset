@@ -10,6 +10,7 @@ TagManager:
   - Platforms
   - LevelManager
   - HUD
+  - Dialogue
   layers:
   - Default
   - TransparentFX
