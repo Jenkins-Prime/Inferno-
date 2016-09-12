@@ -521,10 +521,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1375296083}
   m_RootOrder: 5
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 92.3, y: -137.1}
-  m_SizeDelta: {x: 40, y: 36.3}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 92.3, y: 19.899994}
+  m_SizeDelta: {x: 40, y: 36.300003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &240359341
 GameObject:
@@ -1838,6 +1838,16 @@ Prefab:
       propertyPath: dialogueBox
       value: 
       objectReference: {fileID: 1275164312}
+    - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
+        type: 2}
+      propertyPath: continueDialogue
+      value: 
+      objectReference: {fileID: 1636898225}
+    - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
+        type: 2}
+      propertyPath: endDialogue
+      value: 
+      objectReference: {fileID: 239819300}
     m_RemovedComponents:
     - {fileID: 114000012633027456, guid: f70add65560d91a49902721a7a85cc23, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f70add65560d91a49902721a7a85cc23, type: 2}
@@ -2975,10 +2985,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1375296083}
   m_RootOrder: 4
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 92.3, y: -144.6}
-  m_SizeDelta: {x: 40, y: 38.8}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 92.3, y: 18}
+  m_SizeDelta: {x: 40, y: 38.800003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1636898227
 MonoBehaviour:

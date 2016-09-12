@@ -12,10 +12,16 @@ public class DialogueSystem : MonoBehaviour
     public string npcName;
     public Sprite npcSprite;
 
+    public GameObject continueDialogue;
+    public GameObject endDialogue;
+
+
     private Text dialogue;
     private int characterCount;
 
     private bool hasComplete;
+    private bool hasDialogueCompleted;
+
 
     void Awake()
     {
@@ -24,12 +30,14 @@ public class DialogueSystem : MonoBehaviour
 
     void Start()
     {
+        HideIcons();
         GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(1).GetComponent<Image>().sprite = npcSprite;
         GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetComponent<Text>().text = npcName;
         textSpeed = 0.5f;
         speedMultiplier = 0.1f;
         characterCount = 0;
         hasComplete = false;
+        hasDialogueCompleted = false;
         StartCoroutine(ShowDialogue());
     }
 
@@ -46,17 +54,20 @@ public class DialogueSystem : MonoBehaviour
         {
             if (characterCount < dialogueText.Length - 1)
             {
+                hasDialogueCompleted = false;
                 characterCount++;
                 StartCoroutine(ShowDialogue());
                 
             }
             else
             {
+                hasDialogueCompleted = true;
                 characterCount = dialogueText.Length - 1;
 
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) && hasDialogueCompleted)
                 {
                     dialogueBox.SetActive(false);
+                    hasDialogueCompleted = false;
                 }
             }
         }
@@ -66,8 +77,14 @@ public class DialogueSystem : MonoBehaviour
     {
         for (int index = 0; index < (dialogueText[characterCount].Length + 1); index++)
         {
+            HideIcons();
             hasComplete = false;
             dialogue.text = dialogueText[characterCount].Substring(0, index);
+
+            if (characterCount >= dialogueText.Length - 1)
+            {
+                hasDialogueCompleted = true;
+            }
 
             if (Input.GetKey(KeyCode.Return))
             {
@@ -79,9 +96,28 @@ public class DialogueSystem : MonoBehaviour
 
             }
         }
+        ShowIcon();
 
         hasComplete = true;
+        
+        
+    }
 
+    private void HideIcons()
+    {
+        continueDialogue.SetActive(false);
+        endDialogue.SetActive(false);
+    }
+
+    private void ShowIcon()
+    {
+        if (hasDialogueCompleted)
+        {
+            endDialogue.SetActive(true);
+            return;
+        }
+
+        continueDialogue.SetActive(true);
     }
 
 }
