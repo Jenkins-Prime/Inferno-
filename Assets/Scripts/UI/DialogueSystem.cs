@@ -3,9 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 public class DialogueSystem : MonoBehaviour
 {
+    public GameObject dialogueBox;
+
     public string[] dialogueText;
     public float textSpeed;
     public float speedMultiplier;
+
+    public string npcName;
+    public Sprite npcSprite;
 
     private Text dialogue;
     private int characterCount;
@@ -19,6 +24,8 @@ public class DialogueSystem : MonoBehaviour
 
     void Start()
     {
+        GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(1).GetComponent<Image>().sprite = npcSprite;
+        GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetComponent<Text>().text = npcName;
         textSpeed = 0.5f;
         speedMultiplier = 0.1f;
         characterCount = 0;
@@ -28,17 +35,30 @@ public class DialogueSystem : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            characterCount = 0;
+            dialogueBox.SetActive(true);
+            StartCoroutine(ShowDialogue());
+        }
+
         if (Input.GetKeyDown(KeyCode.Return) && hasComplete)
         {
-            if (characterCount >= dialogueText.Length)
+            if (characterCount < dialogueText.Length - 1)
             {
-                characterCount = dialogueText.Length;
+                characterCount++;
+                StartCoroutine(ShowDialogue());
+                
             }
             else
             {
-                dialogue.text = dialogueText[characterCount++];
-                StartCoroutine(ShowDialogue());
-            } 
+                characterCount = dialogueText.Length - 1;
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    dialogueBox.SetActive(false);
+                }
+            }
         }
     }
 

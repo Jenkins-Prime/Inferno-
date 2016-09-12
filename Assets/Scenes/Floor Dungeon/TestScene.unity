@@ -1795,7 +1795,7 @@ Prefab:
     - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
         type: 2}
       propertyPath: dialogueText.Array.data[0]
-      value: HighWay to Hell
+      value: Highway to Hell
       objectReference: {fileID: 0}
     - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
         type: 2}
@@ -1822,6 +1822,22 @@ Prefab:
       propertyPath: dialogueText.Array.data[4]
       value: Back in Black
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
+        type: 2}
+      propertyPath: npcName
+      value: Bon Scott
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
+        type: 2}
+      propertyPath: npcSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 124ac9ca72543e248b50d9e51bebc36c,
+        type: 3}
+    - target: {fileID: 114000011603709454, guid: f70add65560d91a49902721a7a85cc23,
+        type: 2}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 1275164312}
     m_RemovedComponents:
     - {fileID: 114000012633027456, guid: f70add65560d91a49902721a7a85cc23, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f70add65560d91a49902721a7a85cc23, type: 2}
