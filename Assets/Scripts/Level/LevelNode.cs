@@ -1,41 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class LevelNode : MonoBehaviour {
-	public int levelIndex;
+	[HideInInspector] public int id;
 
-	[Header ("UI Params")]
 	public Sprite currentNode;
 	public Sprite unlockedNode;
 
-	[Header ("Connected Nodes")]
-	public LevelNode leftNode;
-	public LevelNode rightNode;
-	public LevelNode upNode;
-	public LevelNode downNode;
+	SpriteRenderer rend;
 
-	Level level;
-
-	void Awake () { //Needs to be Awake and not start
-		level = GameController.instance.LoadLevelData(levelIndex);
-
-		if (level.isUnlocked) {
-			SetCurrentNodeSprite (false);
-		}
+	public void Awake() {
+		rend = GetComponent<SpriteRenderer> ();
 	}
 
 	public void SetCurrentNodeSprite(bool current) {
 		if(current)
-			GetComponent<SpriteRenderer>().sprite = currentNode;
+			rend.sprite = currentNode;
 		else
-			GetComponent<SpriteRenderer>().sprite = unlockedNode;
-	}
-
-	public string SceneName() {
-		return level.sceneName;
-	}
-
-	public bool IsUnlocked() {
-		return level.isUnlocked;
+			rend.sprite = unlockedNode;
 	}
 }

@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour {
 		//Reset
 		foreach (Floor f in floors) {
 			f.isUnlocked = false;
-			foreach (Level l in f.levels) {
+			foreach (LevelData l in f.levelData) {
 				l.isUnlocked = false;
 				l.score = 0;
 			}
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
 		currentFloor = 0;
 		currentLevel = 0;
 		floors [currentFloor].isUnlocked = true;
-		floors [currentFloor].levels [currentLevel].isUnlocked = true;
+		floors [currentFloor].levelData [currentLevel].isUnlocked = true;
 
 		//Save to file
 		SaveGame();
@@ -81,12 +81,8 @@ public class GameController : MonoBehaviour {
 		Application.Quit();
 	}
 
-	public int GetCurrentLevel() {
-		return currentLevel;
-	}
-
-	public Level LoadLevelData(int index) {
-		return floors [currentFloor].levels [index];
+	public LevelData GetLevelData(int i) {
+		return floors [currentFloor].levelData [i];
 	}
 }
 
@@ -95,14 +91,11 @@ public class Floor {
 	public string name;
 	public string sceneName;
 	public bool isUnlocked;
-	public List<Level> levels = new List<Level>();
+	public List<LevelData> levelData = new List<LevelData>();
 }
 
 [Serializable]
-public class Level {
-	public string name;
-	public string sceneName;
+public class LevelData {
 	public bool isUnlocked;
 	public int score;
-	public int startTime;
 }
