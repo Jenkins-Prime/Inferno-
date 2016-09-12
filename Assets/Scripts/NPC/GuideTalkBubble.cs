@@ -1,29 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GuideTalkBubble : MonoBehaviour {
+public class GuideTalkBubble : MonoBehaviour
+{
+    public GameObject dialogue;
     public Animator bblanim;
-    BoxCollider2D boxcol;
-    public BoxCollider2D playercollider;
+    public DialogueSystem dialogueSystem;
 
-	// Use this for initialization
-	void Start () {
-
-        boxcol = GetComponent<BoxCollider2D>();
-
+	void Awake ()
+    {
+        dialogueSystem = GameObject.FindGameObjectWithTag("NPC").GetComponent<DialogueSystem>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (boxcol.IsTouching(playercollider ))
-             {
+
+
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
             bblanim.SetBool("IsColliding", true);
-        }
-        else
-        { 
-            bblanim.SetBool("IsColliding", false);
+            StartCoroutine(dialogueSystem.StartDialogue());
 
         }
-	}
+    }
+
+    void OnTriggerExit2D()
+    {
+       bblanim.SetBool("IsColliding", false);
+       
+    }
+
 }
+

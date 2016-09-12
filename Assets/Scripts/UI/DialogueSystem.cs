@@ -1,44 +1,150 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+[RequireComponent(typeof(Text))]
 public class DialogueSystem : MonoBehaviour
 {
-    public float textSpeed;
-    private Text dialogueText;
 
-    public string[] testData;
+    private Text _textComponent;
 
-    private int characterCount;
+    public string[] DialogueStrings;
 
-    void Awake()
-    {
-        dialogueText = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(3).GetComponent<Text>();
+    public float SecondsBetweenCharacters = 0.15f;
+    public float CharacterRateMultiplier = 0.5f;
 
-    }
+    public KeyCode DialogueInput = KeyCode.Return;
 
-    void Update()
-    {
-       
-    }
+    private bool _isStringBeingRevealed = false;
+    private bool _isDialoguePlaying = false;
+    private bool _isEndOfDialogue = false;
 
+   // public GameObject ContinueIcon;
+   // public GameObject StopIcon;
+
+    // Use this for initialization
     void Start()
     {
-        textSpeed = 0.3f;
-        characterCount = 0;
-        StartCoroutine(Text());
+        _textComponent = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(3).GetComponent<Text>();
+        _textComponent.text = "";
 
+        //HideIcons();
     }
 
-    private IEnumerator Text()
+    // Update is called once per frame
+    void Update()
     {
-        for (int index = 0; index < (testData[characterCount].Length + 1); index++)
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            dialogueText.text = testData[characterCount].Substring(0, index);
+            if (!_isDialoguePlaying)
+            {
+                _isDialoguePlaying = true;
+               // StartCoroutine(StartDialogue());
+            }
 
-            yield return new WaitForSeconds(textSpeed);
         }
     }
-    
-	
+
+    public IEnumerator StartDialogue()
+    {
+        int dialogueLength = DialogueStrings.Length;
+        int currentDialogueIndex = 0;
+
+        while (currentDialogueIndex < dialogueLength || !_isStringBeingRevealed)
+        {
+            if (!_isStringBeingRevealed)
+            {
+                _isStringBeingRevealed = true;
+                StartCoroutine(DisplayString(DialogueStrings[currentDialogueIndex++]));
+
+                if (currentDialogueIndex >= dialogueLength)
+                {
+                    _isEndOfDialogue = true;
+                }
+            }
+
+            yield return 0;
+        }
+
+        while (true)
+        {
+            if (Input.GetKeyDown(DialogueInput))
+            {
+                break;
+            }
+
+            yield return 0;
+        }
+
+       // HideIcons();
+        _isEndOfDialogue = false;
+        _isDialoguePlaying = false;
+    }
+
+    private IEnumerator DisplayString(string stringToDisplay)
+    {
+        int stringLength = stringToDisplay.Length;
+        int currentCharacterIndex = 0;
+
+       // HideIcons();
+
+        _textComponent.text = "";
+
+        while (currentCharacterIndex < stringLength)
+        {
+            _textComponent.text += stringToDisplay[currentCharacterIndex];
+            currentCharacterIndex++;
+
+            if (currentCharacterIndex < stringLength)
+            {
+                if (Input.GetKey(DialogueInput))
+                {
+                    yield return new WaitForSeconds(SecondsBetweenCharacters * CharacterRateMultiplier);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(SecondsBetweenCharacters);
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+
+       // ShowIcon();
+
+        while (true)
+        {
+            if (Input.GetKeyDown(DialogueInput))
+            {
+                break;
+            }
+
+            yield return 0;
+        }
+
+       // HideIcons();
+
+        _isStringBeingRevealed = false;
+        _textComponent.text = "";
+    }
+
+    private void HideIcons()
+    {
+        //ContinueIcon.SetActive(false);
+       // StopIcon.SetActive(false);
+    }
+
+    private void ShowIcon()
+    {
+        if (_isEndOfDialogue)
+        {
+            //StopIcon.SetActive(true);
+            return;
+        }
+
+        //ContinueIcon.SetActive(true);
+    }
+
+
 }

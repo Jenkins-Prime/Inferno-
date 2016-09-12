@@ -11,6 +11,7 @@ TagManager:
   - LevelManager
   - HUD
   - Dialogue
+  - NPC
   layers:
   - Default
   - TransparentFX
