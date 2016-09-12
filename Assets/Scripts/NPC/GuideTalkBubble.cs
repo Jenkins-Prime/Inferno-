@@ -20,7 +20,7 @@ public class GuideTalkBubble : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             bblanim.SetBool("IsColliding", true);
-            StartCoroutine(dialogueSystem.StartDialogue());
+           // StartCoroutine(dialogueSystem.StartDialogue());
 
         }
     }

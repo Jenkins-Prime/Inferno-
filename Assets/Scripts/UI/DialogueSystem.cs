@@ -1,150 +1,67 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-[RequireComponent(typeof(Text))]
 public class DialogueSystem : MonoBehaviour
 {
+    public string[] dialogueText;
+    public float textSpeed;
+    public float speedMultiplier;
 
-    private Text _textComponent;
+    private Text dialogue;
+    private int characterCount;
 
-    public string[] DialogueStrings;
+    private bool hasComplete;
 
-    public float SecondsBetweenCharacters = 0.15f;
-    public float CharacterRateMultiplier = 0.5f;
+    void Awake()
+    {
+        dialogue = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(3).GetComponent<Text>();
+    }
 
-    public KeyCode DialogueInput = KeyCode.Return;
-
-    private bool _isStringBeingRevealed = false;
-    private bool _isDialoguePlaying = false;
-    private bool _isEndOfDialogue = false;
-
-   // public GameObject ContinueIcon;
-   // public GameObject StopIcon;
-
-    // Use this for initialization
     void Start()
     {
-        _textComponent = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(3).GetComponent<Text>();
-        _textComponent.text = "";
-
-        //HideIcons();
+        textSpeed = 0.5f;
+        speedMultiplier = 0.1f;
+        characterCount = 0;
+        hasComplete = false;
+        StartCoroutine(ShowDialogue());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && hasComplete)
         {
-            if (!_isDialoguePlaying)
+            if (characterCount >= dialogueText.Length)
             {
-                _isDialoguePlaying = true;
-               // StartCoroutine(StartDialogue());
-            }
-
-        }
-    }
-
-    public IEnumerator StartDialogue()
-    {
-        int dialogueLength = DialogueStrings.Length;
-        int currentDialogueIndex = 0;
-
-        while (currentDialogueIndex < dialogueLength || !_isStringBeingRevealed)
-        {
-            if (!_isStringBeingRevealed)
-            {
-                _isStringBeingRevealed = true;
-                StartCoroutine(DisplayString(DialogueStrings[currentDialogueIndex++]));
-
-                if (currentDialogueIndex >= dialogueLength)
-                {
-                    _isEndOfDialogue = true;
-                }
-            }
-
-            yield return 0;
-        }
-
-        while (true)
-        {
-            if (Input.GetKeyDown(DialogueInput))
-            {
-                break;
-            }
-
-            yield return 0;
-        }
-
-       // HideIcons();
-        _isEndOfDialogue = false;
-        _isDialoguePlaying = false;
-    }
-
-    private IEnumerator DisplayString(string stringToDisplay)
-    {
-        int stringLength = stringToDisplay.Length;
-        int currentCharacterIndex = 0;
-
-       // HideIcons();
-
-        _textComponent.text = "";
-
-        while (currentCharacterIndex < stringLength)
-        {
-            _textComponent.text += stringToDisplay[currentCharacterIndex];
-            currentCharacterIndex++;
-
-            if (currentCharacterIndex < stringLength)
-            {
-                if (Input.GetKey(DialogueInput))
-                {
-                    yield return new WaitForSeconds(SecondsBetweenCharacters * CharacterRateMultiplier);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(SecondsBetweenCharacters);
-                }
+                characterCount = dialogueText.Length;
             }
             else
             {
-                break;
-            }
+                dialogue.text = dialogueText[characterCount++];
+                StartCoroutine(ShowDialogue());
+            } 
         }
+    }
 
-       // ShowIcon();
-
-        while (true)
+    public IEnumerator ShowDialogue()
+    {
+        for (int index = 0; index < (dialogueText[characterCount].Length + 1); index++)
         {
-            if (Input.GetKeyDown(DialogueInput))
+            hasComplete = false;
+            dialogue.text = dialogueText[characterCount].Substring(0, index);
+
+            if (Input.GetKey(KeyCode.Return))
             {
-                break;
+                yield return new WaitForSeconds(textSpeed * speedMultiplier);
             }
+            else
+            {
+                yield return new WaitForSeconds(textSpeed);
 
-            yield return 0;
+            }
         }
 
-       // HideIcons();
+        hasComplete = true;
 
-        _isStringBeingRevealed = false;
-        _textComponent.text = "";
     }
-
-    private void HideIcons()
-    {
-        //ContinueIcon.SetActive(false);
-       // StopIcon.SetActive(false);
-    }
-
-    private void ShowIcon()
-    {
-        if (_isEndOfDialogue)
-        {
-            //StopIcon.SetActive(true);
-            return;
-        }
-
-        //ContinueIcon.SetActive(true);
-    }
-
 
 }
