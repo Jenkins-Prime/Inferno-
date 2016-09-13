@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System;
 
 public class GameController : MonoBehaviour {
 	public static GameController instance = null;
@@ -12,6 +11,9 @@ public class GameController : MonoBehaviour {
 	public int currentFloor;
 	public int currentLevel;
 	public List<Floor> floors;
+
+	[HideInInspector] public int saveId;
+	[HideInInspector] public int saveCount;
 
 	void Awake() {
 		//Singleton pattern
@@ -25,8 +27,13 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Check if save game exists
-		//if true then enable the load button
+		
+	}
+		
+	public void CheckForSavedGames() {
+		saveId = saveCount = 0;
+		while (File.Exists (Application.persistentDataPath + "/game" + saveCount + ".sav"))
+			saveCount++;	
 	}
 
 	public void NewGame() {
@@ -39,6 +46,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
+		saveId = 0; //TODO: change this, make it by adding to the stack of loaded saves
 		currentFloor = 0;
 		currentLevel = 0;
 		floors [currentFloor].isUnlocked = true;
@@ -51,10 +59,11 @@ public class GameController : MonoBehaviour {
 		SceneManager.LoadScene(floors[currentFloor].sceneName);
 	}
 
-	public void LoadGame() {
-		if (File.Exists (Application.persistentDataPath + "/game.sav")) {
+	public void LoadGame(int i) {
+		saveId = i;
+		if (File.Exists (Application.persistentDataPath + "/game" + saveId + ".sav")) {
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = new FileStream (Application.persistentDataPath + "/game.sav", FileMode.Open);
+			FileStream file = new FileStream (Application.persistentDataPath + "/game" + saveId + ".sav", FileMode.Open);
 
 			currentFloor = (int)bf.Deserialize (file);
 			currentLevel = (int)bf.Deserialize (file);
@@ -62,13 +71,17 @@ public class GameController : MonoBehaviour {
 			file.Close ();
 
 			//Load scene
-			SceneManager.LoadScene(floors[currentFloor].sceneName);
+			SceneManager.LoadScene (floors [currentFloor].sceneName);
+		} else {
+			//Show UI error
+			Debug.Log ("Error: Couldn't load saved game #" + saveId);
 		}
+
 	}
 
 	public void SaveGame() {
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = new FileStream (Application.persistentDataPath + "/game.sav", FileMode.Create);
+		FileStream file = new FileStream (Application.persistentDataPath + "/game" + saveId + ".sav", FileMode.Create);
 
 		bf.Serialize (file, currentFloor);
 		bf.Serialize (file, currentLevel);
@@ -86,7 +99,7 @@ public class GameController : MonoBehaviour {
 	}
 }
 
-[Serializable]
+[System.Serializable]
 public class Floor {
 	public string name;
 	public string sceneName;
@@ -94,7 +107,7 @@ public class Floor {
 	public List<LevelData> levelData = new List<LevelData>();
 }
 
-[Serializable]
+[System.Serializable]
 public class LevelData {
 	public bool isUnlocked;
 	public int score;
