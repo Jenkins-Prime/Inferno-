@@ -2,7 +2,7 @@
 using System.Collections;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/Player Data", order = 1)]
-public class PlayerData : ScriptableObject {
+public class PlayerDataZ : ScriptableObject {
 	[Header("Movement Variables")]
 	public float moveSpeed = 2f;
 	public float jumpHeight = 3.5f;

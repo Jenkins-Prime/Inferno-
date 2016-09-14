@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37356418, g: 0.38112003, b: 0.35887662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356418, g: 0.3811201, b: 0.3588767, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1551,6 +1551,14 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 112686, guid: e02db096322e9624abc577c7b204e95e, type: 2}
+    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: hurtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1053e8294aaf05a40a07b31d60aa9952, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
   m_IsPrefabParent: 0
@@ -1640,6 +1648,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levelData.Array.size
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013090914374, guid: d275697eef5ec8b439e72c95c9f1abfd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1671,6 +1684,36 @@ Prefab:
     - target: {fileID: 4000013090914374, guid: d275697eef5ec8b439e72c95c9f1abfd, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levelData.Array.data[0].isUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levelData.Array.data[0].startTime
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].levelData.Array.data[0].sceneName
+      value: TestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].name
+      value: Dungeon Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].sceneName
+      value: FloorDungeonScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010806762780, guid: d275697eef5ec8b439e72c95c9f1abfd,
+        type: 2}
+      propertyPath: floors.Array.data[0].isUnlocked
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d275697eef5ec8b439e72c95c9f1abfd, type: 2}
@@ -3379,22 +3422,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1976320078 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000010844414042, guid: d275697eef5ec8b439e72c95c9f1abfd,
-    type: 2}
-  m_PrefabInternal: {fileID: 903935757}
---- !u!114 &1976320081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1976320078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a3b310634d74244a605fec2f711eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2056552520
 GameObject:
   m_ObjectHideFlags: 0

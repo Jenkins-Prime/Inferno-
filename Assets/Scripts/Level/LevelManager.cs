@@ -2,20 +2,10 @@
 using System.Collections;
 
 public class LevelManager : MonoBehaviour {
-	//Get rid of TimeManager
-	//+ Scoremanager
-
-	//The LevelManager Manages the below
-	//Time
-	//Score
-	//Checkpoints
-	//+PlayerManager
 	public GameObject deathParticle;
 	public GameObject respawnParticle;
 
-	[SerializeField] int maxLives = 10;
-	[SerializeField] int maxHealth = 5;
-	[SerializeField] int maxScore = 100; //not sure if useful
+//	[SerializeField] int maxScore = 100; //not sure if useful
 
 	[SerializeField] float deathDelay = 1f;
 	[SerializeField] float respawnDelay = 2f;
@@ -24,35 +14,39 @@ public class LevelManager : MonoBehaviour {
 	int curLives;
 	int curHealth;
 	int curScore;
-	int curTime;
+	float curTime;
 	Transform curCheckPoint;
 
-	GameController gController;
 	PlayerController pController;
 	HUDManager hudManager;
 
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
-		//Init params
-		//import from playerprefs
-		curLives = 3;
-		curHealth = maxHealth;
+
+		curLives = GameController.instance.playerData.curLives;
+		curHealth = GameController.instance.playerData.maxHealth;
+		curTime = GameController.instance.GetCurrentLevelData().startTime;
+		curScore = 0;
 
 		pController = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
-		gController = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
 		hudManager = GameObject.FindGameObjectWithTag ("HUD").GetComponent<HUDManager> ();
-		InitTime(400); //change it more level specific value
+
 		//InvokeRepeating("CountTime", 0f, 1f);
 	}
 
 	//If we are going to use an update() then add input check for the levelLoader here
+	//Temp solution
+	void Update() {
+		CountTime ();
+	}
+
 
 	//Maybe move those two to gamecontroller
 	public void IncreaseLife(int amount) {
 		curLives += amount;
-		if (curLives > maxLives)
-			curLives = maxLives;
+		if (curLives > GameController.instance.playerData.maxLives)
+			curLives = GameController.instance.playerData.maxLives;
 
 		//Do sfx here
 		hudManager.SetLifeUI(curLives);
@@ -69,14 +63,15 @@ public class LevelManager : MonoBehaviour {
 			StartCoroutine (RespawnPlayer ());
 		}
 
+		GameController.instance.playerData.curLives = curLives;
 		hudManager.SetLifeUI (curLives);
 	}
 
 	public void IncreaseHealth(int amount) {
 		curHealth += amount;
 
-		if (curHealth > maxHealth)
-			curHealth = maxHealth;
+		if (curHealth > GameController.instance.playerData.maxHealth)
+			curHealth = GameController.instance.playerData.maxHealth;
 
 		//do sfx here
 		hudManager.SetHealthUI(curHealth);
@@ -92,13 +87,20 @@ public class LevelManager : MonoBehaviour {
 			DecreaseLife (1);
 	}
 
-	public void InitTime(int amount) {
-		curTime = amount;
+	public void AddScore(int amount) {
+		curScore += amount;
+		hudManager.SetScoreUI (curScore);
 	}
 
 	public void SetCheckPoint(Transform checkPoint) {
 		curCheckPoint = checkPoint;
 		Debug.Log("Activated Checkpoint" + curCheckPoint.position);
+	}
+
+	void CountTime() {
+		curTime -= Time.deltaTime;
+		hudManager.SetTimeUI ((int)curTime);
+		//check if curTime <= 0
 	}
 
 	//===== Coroutines =====
@@ -118,7 +120,8 @@ public class LevelManager : MonoBehaviour {
 		//Death part
 		pController.KillPlayer(true);
 		Instantiate (deathParticle, pController.transform.position, pController.transform.rotation);
-		ScoreManager.AddPoints(-pointPenaltyOnDeath); //not sure if useful removing score points
+		//ScoreManager.AddPoints(-pointPenaltyOnDeath); //not sure if useful removing score points
+
 		yield return new WaitForSeconds(deathDelay);
 
 		//Respawn particles part
@@ -127,7 +130,7 @@ public class LevelManager : MonoBehaviour {
 		yield return new WaitForSeconds(respawnDelay);
 
 		//Show player part
-		IncreaseHealth (maxHealth);
+		IncreaseHealth (GameController.instance.playerData.maxHealth);
 		pController.KillPlayer (false);
 	}
 }

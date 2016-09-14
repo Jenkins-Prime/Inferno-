@@ -4,7 +4,25 @@ using System.Collections;
 [RequireComponent(typeof(PlayerData))]
 
 public class PlayerController : MonoBehaviour {
-	public PlayerData playerData;
+	//public PlayerData playerData;
+	[Header("Movement Variables")]
+	public float moveSpeed = 2f;
+	public float jumpHeight = 3.5f;
+	public float knockBackSpeed = 2f;
+	public float climbSpeed = 2f;
+	public float knockBackLength = 0.2f;
+
+	[Header("Head Stomp Variables")]
+	public int damageToGive = 1;
+	public float enemyBounceHeight = 2f;
+
+	[Header("Ranged Attack Variables")]
+	public GameObject bullet;
+	public float shotDelay = 2f;
+
+	[Header("Audio Clips")]
+	public AudioClip hurtClip;
+	public AudioClip jumpClip;
 
 	[SerializeField] LayerMask groundLayer;
 	[SerializeField] Transform groundCheck;
@@ -72,12 +90,12 @@ public class PlayerController : MonoBehaviour {
 		} else if (knockBack) {
 			rb2D.velocity = knockBackVelocity;
 		} else if(onLadder) { 
-			rb2D.velocity = new Vector2(inputVector.x * playerData.moveSpeed, inputVector.y * playerData.climbSpeed);
+			rb2D.velocity = new Vector2(inputVector.x * moveSpeed, inputVector.y * climbSpeed);
 		} else if (jump) {
-			rb2D.velocity = new Vector2 (inputVector.x * playerData.moveSpeed, playerData.jumpHeight);
+			rb2D.velocity = new Vector2 (inputVector.x * moveSpeed, jumpHeight);
 			jump = false;
 		} else {
-			rb2D.velocity = new Vector2 (inputVector.x * playerData.moveSpeed, rb2D.velocity.y);
+			rb2D.velocity = new Vector2 (inputVector.x * moveSpeed, rb2D.velocity.y);
 		}
 	}
 
@@ -98,8 +116,8 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Enemy")  {
 			//Add a check to see if enemy can be hurt with headstomp
-			other.GetComponent<EnemyHealthManager> ().giveDamage (playerData.damageToGive);
-			rb2D.velocity = new Vector2 (rb2D.velocity.x, playerData.enemyBounceHeight);
+			other.GetComponent<EnemyHealthManager> ().giveDamage (damageToGive);
+			rb2D.velocity = new Vector2 (rb2D.velocity.x, enemyBounceHeight);
 		}
 	}
 
@@ -127,10 +145,10 @@ public class PlayerController : MonoBehaviour {
 	void JumpCheck() {
 		if(InputManager.JumpButton()) { //Jump Check
 			if(grounded) { //First jump
-				audioSource.PlayOneShot(playerData.jumpClip, 1.0f);
+				audioSource.PlayOneShot(jumpClip, 1.0f);
 				jump = true;
 			} else if(!doubleJumped) { //Second Jump
-				audioSource.PlayOneShot(playerData.jumpClip, 0.5f);
+				audioSource.PlayOneShot(jumpClip, 0.5f);
 				doubleJumped = true;
 				jump = true;
 			}
@@ -142,8 +160,8 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool ("Firing", true);
 
 			if(shotTimer <= 0) { //change this to bool values
-				Instantiate (playerData.bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
-				shotTimer = playerData.shotDelay;
+				Instantiate (bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
+				shotTimer = shotDelay;
 			}
 		} else if (InputManager.MeleeButton()) {
 			//Melee code here
@@ -171,15 +189,15 @@ public class PlayerController : MonoBehaviour {
 
 	public void PlayerKnockBack(Vector3 attacker) {
 		knockBack = true;
-		knockBackTimer = playerData.knockBackLength;
+		knockBackTimer = knockBackLength;
 
 		if(transform.position.x < attacker.x) {
-			knockBackVelocity = new Vector2(-playerData.knockBackSpeed, playerData.knockBackSpeed);
+			knockBackVelocity = new Vector2(-knockBackSpeed, knockBackSpeed);
 		} else {
-			knockBackVelocity = new Vector2(playerData.knockBackSpeed, playerData.knockBackSpeed);		
+			knockBackVelocity = new Vector2(knockBackSpeed, knockBackSpeed);		
 		}
 
-		audioSource.PlayOneShot (playerData.hurtClip, 1f);
+		audioSource.PlayOneShot (hurtClip, 1f);
 	}
 
 	public void EnterLadderZone() {

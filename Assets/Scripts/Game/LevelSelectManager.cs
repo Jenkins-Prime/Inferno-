@@ -18,7 +18,6 @@ public class LevelSelectManager : MonoBehaviour {
 		playerMoving = false;
 		playerAnim = GameObject.FindGameObjectWithTag ("Player").GetComponent<Animator> ();
 
-		//load unlocked and scores
 		ConnectLevelNodes ();
 		current = 0;
 		SetLevelNode (levels[current].node);
@@ -36,10 +35,7 @@ public class LevelSelectManager : MonoBehaviour {
 		for (int i = 0; i < levels.Count; i++) {
 			levels [i].node.id = i;
 
-			levels [i].isUnlocked = GameController.instance.GetLevelData (i).isUnlocked;
-			levels [i].score = GameController.instance.GetLevelData (i).score;
-
-			if(levels [i].isUnlocked)
+			if(GameController.instance.GetLevelData (i).isUnlocked)
 				levels [i].node.SetCurrentNodeSprite (false);
 		}
 
@@ -83,23 +79,24 @@ public class LevelSelectManager : MonoBehaviour {
 	void CheckInput() {
 		Vector2 input = InputManager.MainStick ();
 
-		if (input.x > 0 && levels[current].rightNode != null && levels[levels[current].rightNode.id].isUnlocked) { //Pressed Right
+		if (input.x > 0 && levels[current].rightNode != null && GameController.instance.GetLevelData (levels[current].rightNode.id).isUnlocked) {//levels[levels[current].rightNode.id].isUnlocked) { //Pressed Right
 			SetNextPosition (levels[current].rightNode.id);
 
 			if (playerAnim.transform.localScale.x < 0) //Turn player if needed
 				playerAnim.transform.localScale = new Vector3 (1f, 1f, 1f);
-		} else if (input.x < 0 && levels[current].leftNode != null && levels[levels[current].leftNode.id].isUnlocked) { //Pressed left
+		} else if (input.x < 0 && levels[current].leftNode != null && GameController.instance.GetLevelData (levels[current].leftNode.id).isUnlocked) {//levels[levels[current].leftNode.id].isUnlocked) { //Pressed left
 			SetNextPosition (levels[current].leftNode.id);
 
 			if (playerAnim.transform.localScale.x > 0) //Turn player if needed
 				playerAnim.transform.localScale = new Vector3 (-1f, 1f, 1f);
-		} else if (input.y > 0 && levels[current].upNode != null && levels[levels[current].upNode.id].isUnlocked) { //Pressed up
+		} else if (input.y > 0 && levels[current].upNode != null && GameController.instance.GetLevelData (levels[current].upNode.id).isUnlocked) {//levels[levels[current].upNode.id].isUnlocked) { //Pressed up
 			SetNextPosition (levels[current].upNode.id);
-		} else if (input.y < 0 && levels[current].downNode != null && levels[levels[current].downNode.id].isUnlocked) { //Pressed down
+		} else if (input.y < 0 && levels[current].downNode != null && GameController.instance.GetLevelData (levels[current].downNode.id).isUnlocked) {//levels[levels[current].downNode.id].isUnlocked) { //Pressed down
 			SetNextPosition (levels[current].downNode.id);
 		} else if (InputManager.ConfirmButton()) { //Pressed confirm button to play level
+			GameController.instance.currentLevel = current;
 			GameController.instance.SaveGame();
-			SceneManager.LoadScene (levels[current].sceneName); 
+			SceneManager.LoadScene (GameController.instance.GetLevelData (current).sceneName); //levels[current].sceneName); 
 		}
 	}
 }
@@ -112,10 +109,8 @@ public class Level {
 	//Hidden in inspector
 	[HideInInspector] public LevelNode leftNode;
 	[HideInInspector] public LevelNode downNode;
-	[HideInInspector] public bool isUnlocked;
-	[HideInInspector] public int score;
 
-	[Header("Level Data")]
-	public string sceneName;
-	public int startTime;
+	//[Header("Level Data")]
+	//public string sceneName;
+	//public int startTime;
 }
