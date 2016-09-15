@@ -12,6 +12,7 @@ TagManager:
   - HUD
   - Dialogue
   - NPC
+  - Dialogue Holder
   layers:
   - Default
   - TransparentFX
