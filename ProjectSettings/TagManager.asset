@@ -13,6 +13,7 @@ TagManager:
   - Dialogue
   - NPC
   - Dialogue Holder
+  - Weapon
   layers:
   - Default
   - TransparentFX
