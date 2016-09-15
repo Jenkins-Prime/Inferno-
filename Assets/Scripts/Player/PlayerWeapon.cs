@@ -19,6 +19,8 @@ public class PlayerWeapon : MonoBehaviour
     private Text ammoAmount;
     private int currentAmmo;
 
+    private SpriteRenderer enableWeapon;
+
 
 
 
@@ -27,6 +29,8 @@ public class PlayerWeapon : MonoBehaviour
     {
         weaponImage = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(1).GetComponent<Image>();
         ammoAmount = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(2).GetComponent<Text>();
+        enableWeapon = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>();
+        
     }
 
 	void Start ()
@@ -37,6 +41,7 @@ public class PlayerWeapon : MonoBehaviour
         ammoAmount.enabled = false;
         currentAmmo = maxAmmo;
         ammoAmount.text = currentAmmo.ToString();
+        enableWeapon.enabled = false;
 	}
 	
 	void Update ()
@@ -59,12 +64,14 @@ public class PlayerWeapon : MonoBehaviour
                 hasSword = false;
                 hasCrossbow = false;
                 weaponImage.sprite = NoneSprite;
+                enableWeapon.enabled = false;
                 ammoAmount.enabled = false;
                 break;
 
             case Weapons.SWORD:
                 hasSword = true;
                 weaponImage.sprite = swordSprite;
+                enableWeapon.enabled = true;
                 ammoAmount.enabled = false;
          
                 if (Input.GetButtonDown("Attack"))
@@ -77,6 +84,7 @@ public class PlayerWeapon : MonoBehaviour
             case Weapons.CROSSBOW:
                 hasCrossbow = true;
                 weaponImage.sprite = crossbowSprite;
+                enableWeapon.enabled = false;
                 ammoAmount.enabled = true;
 
                 if (Input.GetButtonDown("Attack"))

@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CrossbowPickup : MonoBehaviour {
+public class CrossbowPickup : MonoBehaviour
+{
+    private PlayerWeapon playerWeapon;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Awake()
+    {
+        playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerWeapon>();
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            playerWeapon.currentWeapon = Weapons.CROSSBOW;
+            Destroy(gameObject);
+        }
+    }
 }

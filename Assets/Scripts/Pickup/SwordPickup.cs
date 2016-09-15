@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwordPickup : MonoBehaviour {
+public class SwordPickup : MonoBehaviour
+{
+    private PlayerWeapon playerWeapon;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Awake ()
+    {
+        playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerWeapon>();
 	}
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            playerWeapon.currentWeapon = Weapons.SWORD;
+            Destroy(gameObject);
+        }
+    }
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
