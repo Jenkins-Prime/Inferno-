@@ -12,13 +12,21 @@ public class PlayerWeapon : MonoBehaviour
     public Sprite swordSprite;
     public Sprite crossbowSprite;
     public Sprite NoneSprite;
+    public Weapons currentWeapon;
+    public int maxAmmo;
 
     private Image weaponImage;
-    public Weapons currentWeapon;
+    private Text ammoAmount;
+    private int currentAmmo;
+
+
+
+
 
     void Awake()
     {
         weaponImage = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(1).GetComponent<Image>();
+        ammoAmount = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(2).GetComponent<Text>();
     }
 
 	void Start ()
@@ -26,14 +34,17 @@ public class PlayerWeapon : MonoBehaviour
         hasSword = false;
         hasCrossbow = false;
         currentWeapon = Weapons.NONE;
-       
+        ammoAmount.enabled = false;
+        currentAmmo = maxAmmo;
+        ammoAmount.text = currentAmmo.ToString();
 	}
 	
 	void Update ()
     {
         DisplayWeapons();
 
-        if (hasSword && hasCrossbow && Input.GetButtonDown("Switch"))
+
+        if (Input.GetButtonDown("Switch") && hasSword && hasCrossbow)
         {
             SwitchWeapon();
         }
@@ -48,12 +59,14 @@ public class PlayerWeapon : MonoBehaviour
                 hasSword = false;
                 hasCrossbow = false;
                 weaponImage.sprite = NoneSprite;
+                ammoAmount.enabled = false;
                 break;
 
             case Weapons.SWORD:
                 hasSword = true;
                 weaponImage.sprite = swordSprite;
-
+                ammoAmount.enabled = false;
+         
                 if (Input.GetButtonDown("Attack"))
                 {
                     Attack();
@@ -64,11 +77,13 @@ public class PlayerWeapon : MonoBehaviour
             case Weapons.CROSSBOW:
                 hasCrossbow = true;
                 weaponImage.sprite = crossbowSprite;
+                ammoAmount.enabled = true;
 
                 if (Input.GetButtonDown("Attack"))
                 {
-                    Attack();
+                    Shoot();
                 }
+
                 break;
         }
     }
@@ -92,7 +107,17 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("You shoot a projectile");
+        if (currentAmmo <= 0)
+        {
+            currentAmmo = 0;
+            Debug.Log("Out of ammo");
+        }
+        else
+        {
+            currentAmmo--;
+        }
+
+        ammoAmount.text = currentAmmo.ToString();
     }
 }
 
