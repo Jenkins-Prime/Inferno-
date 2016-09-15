@@ -32,7 +32,7 @@ TextureImporter:
   textureFormat: -2
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 2
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -49,11 +49,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Brazier_0
+    - serializedVersion: 2
+      name: Brazier_0
       rect:
         serializedVersion: 2
         x: 11
@@ -64,7 +67,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Brazier_1
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Brazier_1
       rect:
         serializedVersion: 2
         x: 43
@@ -75,7 +80,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Brazier_2
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Brazier_2
       rect:
         serializedVersion: 2
         x: 75
@@ -86,6 +93,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 
