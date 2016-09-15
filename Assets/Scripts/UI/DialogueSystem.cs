@@ -32,15 +32,17 @@ public class DialogueSystem : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Time.timeScale);
         if (Input.GetKeyDown(KeyCode.Return) && isTalking)
         {
+            
             StopDialogue();
         }
         else if(Input.GetKeyDown(KeyCode.Return) && canInteract)
         {
+            
             StartDialogue();
         }
-
 
     }
 
@@ -49,7 +51,9 @@ public class DialogueSystem : MonoBehaviour
         dialogueBox.SetActive(true);
         dialogue.text = npcDialogue;
         isTalking = true;
-        playerController.enabled = false;
+       Time.timeScale = 0.0f;
+
+
     }
 
     public void StopDialogue()
@@ -57,7 +61,7 @@ public class DialogueSystem : MonoBehaviour
         dialogueBox.SetActive(false);
         dialogue.text = "";
         isTalking = false;
-        playerController.enabled = true;
+        Time.timeScale = 1.0f;
 
     }
 

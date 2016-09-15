@@ -1,48 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour {
-
-	public string levelSelect;
-
-	public string mainMenu;
+public class PauseMenu : MonoBehaviour
+{
 
 	public bool isPaused;
-
 	public GameObject pauseMenuCanvas;
 
-	// Update is called once per frame
-	void Update () {
-		if (isPaused) 
-		{
-			pauseMenuCanvas.SetActive (true);
-			Time.timeScale = 0f;
-		} 
+    void Start()
+    {
+        isPaused = false;
+    }
 
-		else 
-		{
-			pauseMenuCanvas.SetActive (false);
-			Time.timeScale = 1f;
-		}
-	
-		if (InputManager.PauseButton()) 
-		{
-			isPaused = !isPaused;
-		}
-	}
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Pause();
+        }
+    }
 
-	public void Resume()
+
+    public void Pause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+        }
+
+    }
+
+	public void LevelSelect(string levelSelect)
 	{
-		isPaused = false;
+        SceneManager.LoadScene(levelSelect);
 	}
 
-	public void LevelSelect()
+	public void Quit (string mainMenu)
 	{
-		Application.LoadLevel(levelSelect);
-	}
-
-	public void Quit ()
-	{
-		Application.LoadLevel(mainMenu);
-	}
+        SceneManager.LoadScene(mainMenu);
+    }
 }
