@@ -3384,13 +3384,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8e95eb2c584d44abfd7812e3310f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 897179337}
-  - {fileID: 1368266225}
   hasSword: 0
   hasCrossbow: 0
   swordSprite: {fileID: 21300000, guid: 90322168106f03d4b939e5e9dee335bf, type: 3}
   crossbowSprite: {fileID: 21300000, guid: f0a1e2d60829286428db06f55682a984, type: 3}
+  NoneSprite: {fileID: 21300000, guid: b9a17d48b2e2bed439bae0e92a90e128, type: 3}
+  currentWeapon: 0
 --- !u!1 &1537117009
 GameObject:
   m_ObjectHideFlags: 0

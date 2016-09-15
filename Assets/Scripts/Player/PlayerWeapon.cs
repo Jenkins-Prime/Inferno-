@@ -4,18 +4,17 @@ using System.Collections;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    public GameObject[] weapons;
+   
 
     public bool hasSword;
     public bool hasCrossbow;
 
     public Sprite swordSprite;
     public Sprite crossbowSprite;
-
+    public Sprite NoneSprite;
 
     private Image weaponImage;
-    private int currentWeapon;
-    private int maxWeapons;
+    public Weapons currentWeapon;
 
     void Awake()
     {
@@ -26,79 +25,81 @@ public class PlayerWeapon : MonoBehaviour
     {
         hasSword = false;
         hasCrossbow = false;
-        currentWeapon = 0;
-        maxWeapons = 2;
+        currentWeapon = Weapons.NONE;
        
 	}
 	
 	void Update ()
     {
-        ShowWeapon();
+        DisplayWeapons();
 
-        if (Input.GetButtonDown("Switch"))
+        if (hasSword && hasCrossbow && Input.GetButtonDown("Switch"))
         {
             SwitchWeapon();
         }
 
-        if (Input.GetButtonDown("Attack") && currentWeapon == 1)
-        {
-            Attack();
-        }
-        else if (Input.GetButtonDown("Attack") && currentWeapon == 2)
-        {
-            Shoot();
-        }
-        
-	}
+    }
 
-    private void ShowWeapon()
+    private void DisplayWeapons()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        switch (currentWeapon)
         {
-            hasSword = true;
-        }
+            case Weapons.NONE:
+                hasSword = false;
+                hasCrossbow = false;
+                weaponImage.sprite = NoneSprite;
+                break;
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            hasCrossbow = true;
+            case Weapons.SWORD:
+                hasSword = true;
+                weaponImage.sprite = swordSprite;
+
+                if (Input.GetButtonDown("Attack"))
+                {
+                    Attack();
+                }
+
+                break;
+
+            case Weapons.CROSSBOW:
+                hasCrossbow = true;
+                weaponImage.sprite = crossbowSprite;
+
+                if (Input.GetButtonDown("Attack"))
+                {
+                    Attack();
+                }
+                break;
         }
     }
 
     private void SwitchWeapon()
     {
-        if (hasSword && hasCrossbow)
+        if (currentWeapon == Weapons.SWORD)
         {
-            if (currentWeapon > weapons.Length - 1)
-            {
-                currentWeapon = 0;
-
-            }
-            else
-            {
-                Switch(weapons[currentWeapon++]);
-            }
+            currentWeapon = Weapons.CROSSBOW;
         }
-    }
-
-    private void Switch(GameObject selectedWeapon)
-    {
-        for (int index = 0; index < weapons.Length; index++)
+        else if(currentWeapon == Weapons.CROSSBOW)
         {
-            if (weapons[index] == selectedWeapon)
-            {
-                weapons[index].SetActive(true);
-                weaponImage.sprite = selectedWeapon.GetComponent<Image>().sprite;
-            }
+            currentWeapon = Weapons.SWORD;
         }
     }
 
     private void Attack()
     {
-        Debug.Log("Attack");
+        Debug.Log("You swing your sword");
     }
 
     private void Shoot()
     {
-        Debug.Log("Shoot");
+        Debug.Log("You shoot a projectile");
     }
+}
+
+public enum Weapons
+{
+    NONE,
+    SWORD,
+    CROSSBOW
+
 }
