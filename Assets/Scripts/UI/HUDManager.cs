@@ -8,11 +8,6 @@ public class HUDManager : MonoBehaviour {
 	[SerializeField] Text timeText;
 	[SerializeField] Text scoreText;
 
-	/*// Use this for initialization
-	void Start () {
-	
-	}*/
-
 	public void SetHealthUI(int amount) {
 		healthBar.value = (float)amount;
 	}

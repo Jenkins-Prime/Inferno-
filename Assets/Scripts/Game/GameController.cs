@@ -8,6 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class GameController : MonoBehaviour {
 	public static GameController instance = null;
 
+	public PlayerData playerData;
 	public int currentFloor;
 	public int currentLevel;
 	public List<Floor> floors;
@@ -97,6 +98,18 @@ public class GameController : MonoBehaviour {
 	public LevelData GetLevelData(int i) {
 		return floors [currentFloor].levelData [i];
 	}
+
+	public LevelData GetCurrentLevelData() {
+		return floors [currentFloor].levelData [currentLevel];
+	}
+}
+
+[System.Serializable]
+public class PlayerData {
+	public int curLives;
+
+	public int maxLives = 10;
+	public int maxHealth = 5;
 }
 
 [System.Serializable]
@@ -110,5 +123,7 @@ public class Floor {
 [System.Serializable]
 public class LevelData {
 	public bool isUnlocked;
+	public string sceneName;
 	public int score;
+	public float startTime;
 }
