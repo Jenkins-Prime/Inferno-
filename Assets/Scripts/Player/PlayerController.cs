@@ -4,31 +4,31 @@ using System.Collections;
 [RequireComponent(typeof(PlayerData))]
 
 public class PlayerController : MonoBehaviour {
-	//public PlayerData playerData;
 	[Header("Movement Variables")]
-	public float moveSpeed = 2f;
-	public float jumpHeight = 3.5f;
-	public float knockBackSpeed = 2f;
-	public float climbSpeed = 2f;
-	public float knockBackLength = 0.2f;
+	[SerializeField] float moveSpeed = 2f;
+	[SerializeField] float jumpHeight = 3.5f;
+	[SerializeField] float knockBackSpeed = 2f;
+	[SerializeField] float climbSpeed = 2f;
+	[SerializeField] float knockBackLength = 0.2f;
 
-	[Header("Head Stomp Variables")]
-	public int damageToGive = 1;
-	public float enemyBounceHeight = 2f;
+	//[Header("Head Stomp Variables")]
+	//[SerializeField] int damageToGive = 1;
+	//[SerializeField] float enemyBounceHeight = 2f;
 
 	[Header("Ranged Attack Variables")]
-	public GameObject bullet;
-	public float shotDelay = 2f;
+	[SerializeField] GameObject bullet;
+	[SerializeField] float shotDelay = 2f;
 
 	[Header("Audio Clips")]
-	public AudioClip hurtClip;
-	public AudioClip jumpClip;
+	[SerializeField] AudioClip hurtClip;
+	[SerializeField] AudioClip jumpClip;
 
 	[SerializeField] LayerMask groundLayer;
 	[SerializeField] Transform groundCheck;
 	[SerializeField] float groundCheckRadius = 0.1f;
 	[SerializeField] Transform firePoint;
 
+	public bool canMove;
 	bool isDead;
 	bool grounded;
 	bool doubleJumped;
@@ -55,21 +55,15 @@ public class PlayerController : MonoBehaviour {
 
 		gravityStore = rb2D.gravityScale;
 		knockBackTimer = 0f;
+		canMove = true;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if(Time.timeScale == 0f) { //change this to a bool isPaused on LevelManager script
-			return;
-		}
-
-		if (isDead) { //improve this
-			return;
-		}
-
-		if (KnockBackCheck ()) {
+		if (canMove && KnockBackCheck ()) {
 			inputVector = InputManager.MainStick(); //GetInput
 			anim.SetFloat("Speed", Mathf.Abs(inputVector.x));
+			anim.SetFloat("ClimbSpeed", Mathf.Abs(inputVector.y));
 
 			GroundCheck ();
 			JumpCheck ();
@@ -80,12 +74,12 @@ public class PlayerController : MonoBehaviour {
 			else
 				transform.localScale = new Vector3(-1f, 1f, 1f);
 
-			AttackCheck();
+			AttackCheck(); //TODO: Move to Attack script
 		}
     }
 
 	void FixedUpdate() {
-		if (isDead) {
+		if (!canMove) {
 			rb2D.velocity = Vector2.zero;
 		} else if (knockBack) {
 			rb2D.velocity = knockBackVelocity;
@@ -112,14 +106,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	//=====
-
+	/* TODO: Remove this.
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Enemy")  {
 			//Add a check to see if enemy can be hurt with headstomp
 			other.GetComponent<EnemyHealthManager> ().giveDamage (damageToGive);
 			rb2D.velocity = new Vector2 (rb2D.velocity.x, enemyBounceHeight);
 		}
-	}
+	}*/
 
 	//===== Private Functions =====
 	bool KnockBackCheck() {
@@ -143,7 +137,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void JumpCheck() {
-		if(InputManager.JumpButton()) { //Jump Check
+		if(InputManager.JumpButton() && !onLadder) { //Jump Check
 			if(grounded) { //First jump
 				audioSource.PlayOneShot(jumpClip, 1.0f);
 				jump = true;
@@ -168,7 +162,7 @@ public class PlayerController : MonoBehaviour {
 			//anim.SetBool("Sword", true);
 		}
 
-		//Move To a better place
+		//TODO: Move To a better place
 		if (shotTimer > 0)
 			shotTimer -= Time.deltaTime;
 	}
@@ -176,11 +170,13 @@ public class PlayerController : MonoBehaviour {
 	//===== Public functions used from other scripts =====
 	public void KillPlayer(bool kill) {
 		if (kill) { //kill player
-			isDead = true;
+			//isDead = true;
+			canMove = false;
 			rb2D.gravityScale = 0f;
 			rend.enabled = false;
 		} else { //revive player
-			isDead = false;
+			//isDead = false;
+			canMove = true;
 			rb2D.gravityScale = gravityStore;
 			rend.enabled = true;
 			knockBack = false;
