@@ -20,6 +20,8 @@ public class PlayerWeapon : MonoBehaviour
     private int currentAmmo;
 
     private SpriteRenderer enableWeapon;
+    private Animator animator;
+    private bool isAttacking;
 
 
 
@@ -30,6 +32,8 @@ public class PlayerWeapon : MonoBehaviour
         weaponImage = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(1).GetComponent<Image>();
         ammoAmount = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(2).GetComponent<Text>();
         enableWeapon = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        isAttacking = false;
         
     }
 
@@ -54,6 +58,13 @@ public class PlayerWeapon : MonoBehaviour
             SwitchWeapon();
         }
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            animator.SetBool("Sword", false);
+            enableWeapon.enabled = true;
+            isAttacking = false;
+        }
+
     }
 
     private void DisplayWeapons()
@@ -71,9 +82,8 @@ public class PlayerWeapon : MonoBehaviour
             case Weapons.SWORD:
                 hasSword = true;
                 weaponImage.sprite = swordSprite;
-                enableWeapon.enabled = true;
                 ammoAmount.enabled = false;
-         
+                
                 if (Input.GetButtonDown("Attack"))
                 {
                     Attack();
@@ -110,7 +120,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("You swing your sword");
+        animator.SetBool("Sword", true);
+        isAttacking = true;
     }
 
     private void Shoot()

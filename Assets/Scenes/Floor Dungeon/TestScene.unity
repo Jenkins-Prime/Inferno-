@@ -1984,7 +1984,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6104532, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2004,11 +2004,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.75200003
+      value: 90.00001
       objectReference: {fileID: 0}
     - target: {fileID: 21236016, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
