@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour {
 
 [System.Serializable]
 public class PlayerData {
-	public int curLives;
+	public int curLives = 3;
 
 	public int maxLives = 10;
 	public int maxHealth = 5;

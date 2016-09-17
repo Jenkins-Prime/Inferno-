@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour {
 			JumpCheck ();
 
 			//Turn sprite
-			if (rb2D.velocity.x >= 0)
+			if (rb2D.velocity.x > 0.01f)
 				transform.localScale = new Vector3(1f, 1f, 1f);
-			else
+			else if (rb2D.velocity.x < -0.01f)
 				transform.localScale = new Vector3(-1f, 1f, 1f);
 
 			AttackCheck(); //TODO: Move to Attack script

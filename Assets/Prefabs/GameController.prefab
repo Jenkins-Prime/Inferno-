@@ -51,8 +51,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0ff81c08c23f24584097523f269e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    curLives: 3
+    maxLives: 10
+    maxHealth: 5
+  currentFloor: 0
+  currentLevel: 0
   floors:
-  - {fileID: 11400000, guid: 423696d1a45b0084789509e94351deb6, type: 2}
-  startLevel: Scene
-  levelSelect: Level Select
-  level1Tag: level1lock
+  - name: Dungeon Floor
+    sceneName: FloorDungeonScene
+    isUnlocked: 1
+    levelData:
+    - isUnlocked: 1
+      sceneName: TestScene
+      score: 0
+      startTime: 200
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+    - isUnlocked: 0
+      sceneName: 
+      score: 0
+      startTime: 0
+  saveId: 0
+  saveCount: 0

@@ -83,7 +83,7 @@ public class LevelManager : MonoBehaviour {
 		//do sfx here
 		hudManager.SetHealthUI(curHealth);
 
-		if (curHealth <= 0)
+		if (curHealth < 1)
 			DecreaseLife (1);
 	}
 
