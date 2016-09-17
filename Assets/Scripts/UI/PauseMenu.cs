@@ -4,37 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
-	public bool isPaused;
+	//public bool isPaused;
 	public GameObject pauseMenuCanvas;
 
-    void Start()
-    {
-        isPaused = false;
+	PlayerController pController;
+
+    void Start() {
+		pController = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
     }
 
-    void Update()
-    {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Pause();
+    void Update() {
+		if (InputManager.PauseButton()) {
+			if (Time.timeScale == 0.0f)	{ //Resume Game
+				Time.timeScale = 1.0f;
+				pController.canMove = true;
+			} else { //Pause Game
+				Time.timeScale = 0.0f;
+				pController.canMove = false;
+			}
         }
-    }
-
-
-    public void Pause()
-    {
-        isPaused = !isPaused;
-
-        if (isPaused)
-        {
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-        }
-
     }
 
 	public void LevelSelect(string levelSelect)
