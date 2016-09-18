@@ -11,13 +11,15 @@ public class LadderZone : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.tag == "Player")  {
+		if (other.tag == "Player")
+        {
 			pController.EnterLadderZone ();
 		}
 	}
 
 	void OnTriggerExit2D (Collider2D other) {
-		if (other.tag == "Player")  {
+		if (other.tag == "Player")
+        {
 			pController.ExitLadderZone ();
 		}
 	}

@@ -4,7 +4,8 @@ using System.Collections;
 
 public class PlayerWeapon : MonoBehaviour
 {
-   
+
+    public GameObject crossbowProjectile;
 
     public bool hasSword;
     public bool hasCrossbow;
@@ -21,6 +22,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private SpriteRenderer enableWeapon;
     private Animator animator;
+    public GameObject projectileOrigin;
     private bool isAttacking;
 
 
@@ -62,7 +64,6 @@ public class PlayerWeapon : MonoBehaviour
         {
             animator.SetBool("Sword", false);
             enableWeapon.enabled = true;
-            isAttacking = false;
         }
 
     }
@@ -94,6 +95,7 @@ public class PlayerWeapon : MonoBehaviour
             case Weapons.CROSSBOW:
                 hasCrossbow = true;
                 weaponImage.sprite = crossbowSprite;
+                ammoAmount.text = currentAmmo.ToString();
                 enableWeapon.enabled = false;
                 ammoAmount.enabled = true;
 
@@ -134,6 +136,9 @@ public class PlayerWeapon : MonoBehaviour
         else
         {
             currentAmmo--;
+            GameObject projectile = Instantiate(crossbowProjectile, projectileOrigin.transform.position, projectileOrigin.transform.rotation) as GameObject;
+            projectile.name = "Projectile";
+            Destroy(projectile, 3.0f);
         }
 
         ammoAmount.text = currentAmmo.ToString();
@@ -145,5 +150,4 @@ public enum Weapons
     NONE,
     SWORD,
     CROSSBOW
-
 }

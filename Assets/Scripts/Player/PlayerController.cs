@@ -196,7 +196,8 @@ public class PlayerController : MonoBehaviour {
 		audioSource.PlayOneShot (hurtClip, 1f);
 	}
 
-	public void EnterLadderZone() {
+	public void EnterLadderZone()
+    {
 		onLadder = true;
 		rb2D.gravityScale = 0f;
 		anim.SetBool ("Climbing", true);
