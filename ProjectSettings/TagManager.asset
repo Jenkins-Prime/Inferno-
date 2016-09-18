@@ -14,6 +14,9 @@ TagManager:
   - NPC
   - Dialogue Holder
   - Weapon
+  - Projectile
+  - Block
+  - Switch
   layers:
   - Default
   - TransparentFX
