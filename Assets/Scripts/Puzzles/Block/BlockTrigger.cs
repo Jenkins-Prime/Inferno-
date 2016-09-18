@@ -9,16 +9,14 @@ public class BlockTrigger : MonoBehaviour
     public bool isSwitch;
 
     private Animator playerAnimator;
-    private Rigidbody2D rBody;
    
 
     void Awake()
     {
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-        rBody = GameObject.FindGameObjectWithTag("Block").GetComponent<Rigidbody2D>();
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.tag == tagName)
         {
@@ -28,7 +26,7 @@ public class BlockTrigger : MonoBehaviour
             }
             else
             {
-                ReachedLocation();
+               ReachedLocation(); 
             }
         }
 
@@ -43,5 +41,7 @@ public class BlockTrigger : MonoBehaviour
     {
         GameObject key = Instantiate(objectToSpawn, positionToSpawn, transform.rotation) as GameObject;
         key.name = "Key";
+        GetComponent<BoxCollider2D>().isTrigger = false;
+        
     }
 }
