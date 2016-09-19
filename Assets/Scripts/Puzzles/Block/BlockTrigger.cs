@@ -9,27 +9,32 @@ public class BlockTrigger : MonoBehaviour
     public bool isSwitch;
 
     private Animator playerAnimator;
+    private CheckBounds checkBounds;
+    private Rigidbody2D rBody;
    
 
     void Awake()
     {
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        checkBounds = gameObject.GetComponent<CheckBounds>();
+        rBody = GameObject.FindGameObjectWithTag(tagName).GetComponent<Rigidbody2D>();
     }
 
-    void OnTriggerStay2D(Collider2D collider)
+    void Update()
     {
-        if (collider.gameObject.tag == tagName)
-        {
-            if (isSwitch)
-            {
-                ActivateSwitch();
-            }
-            else
-            {
-               ReachedLocation(); 
-            }
-        }
+        
+    }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (isSwitch)
+        {
+            ActivateSwitch();
+        }
+        else
+        {
+           ReachedLocation();
+        }
     }
 
     private void ActivateSwitch()
@@ -39,9 +44,13 @@ public class BlockTrigger : MonoBehaviour
 
     private void ReachedLocation()
     {
-        GameObject key = Instantiate(objectToSpawn, positionToSpawn, transform.rotation) as GameObject;
-        key.name = "Key";
-        GetComponent<BoxCollider2D>().isTrigger = false;
+        if (checkBounds.isInside)
+        {
+            GameObject key = Instantiate(objectToSpawn, positionToSpawn, transform.rotation) as GameObject;
+            key.name = "Key";
+            rBody.mass = 3.0f;
+        }
+        
         
     }
 }
