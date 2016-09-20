@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3735644, g: 0.38112032, b: 0.35887682, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356418, g: 0.3811201, b: 0.3588767, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1501,10 +1501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInside: 0
---- !u!1 &573115552 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 124166, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-  m_PrefabInternal: {fileID: 805999341}
 --- !u!1001 &617009909
 Prefab:
   m_ObjectHideFlags: 0
@@ -1661,8 +1657,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2000,81 +1996,39 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 135080, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 144124, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 124166, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 182844, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 136726, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: groundLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: jumpClip
+    - target: {fileID: 95000013413778002, guid: d5eff5ddbd1915440a08c315fba039bc,
+        type: 2}
+      propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 8300000, guid: 92300500dfe10174cb9d84f03753be74, type: 3}
-    - target: {fileID: 8272150, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_audioClip
+      objectReference: {fileID: 9100000, guid: 176f4c448e023d94cb6e876c1a3364d1, type: 2}
+    - target: {fileID: 21245734, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 21300100, guid: 1930b805c58fafa41936989bf9790f51,
+        type: 3}
+    - target: {fileID: 6189968, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_Offset.y
+      value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 112686, guid: e02db096322e9624abc577c7b204e95e, type: 2}
-    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: hurtClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1053e8294aaf05a40a07b31d60aa9952, type: 3}
-    - target: {fileID: 135080, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 6189968, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_Size.y
+      value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 6104532, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
+    - target: {fileID: 6189968, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_Size.x
+      value: 0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_LocalRotation.x
+    - target: {fileID: 432228, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
+    - target: {fileID: 498422, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 483640, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 21236016, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400940, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+    - target: {fileID: 498422, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
@@ -3621,26 +3575,20 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 136726, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
   m_PrefabInternal: {fileID: 805999341}
---- !u!114 &1524039577
-MonoBehaviour:
+--- !u!58 &1524039570
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524039569}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8e95eb2c584d44abfd7812e3310f4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crossbowProjectile: {fileID: 112686, guid: e02db096322e9624abc577c7b204e95e, type: 2}
-  hasSword: 0
-  hasCrossbow: 0
-  swordSprite: {fileID: 21300000, guid: 90322168106f03d4b939e5e9dee335bf, type: 3}
-  crossbowSprite: {fileID: 21300000, guid: e132ca85a2ad3ca44974d41f8de766e6, type: 3}
-  NoneSprite: {fileID: 21300000, guid: b9a17d48b2e2bed439bae0e92a90e128, type: 3}
-  currentWeapon: 0
-  maxAmmo: 10
-  projectileOrigin: {fileID: 573115552}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0.5}
+  serializedVersion: 2
+  m_Radius: 0.0001
 --- !u!1 &1537117009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,27 +4481,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2118774893 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 135080, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-  m_PrefabInternal: {fileID: 805999341}
---- !u!95 &2118774897
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2118774893}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 176f4c448e023d94cb6e876c1a3364d1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2125283736
 GameObject:
   m_ObjectHideFlags: 0

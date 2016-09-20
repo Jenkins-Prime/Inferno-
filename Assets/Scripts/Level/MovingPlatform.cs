@@ -11,7 +11,6 @@ public class MovingPlatform : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentpoint = points[pointSelection];
-	
 	}
 	
 	// Update is called once per frame

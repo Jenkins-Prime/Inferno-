@@ -33,7 +33,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         weaponImage = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(1).GetComponent<Image>();
         ammoAmount = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(2).GetComponent<Text>();
-        enableWeapon = gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>();
+        enableWeapon = gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         isAttacking = false;
         
