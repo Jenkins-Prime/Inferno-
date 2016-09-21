@@ -17,6 +17,7 @@ TagManager:
   - Projectile
   - Block
   - Switch
+  - Bounds
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Hazards
   - Trigger Zones
   - EnemyProjectiles
-  - 
+  - IngoreCollisions
   - 
   - 
   - 
