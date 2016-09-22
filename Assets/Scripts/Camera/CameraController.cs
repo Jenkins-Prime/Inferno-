@@ -15,12 +15,12 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        cameraBounds = GameObject.FindGameObjectWithTag("Bounds").GetComponent<BoxCollider2D>();
+        //cameraBounds = GameObject.FindGameObjectWithTag("Bounds").GetComponent<BoxCollider2D>();
     }
     void Start ()
     {
-        minBorder = cameraBounds.bounds.min;
-        maxborder = cameraBounds.bounds.max;
+       // minBorder = cameraBounds.bounds.min;
+       // maxborder = cameraBounds.bounds.max;
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
         isFollowing = true;
 	}
@@ -44,10 +44,10 @@ public class CameraController : MonoBehaviour
             }
         }
 
-       float cameraWidth = GetComponent<Camera>().orthographicSize * ((float)Screen.width / Screen.height);
+      // float cameraWidth = GetComponent<Camera>().orthographicSize * ((float)Screen.width / Screen.height);
 
-        currentXPosition = Mathf.Clamp(currentXPosition, minBorder.x + cameraWidth, maxborder.x - cameraWidth);
-        currentYPosition = Mathf.Clamp(currentYPosition, minBorder.y + GetComponent<Camera>().orthographicSize, maxborder.y - GetComponent<Camera>().orthographicSize);
+        //currentXPosition = Mathf.Clamp(currentXPosition, minBorder.x + cameraWidth, maxborder.x - cameraWidth);
+       // currentYPosition = Mathf.Clamp(currentYPosition, minBorder.y + GetComponent<Camera>().orthographicSize, maxborder.y - GetComponent<Camera>().orthographicSize);
 
         transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
 
