@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class HurtPlayerOnContact : MonoBehaviour {
-	[SerializeField] int damageAmount = 1;
+	[SerializeField] int damageAmount = 100;
 	PlayerController pController;
 	LevelManager levelManager;
 
@@ -12,8 +12,11 @@ public class HurtPlayerOnContact : MonoBehaviour {
 		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 	}
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            pController.isDead = true;
 			levelManager.DecreaseHealth (damageAmount);
 			pController.PlayerKnockBack (transform.position);
         }

@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] Transform firePoint;
 
 	public bool canMove;
-	bool isDead;
+    [HideInInspector]
+	public bool isDead;
 	bool grounded;
 	bool doubleJumped;
 	bool jump;

@@ -4,18 +4,22 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
     public Vector2 margin;
-    public Vector2 smoothing;
 
     private Transform player;
     private BoxCollider2D cameraBounds;
     private bool isFollowing;
+    private Vector2 smoothing;
     private Vector3 minBorder;
     private Vector3 maxborder;
+
+    private PlayerController playerController;
+    private LevelManager levelManager;
 
 
     void Awake()
     {
-        //cameraBounds = GameObject.FindGameObjectWithTag("Bounds").GetComponent<BoxCollider2D>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
     void Start ()
     {
@@ -23,6 +27,9 @@ public class CameraController : MonoBehaviour
        // maxborder = cameraBounds.bounds.max;
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
         isFollowing = true;
+        smoothing.x = 4.0f;
+        smoothing.y = 4.0f;
+
 	}
 	
 	void LateUpdate ()
@@ -31,26 +38,35 @@ public class CameraController : MonoBehaviour
         float currentXPosition = transform.position.x;
         float currentYPosition = transform.position.y;
 
-        if (isFollowing)
+        if (playerController.isDead)
         {
-            if (Mathf.Abs(currentXPosition - player.position.x) > margin.x)
-            {
-                currentXPosition = Mathf.Lerp(currentXPosition, player.position.x, smoothing.x * Time.deltaTime);
-            }
-
-            if (Mathf.Abs(currentYPosition - player.position.y) > margin.y)
-            {
-                currentYPosition = Mathf.Lerp(currentYPosition, player.position.y, smoothing.y * Time.deltaTime);
-            }
+            isFollowing = false;
+            currentXPosition = Mathf.Lerp(currentXPosition, levelManager.curCheckPoint.transform.position.x, smoothing.x * Time.deltaTime);
+            currentYPosition = Mathf.Lerp(currentYPosition, levelManager.curCheckPoint.transform.position.y, smoothing.y * Time.deltaTime);
+        }
+        else
+        {
+            isFollowing = true;
         }
 
-      // float cameraWidth = GetComponent<Camera>().orthographicSize * ((float)Screen.width / Screen.height);
+        if (isFollowing)
+        {
+            
+                if (Mathf.Abs(currentXPosition - player.position.x) > margin.x)
+                {
+                    currentXPosition = Mathf.Lerp(currentXPosition, player.position.x, smoothing.x * Time.deltaTime);
+                }
 
-        //currentXPosition = Mathf.Clamp(currentXPosition, minBorder.x + cameraWidth, maxborder.x - cameraWidth);
-       // currentYPosition = Mathf.Clamp(currentYPosition, minBorder.y + GetComponent<Camera>().orthographicSize, maxborder.y - GetComponent<Camera>().orthographicSize);
+                if (Mathf.Abs(currentYPosition - player.position.y) > margin.y)
+                {
+                    currentYPosition = Mathf.Lerp(currentYPosition, player.position.y, smoothing.y * Time.deltaTime);
+                }
+        }
+   
+       transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
 
-        transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
-
+       
     }
+
 
 }

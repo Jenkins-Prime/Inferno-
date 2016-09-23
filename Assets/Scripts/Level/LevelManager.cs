@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour {
 	int curHealth;
 	int curScore;
 	float curTime;
-	Transform curCheckPoint;
+	public Transform curCheckPoint;
 
 	PlayerController pController;
 	HUDManager hudManager;
@@ -132,5 +132,6 @@ public class LevelManager : MonoBehaviour {
 		//Show player part
 		IncreaseHealth (GameController.instance.playerData.maxHealth);
 		pController.KillPlayer (false);
+        pController.isDead = false;
 	}
 }
