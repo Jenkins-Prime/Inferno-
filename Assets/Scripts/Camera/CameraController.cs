@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     private Vector2 smoothing;
     private Vector3 minBorder;
     private Vector3 maxborder;
+    private Vector2 velocity;
 
     private PlayerController playerController;
     private LevelManager levelManager;
@@ -27,8 +28,8 @@ public class CameraController : MonoBehaviour
        // maxborder = cameraBounds.bounds.max;
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
         isFollowing = true;
-        smoothing.x = 4.0f;
-        smoothing.y = 4.0f;
+        smoothing.x = 2.0f;
+        smoothing.y = 2.0f;
 
 	}
 	
@@ -38,34 +39,21 @@ public class CameraController : MonoBehaviour
         float currentXPosition = transform.position.x;
         float currentYPosition = transform.position.y;
 
-        if (playerController.isDead)
+        if (!playerController.isDead)
         {
-            isFollowing = false;
-            currentXPosition = Mathf.Lerp(currentXPosition, levelManager.curCheckPoint.transform.position.x, smoothing.x * Time.deltaTime);
-            currentYPosition = Mathf.Lerp(currentYPosition, levelManager.curCheckPoint.transform.position.y, smoothing.y * Time.deltaTime);
+            currentXPosition = Mathf.SmoothDamp(transform.position.x, player.position.x, ref velocity.x, smoothing.x * Time.deltaTime);
+            currentYPosition = Mathf.SmoothDamp(transform.position.y, player.position.y, ref velocity.y, smoothing.y * Time.deltaTime);
+
         }
         else
         {
-            isFollowing = true;
+            currentXPosition = Mathf.SmoothDamp(transform.position.x, levelManager.curCheckPoint.position.x, ref velocity.x, smoothing.x * Time.deltaTime);
+            currentYPosition = Mathf.SmoothDamp(transform.position.y, levelManager.curCheckPoint.position.y, ref velocity.y, smoothing.y * Time.deltaTime);
         }
 
-        if (isFollowing)
-        {
-            
-                if (Mathf.Abs(currentXPosition - player.position.x) > margin.x)
-                {
-                    currentXPosition = Mathf.Lerp(currentXPosition, player.position.x, smoothing.x * Time.deltaTime);
-                }
+        transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
 
-                if (Mathf.Abs(currentYPosition - player.position.y) > margin.y)
-                {
-                    currentYPosition = Mathf.Lerp(currentYPosition, player.position.y, smoothing.y * Time.deltaTime);
-                }
-        }
-   
-       transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
 
-       
     }
 
 
