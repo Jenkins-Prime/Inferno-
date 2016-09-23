@@ -3329,7 +3329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   margin: {x: 0, y: 0.1}
-  smoothing: {x: 1, y: 1}
 --- !u!81 &1124406235
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4301,7 +4300,7 @@ Prefab:
     - target: {fileID: 21245734, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300100, guid: 1930b805c58fafa41936989bf9790f51,
+      objectReference: {fileID: 21300000, guid: 88af1a64c328b2d449b99cd7af4bbae5,
         type: 3}
     - target: {fileID: 6189968, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_Offset.y
