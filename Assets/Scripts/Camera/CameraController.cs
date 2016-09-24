@@ -3,15 +3,17 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    public Vector2 margin;
-
     private Transform player;
-    private BoxCollider2D cameraBounds;
-    private bool isFollowing;
+    [SerializeField]
+    private Vector2 margin;
+    [SerializeField]
     private Vector2 smoothing;
-    private Vector3 minBorder;
-    private Vector3 maxborder;
-    private Vector2 velocity;
+    private BoxCollider2D cameraBounds;
+    private Vector3 minBounds;
+    private Vector3 maxBounds;
+
+    private Camera cameraSize;
+
 
     private PlayerController playerController;
     private LevelManager levelManager;
@@ -21,40 +23,60 @@ public class CameraController : MonoBehaviour
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        cameraBounds = GameObject.FindGameObjectWithTag("Bounds").GetComponent<BoxCollider2D>();
+        cameraSize = GetComponent<Camera>();
     }
     void Start ()
     {
-       // minBorder = cameraBounds.bounds.min;
-       // maxborder = cameraBounds.bounds.max;
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
-        isFollowing = true;
-        smoothing.x = 2.0f;
-        smoothing.y = 2.0f;
+
+        minBounds = cameraBounds.bounds.min;
+        maxBounds = cameraBounds.bounds.max;
+
+        smoothing.x = 4.0f;
+        smoothing.y = 4.0f;
 
 	}
 	
 	void LateUpdate ()
     {
+        FollowPlayer();  
+    }
 
+    private void FollowPlayer()
+    {
         float currentXPosition = transform.position.x;
         float currentYPosition = transform.position.y;
+        float cameraWidth = cameraSize.orthographicSize * ((float)(Screen.width / Screen.height));
 
-        if (!playerController.isDead)
+        if (playerController.isDead)
         {
-            currentXPosition = Mathf.SmoothDamp(transform.position.x, player.position.x, ref velocity.x, smoothing.x * Time.deltaTime);
-            currentYPosition = Mathf.SmoothDamp(transform.position.y, player.position.y, ref velocity.y, smoothing.y * Time.deltaTime);
 
+            currentXPosition = Mathf.Lerp(currentXPosition, levelManager.curCheckPoint.position.x, smoothing.x * Time.deltaTime);
+            currentYPosition = Mathf.Lerp(currentYPosition, levelManager.curCheckPoint.position.y, smoothing.y * Time.deltaTime);
+
+            currentXPosition = Mathf.Clamp(currentXPosition, minBounds.x + cameraWidth, maxBounds.x - cameraWidth);
+            currentYPosition = Mathf.Clamp(currentYPosition, minBounds.y + cameraSize.orthographicSize, maxBounds.y - cameraSize.orthographicSize);
         }
         else
         {
-            currentXPosition = Mathf.SmoothDamp(transform.position.x, levelManager.curCheckPoint.position.x, ref velocity.x, smoothing.x * Time.deltaTime);
-            currentYPosition = Mathf.SmoothDamp(transform.position.y, levelManager.curCheckPoint.position.y, ref velocity.y, smoothing.y * Time.deltaTime);
+            if (Mathf.Abs(currentXPosition - player.position.x) > margin.x)
+            {
+                currentXPosition = Mathf.Lerp(currentXPosition, player.position.x, smoothing.x * Time.deltaTime);
+            }
+
+            if (Mathf.Abs(currentYPosition - player.position.y) > margin.y)
+            {
+                currentYPosition = Mathf.Lerp(currentYPosition, player.position.y, smoothing.y * Time.deltaTime);
+            }
+
+            currentXPosition = Mathf.Clamp(currentXPosition, minBounds.x + cameraWidth, maxBounds.x - cameraWidth);
+            currentYPosition = Mathf.Clamp(currentYPosition, minBounds.y + cameraSize.orthographicSize, maxBounds.y - cameraSize.orthographicSize);
+
         }
 
         transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
 
-
     }
-
 
 }
