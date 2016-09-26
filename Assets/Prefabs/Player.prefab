@@ -43,11 +43,11 @@ GameObject:
   - 4: {fileID: 400940}
   - 212: {fileID: 21245734}
   - 95: {fileID: 9506458}
-  - 50: {fileID: 5028332}
   - 61: {fileID: 6189968}
   - 114: {fileID: 11481592}
-  - 82: {fileID: 8272150}
+  - 114: {fileID: 114000010782811614}
   - 114: {fileID: 114000013386217518}
+  - 82: {fileID: 8272150}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -76,8 +76,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136726}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.811, y: -2.09, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 32.06, y: -5.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -119,29 +119,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 400940}
   m_RootOrder: 1
---- !u!50 &5028332
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136726}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &6104532
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -167,9 +150,9 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: 708722f070783624fa03a3f4d79a592c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
-  m_Size: {x: 0.18, y: 0.27}
+  m_Size: {x: 0.15, y: 0.4}
 --- !u!82 &8272150
 AudioSource:
   m_ObjectHideFlags: 1
@@ -272,21 +255,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d45dab9ec68f0b45be752ae59c865f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  jumpHeight: 3.5
-  knockBackSpeed: 2
-  climbSpeed: 2
-  knockBackLength: 0.2
-  bullet: {fileID: 112686, guid: e02db096322e9624abc577c7b204e95e, type: 2}
-  shotDelay: 2
-  hurtClip: {fileID: 8300000, guid: 1053e8294aaf05a40a07b31d60aa9952, type: 3}
-  jumpClip: {fileID: 8300000, guid: 92300500dfe10174cb9d84f03753be74, type: 3}
-  groundLayer:
+  collisionMask:
     serializedVersion: 2
     m_Bits: 256
-  groundCheck: {fileID: 432228}
-  groundCheckRadius: 0.1
-  firePoint: {fileID: 498422}
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  col: {fileID: 0}
+  playerInput: {x: 0, y: 0}
+  isDead: 0
   canMove: 0
 --- !u!212 &21236016
 SpriteRenderer:
@@ -350,7 +328,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b045de1cc0815a04cbbb46e184f2bf25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88af1a64c328b2d449b99cd7af4bbae5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -382,6 +360,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010782811614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686ed29f5c3f93d45aac757a8cf4a011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  minJumpHeight: 0.2
+  maxJumpHeight: 1
+  timeToJumpApex: 0.35
 --- !u!114 &114000013386217518
 MonoBehaviour:
   m_ObjectHideFlags: 1

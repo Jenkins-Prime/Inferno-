@@ -3,80 +3,98 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-    private Transform player;
-    [SerializeField]
-    private Vector2 margin;
-    [SerializeField]
-    private Vector2 smoothing;
-    private BoxCollider2D cameraBounds;
-    private Vector3 minBounds;
-    private Vector3 maxBounds;
+	public PlayerController target;
+	public float verticalOffset = 0f;
+	public float lookAheadDistX = 1f;
+	public float lookSmoothTimeX = 0.5f;
+	public float verticalSmoothTime = 0f;
+	public Vector2 focusAreaSize;
 
-    private Camera cameraSize;
+	FocusArea focusArea;
 
+	float currentLookAheadX;
+	float targetLookAheadX;
+	float lookAheadDirX;
+	float smoothLookVelocityX;
+	float smoothVelocityY;
 
-    private PlayerController playerController;
-    private LevelManager levelManager;
+	bool lookAheadStopped;
 
+	void Start() {
+		focusArea = new FocusArea (target.col.bounds, focusAreaSize);
+	}
 
-    void Awake()
-    {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-        cameraBounds = GameObject.FindGameObjectWithTag("Bounds").GetComponent<BoxCollider2D>();
-        cameraSize = GetComponent<Camera>();
-    }
-    void Start ()
-    {
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
+	void LateUpdate() {
+		focusArea.Update (target.col.bounds);
 
-        minBounds = cameraBounds.bounds.min;
-        maxBounds = cameraBounds.bounds.max;
+		Vector2 focusPosition = focusArea.center + Vector2.up * verticalOffset;
 
-        smoothing.x = 4.0f;
-        smoothing.y = 4.0f;
+		if (focusArea.velocity.x != 0) {
+			lookAheadDirX = Mathf.Sign (focusArea.velocity.x);
+			if (Mathf.Sign (target.playerInput.x) == Mathf.Sign (focusArea.velocity.x) && target.playerInput.x != 0) {
+				lookAheadStopped = false;
+				targetLookAheadX = lookAheadDirX * lookAheadDistX;
+			} else {
+				if (!lookAheadStopped) {
+					lookAheadStopped = true;
+					targetLookAheadX = currentLookAheadX + (lookAheadDirX * lookAheadDistX - currentLookAheadX) / 4f;
+				}
+			}
+		}
+
+		//targetLookAheadX = lookAheadDirX * lookAheadDistX;
+		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
+
+		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);
+		focusPosition += Vector2.right * currentLookAheadX;
+		transform.position = (Vector3)focusPosition + Vector3.forward * -10f;
+	}
+
+	void OnDrawGizmos() {
+		Gizmos.color = new Color (1, 0, 0, .5f);
+		Gizmos.DrawCube (focusArea.center, focusAreaSize);
+	}
+
+	struct FocusArea {
+		public Vector2 velocity;
+		public Vector2 center;
+		float left, right;
+		float top, bottom;
+
+		public FocusArea(Bounds targetBounds, Vector2 size) {
+			left = targetBounds.center.x - size.x/2f;
+			right = targetBounds.center.x + size.x/2f;
+			bottom = targetBounds.min.y;
+			top = targetBounds.min.y + size.y;
+
+			velocity = Vector2.zero;
+			center = new Vector2((left+right)/2, (top+bottom)/2);
+		}
+
+		public void Update(Bounds target) {
+			float shiftX = 0;
+			if (target.min.x < left) {
+				shiftX = target.min.x - left;
+			} else if (target.max.x > right){
+				shiftX = target.max.x - right;
+			}
+
+			left += shiftX;
+			right += shiftX;
+
+			float shiftY = 0;
+			if (target.min.y < bottom) {
+				shiftY = target.min.y - bottom;
+			} else if (target.max.y > top){
+				shiftY = target.max.y - top;
+			}
+
+			top += shiftY;
+			bottom += shiftY;
+
+			velocity = new Vector2 (shiftX, shiftY);
+			center = new Vector2((left+right)/2, (top+bottom)/2);
+		}
 
 	}
-	
-	void LateUpdate ()
-    {
-        FollowPlayer();  
-    }
-
-    private void FollowPlayer()
-    {
-        float currentXPosition = transform.position.x;
-        float currentYPosition = transform.position.y;
-        float cameraWidth = cameraSize.orthographicSize * ((float)(Screen.width / Screen.height));
-
-        if (playerController.isDead)
-        {
-
-            currentXPosition = Mathf.Lerp(currentXPosition, levelManager.curCheckPoint.position.x, smoothing.x * Time.deltaTime);
-            currentYPosition = Mathf.Lerp(currentYPosition, levelManager.curCheckPoint.position.y, smoothing.y * Time.deltaTime);
-
-            currentXPosition = Mathf.Clamp(currentXPosition, minBounds.x + cameraWidth, maxBounds.x - cameraWidth);
-            currentYPosition = Mathf.Clamp(currentYPosition, minBounds.y + cameraSize.orthographicSize, maxBounds.y - cameraSize.orthographicSize);
-        }
-        else
-        {
-            if (Mathf.Abs(currentXPosition - player.position.x) > margin.x)
-            {
-                currentXPosition = Mathf.Lerp(currentXPosition, player.position.x, smoothing.x * Time.deltaTime);
-            }
-
-            if (Mathf.Abs(currentYPosition - player.position.y) > margin.y)
-            {
-                currentYPosition = Mathf.Lerp(currentYPosition, player.position.y, smoothing.y * Time.deltaTime);
-            }
-
-            currentXPosition = Mathf.Clamp(currentXPosition, minBounds.x + cameraWidth, maxBounds.x - cameraWidth);
-            currentYPosition = Mathf.Clamp(currentYPosition, minBounds.y + cameraSize.orthographicSize, maxBounds.y - cameraSize.orthographicSize);
-
-        }
-
-        transform.position = new Vector3(currentXPosition, currentYPosition, transform.position.z);
-
-    }
-
 }

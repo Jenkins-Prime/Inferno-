@@ -18,6 +18,10 @@ public static class InputManager {
 		return Input.GetButtonDown ("Jump");
 	}
 
+	public static bool ReleaseJumpButton() {
+		return Input.GetButtonUp ("Jump");
+	}
+
 	public static bool FireButton() {
 		return Input.GetButtonDown ("Fire1");
 	}
