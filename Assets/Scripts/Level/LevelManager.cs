@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour {
 	float curTime;
 	public Transform curCheckPoint;
 
-	PlayerController pController;
+	Player player;
 	HUDManager hudManager;
 
 	// Use this for initialization
@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
 		curTime = GameController.instance.GetCurrentLevelData().startTime;
 		curScore = 0;
 
-		pController = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 		hudManager = GameObject.FindGameObjectWithTag ("HUD").GetComponent<HUDManager> ();
 
 		//InvokeRepeating("CountTime", 0f, 1f);
@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour {
 		if (curLives > GameController.instance.playerData.maxLives)
 			curLives = GameController.instance.playerData.maxLives;
 
-		//Do sfx here
+		//Do fx here
 		hudManager.SetLifeUI(curLives);
 		//Save playerprefs
 	}
@@ -73,21 +73,21 @@ public class LevelManager : MonoBehaviour {
 		if (curHealth > GameController.instance.playerData.maxHealth)
 			curHealth = GameController.instance.playerData.maxHealth;
 
-		//do sfx here
+		//do fx here
 		hudManager.SetHealthUI(curHealth);
 	}
 
 	public void DecreaseHealth(int amount) {
 		curHealth -= amount;
 
-		//do sfx here
+		//do fx here
 		hudManager.SetHealthUI(curHealth);
 
 		if (curHealth < 1)
 			DecreaseLife (1);
 	}
 
-	public void AddScore(int amount) {
+	public void IncreaseScore(int amount) {
 		curScore += amount;
 		hudManager.SetScoreUI (curScore);
 	}
@@ -118,20 +118,19 @@ public class LevelManager : MonoBehaviour {
 
 	IEnumerator RespawnPlayer() {
 		//Death part
-		pController.KillPlayer(true);
-		Instantiate (deathParticle, pController.transform.position, pController.transform.rotation);
+		player.KillPlayer(true);
+		Instantiate (deathParticle, player.transform.position, player.transform.rotation);
 		//ScoreManager.AddPoints(-pointPenaltyOnDeath); //not sure if useful removing score points
 
 		yield return new WaitForSeconds(deathDelay);
 
 		//Respawn particles part
-		pController.transform.position = curCheckPoint.position;
+		player.transform.position = curCheckPoint.position;
 		Instantiate(respawnParticle, curCheckPoint.position, curCheckPoint.rotation);
 		yield return new WaitForSeconds(respawnDelay);
 
 		//Show player part
 		IncreaseHealth (GameController.instance.playerData.maxHealth);
-		pController.KillPlayer (false);
-        pController.isDead = false;
+		player.KillPlayer (false);
 	}
 }

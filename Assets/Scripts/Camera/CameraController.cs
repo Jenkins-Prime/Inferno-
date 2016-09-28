@@ -41,8 +41,7 @@ public class CameraController : MonoBehaviour
 				}
 			}
 		}
-
-		//targetLookAheadX = lookAheadDirX * lookAheadDistX;
+			
 		currentLookAheadX = Mathf.SmoothDamp (currentLookAheadX, targetLookAheadX, ref smoothLookVelocityX, lookSmoothTimeX);
 
 		focusPosition.y = Mathf.SmoothDamp (transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);

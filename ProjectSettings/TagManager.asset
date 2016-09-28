@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Ground
   - Enemy
-  - Destructible
-  - Platforms
   - LevelManager
   - HUD
   - Dialogue
@@ -17,7 +15,9 @@ TagManager:
   - Projectile
   - Block
   - Switch
-  - Bounds
+  - Ladder
+  - Destructible
+  - Platforms
   layers:
   - Default
   - TransparentFX
@@ -29,13 +29,13 @@ TagManager:
   - 
   - Ground
   - Player
+  - Enemy
+  - Pickup
+  - Checkpoint
   - Projectiles
-  - Checkpoints
   - Collectibles
   - NPCs
-  - Enemy
   - Hazards
-  - Trigger Zones
   - EnemyProjectiles
   - IngoreCollisions
   - 

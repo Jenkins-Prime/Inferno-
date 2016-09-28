@@ -43,6 +43,31 @@ public class PlayerController : RaycastController {
 		}
 	}
 
+	public void OnTriggerCheck() {
+		Collider2D triggerCol = Physics2D.OverlapArea(col.bounds.min, col.bounds.max, triggerMask);
+		if (triggerCol != null) {
+			string layerName = LayerMask.LayerToName (triggerCol.gameObject.layer);
+
+			switch (layerName) {
+			case "Enemy":
+				DamagePlayer dmg = triggerCol.GetComponent<DamagePlayer> ();
+				if (dmg != null)
+					dmg.DealDamage ();
+				break;
+			case "Pickup":
+				Pickup pickup = triggerCol.GetComponent<Pickup> ();
+				if (pickup != null)
+					pickup.Collect ();
+				break;
+			case "Checkpoint":
+				Checkpoint checkpoint = triggerCol.GetComponent<Checkpoint> ();
+				if (checkpoint != null)
+					checkpoint.SetCheckpoint ();
+				break;
+			}
+		}
+	}
+
 	void HorizontalCollisions(ref Vector3 velocity) {
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs(velocity.x) + skinWidth;

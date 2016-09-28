@@ -2,17 +2,15 @@
 using System.Collections;
 
 public class Checkpoint : MonoBehaviour {
-    LevelManager levelManager;
-    
-    // Use this for initialization
+	LevelManager levelManager;
+
     void Start() {
 		levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.name == "Player") {
-			levelManager.SetCheckPoint (transform);
-			gameObject.SetActive (false);
-        }
-    }
+	public void SetCheckpoint() {
+		levelManager.SetCheckPoint (transform);
+		//add fx
+		gameObject.SetActive(false);
+	}
 }

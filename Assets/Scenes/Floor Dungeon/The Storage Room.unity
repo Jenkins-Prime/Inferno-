@@ -133,10 +133,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -298,10 +298,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (23)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -372,10 +372,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (27)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -426,10 +426,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (19)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -480,10 +480,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (34)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -542,10 +542,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (24)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -580,11 +580,53 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!4 &287151581 stripped
 Transform:
   m_PrefabParentObject: {fileID: 493618, guid: 8852e6260a8cf0649840d0a710ef3265, type: 2}
   m_PrefabInternal: {fileID: 678567297}
+--- !u!1001 &287584677
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1649546442}
+    m_Modifications:
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -47.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &296314542 stripped
 Transform:
   m_PrefabParentObject: {fileID: 493618, guid: 8852e6260a8cf0649840d0a710ef3265, type: 2}
@@ -812,7 +854,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
 --- !u!1001 &371966447
 Prefab:
   m_ObjectHideFlags: 0
@@ -856,10 +898,6 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
-      propertyPath: soulSoundEffect
-      value: 
-      objectReference: {fileID: 769987005}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -906,10 +944,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -960,10 +998,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -995,7 +1033,7 @@ Transform:
   m_Children:
   - {fileID: 803413090}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1 &457117629 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000014215574156, guid: a33f972980b7aaf41a3c8c1c1f95f66b,
@@ -1007,12 +1045,25 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 457117629}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 100
+--- !u!114 &457117633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 457117629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4f734e2aadfac4d9343511718dda07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killPlayer: 1
+  damageAmount: 1
 --- !u!1001 &471590279
 Prefab:
   m_ObjectHideFlags: 0
@@ -1098,10 +1149,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -1333,10 +1384,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (33)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -1387,10 +1438,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (37)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -1526,10 +1577,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (17)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -1626,10 +1677,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (21)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -1736,116 +1787,13 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (10)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &769987004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 769987006}
-  - 82: {fileID: 769987005}
-  m_Layer: 0
-  m_Name: CoinPickup Sound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &769987005
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 769987004}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 65212a72762a89b448808ccd0e53729d, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!4 &769987006
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 769987004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1001 &787849157
 Prefab:
   m_ObjectHideFlags: 0
@@ -1889,10 +1837,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (26)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -1943,10 +1891,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -2088,10 +2036,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -2373,10 +2321,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (16)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -2481,10 +2429,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (35)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -2816,10 +2764,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (14)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -2922,6 +2870,14 @@ Prefab:
     - target: {fileID: 400940, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: pickupMask.m_Bits
+      value: 65536
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: triggerMask.m_Bits
+      value: 7168
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
@@ -3061,10 +3017,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (32)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -3115,10 +3071,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -3247,10 +3203,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -3436,10 +3392,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (36)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -3673,7 +3629,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &1434918988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3789,10 +3745,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (20)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -3882,7 +3838,7 @@ Transform:
   - {fileID: 68944458}
   - {fileID: 1649546442}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!4 &1526045099 stripped
 Transform:
   m_PrefabParentObject: {fileID: 498978, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
@@ -3948,7 +3904,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1001 &1572268227
 Prefab:
   m_ObjectHideFlags: 0
@@ -3992,10 +3948,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -4110,10 +4066,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -4225,10 +4181,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (25)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -4316,10 +4272,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (39)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -4735,10 +4691,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -4835,10 +4791,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (28)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -4889,10 +4845,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (38)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5041,7 +4997,7 @@ Transform:
   m_Children:
   - {fileID: 1957614824}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &1935666197 stripped
 Transform:
   m_PrefabParentObject: {fileID: 498978, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
@@ -5089,10 +5045,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (22)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5356,10 +5312,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (18)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5410,10 +5366,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (30)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5464,10 +5420,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (31)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5518,10 +5474,6 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
-      propertyPath: soulSoundEffect
-      value: 
-      objectReference: {fileID: 769987005}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5573,10 +5525,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (29)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5627,10 +5579,10 @@ Prefab:
       propertyPath: m_Name
       value: Score Souls (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 11445354, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
+    - target: {fileID: 0}
       propertyPath: soulSoundEffect
       value: 
-      objectReference: {fileID: 769987005}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e1568ac50a02db47b682ba49d4116e8, type: 2}
   m_IsPrefabParent: 0
@@ -5757,55 +5709,21 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000014215574156, guid: a33f972980b7aaf41a3c8c1c1f95f66b, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014215574156, guid: a33f972980b7aaf41a3c8c1c1f95f66b, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a33f972980b7aaf41a3c8c1c1f95f66b, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &2131552750
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1649546442}
-    m_Modifications:
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -47.229507
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.85303
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &2131552751 stripped
 Transform:
   m_PrefabParentObject: {fileID: 456326, guid: 27e6749e099f04f45800fba53bca0aa1, type: 2}
-  m_PrefabInternal: {fileID: 2131552750}
+  m_PrefabInternal: {fileID: 287584677}
 --- !u!4 &2134197483 stripped
 Transform:
   m_PrefabParentObject: {fileID: 493618, guid: 8852e6260a8cf0649840d0a710ef3265, type: 2}
