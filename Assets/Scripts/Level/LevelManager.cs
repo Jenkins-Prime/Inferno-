@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour {
 	int curLives;
 	int curHealth;
 	int curScore;
-	float curTime;
 	public Transform curCheckPoint;
 
 	Player player;
@@ -26,7 +25,6 @@ public class LevelManager : MonoBehaviour {
 
 		curLives = GameController.instance.playerData.curLives;
 		curHealth = GameController.instance.playerData.maxHealth;
-		curTime = GameController.instance.GetCurrentLevelData().startTime;
 		curScore = 0;
 
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
@@ -38,7 +36,6 @@ public class LevelManager : MonoBehaviour {
 	//If we are going to use an update() then add input check for the levelLoader here
 	//Temp solution
 	void Update() {
-		CountTime ();
 	}
 
 
@@ -96,12 +93,7 @@ public class LevelManager : MonoBehaviour {
 		curCheckPoint = checkPoint;
 		Debug.Log("Activated Checkpoint" + curCheckPoint.position);
 	}
-
-	void CountTime() {
-		curTime -= Time.deltaTime;
-		hudManager.SetTimeUI ((int)curTime);
-		//check if curTime <= 0
-	}
+		
 
 	//===== Coroutines =====
 	/*IEnumerator CountTime() {
