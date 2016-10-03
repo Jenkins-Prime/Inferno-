@@ -5,6 +5,7 @@ public class PlayerController : RaycastController {
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
 
+	public LayerMask triggerMask;
 	public CollisionInfo collisions;
 	[HideInInspector]
 	public Vector2 playerInput;
@@ -43,7 +44,10 @@ public class PlayerController : RaycastController {
 		}
 	}
 
+
 	public void OnTriggerCheck() {
+		collisions.prevOnLadder = collisions.onLadder;
+
 		Collider2D triggerCol = Physics2D.OverlapArea(col.bounds.min, col.bounds.max, triggerMask);
 		if (triggerCol != null) {
 			string layerName = LayerMask.LayerToName (triggerCol.gameObject.layer);
@@ -64,7 +68,19 @@ public class PlayerController : RaycastController {
 				if (checkpoint != null)
 					checkpoint.SetCheckpoint ();
 				break;
+			case "Ladder":
+				Ladder ladder = triggerCol.GetComponent<Ladder> ();
+				if (ladder != null) {
+					collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
+					collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
+					collisions.onLadder = !collisions.onLadderAbove;
+				}
+				break;
 			}
+		} else {
+			collisions.onLadderAbove = false;
+			collisions.onLadderBelow = false;
+			collisions.onLadder = false;
 		}
 	}
 
@@ -130,7 +146,7 @@ public class PlayerController : RaycastController {
 			if (hit) {
 				velocity.y = (hit.distance - skinWidth) * directionY;
 				rayLength = hit.distance;
-
+					
 				if (collisions.climbingSlope) {
 					velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad * Mathf.Sign (velocity.x));
 				}
@@ -199,6 +215,11 @@ public class PlayerController : RaycastController {
 
 		public bool climbingSlope;
 		public bool descendingSlope;
+		public bool prevOnLadder;
+		public bool onLadder;
+		public bool onLadderBelow;
+		public bool onLadderAbove;
+
 		public float slopeAngle, slopeAngleOld;
 		public Vector3 velocityOld;
 
@@ -218,14 +239,7 @@ public class PlayerController : RaycastController {
 
 	}
 
-	public void EnterLadderZone() { //temp
-
-	}
-
-	public void ExitLadderZone() { //temp
-
-	}
-
+/*
 	public void KillPlayer(bool b) { //temp
 
 	}
@@ -317,19 +331,6 @@ public class PlayerController : RaycastController {
 			jump = false;
 		} else {
 			rb2D.velocity = new Vector2 (inputVector.x * moveSpeed, rb2D.velocity.y);
-		}
-	}
-
-	//===== Move those two to moving platform with ontrigger extra
-	void OnCollisionEnter2D(Collision2D other) {
-		if (other.transform.tag == "Platforms")  {
-			transform.parent = other.transform;
-		}
-	}
-
-	void OnCollisionExit2D(Collision2D other) {
-		if (other.transform.tag == "Platforms") {
-			transform.parent = null;
 		}
 	}
 

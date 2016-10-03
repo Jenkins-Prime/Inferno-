@@ -15,9 +15,8 @@ TagManager:
   - Projectile
   - Block
   - Switch
-  - Ladder
   - Destructible
-  - Platforms
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -32,13 +31,13 @@ TagManager:
   - Enemy
   - Pickup
   - Checkpoint
-  - Projectiles
+  - Ladder
   - Collectibles
   - NPCs
   - Hazards
   - EnemyProjectiles
   - IngoreCollisions
-  - 
+  - Projectiles
   - 
   - 
   - 
