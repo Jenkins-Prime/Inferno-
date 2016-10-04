@@ -238,11 +238,7 @@ public class PlayerController : RaycastController {
 	public void PlayerKnockBack(Vector3 tmp) { //temp function
 
 	}
-
-/*
-	public void KillPlayer(bool b) { //temp
-
-	}
+		
 	/*
 	[Header("Movement Variables")]
 	[SerializeField] float moveSpeed = 2f;
@@ -298,26 +294,6 @@ public class PlayerController : RaycastController {
 		knockBackTimer = 0f;
 		canMove = true;
 	}
-
-	// Update is called once per frame
-	void Update () {
-		if (canMove && KnockBackCheck ()) {
-			inputVector = InputManager.MainStick(); //GetInput
-			anim.SetFloat("Speed", Mathf.Abs(inputVector.x));
-			anim.SetFloat("ClimbSpeed", Mathf.Abs(inputVector.y));
-
-			GroundCheck ();
-			JumpCheck ();
-
-			//Turn sprite
-			if (rb2D.velocity.x > 0.01f)
-				transform.localScale = new Vector3(1f, 1f, 1f);
-			else if (rb2D.velocity.x < -0.01f)
-				transform.localScale = new Vector3(-1f, 1f, 1f);
-
-			AttackCheck(); //TODO: Move to Attack script
-		}
-    }
 
 	void FixedUpdate() {
 		if (!canMove) {
@@ -385,46 +361,5 @@ public class PlayerController : RaycastController {
 		if (shotTimer > 0)
 			shotTimer -= Time.deltaTime;
 	}
-		
-	//===== Public functions used from other scripts =====
-	public void KillPlayer(bool kill) {
-		if (kill) { //kill player
-			//isDead = true;
-			canMove = false;
-			rb2D.gravityScale = 0f;
-			rend.enabled = false;
-		} else { //revive player
-			//isDead = false;
-			canMove = true;
-			rb2D.gravityScale = gravityStore;
-			rend.enabled = true;
-			knockBack = false;
-		}
-	}
-
-	public void PlayerKnockBack(Vector3 attacker) {
-		knockBack = true;
-		knockBackTimer = knockBackLength;
-
-		if(transform.position.x < attacker.x) {
-			knockBackVelocity = new Vector2(-knockBackSpeed, knockBackSpeed);
-		} else {
-			knockBackVelocity = new Vector2(knockBackSpeed, knockBackSpeed);		
-		}
-
-		audioSource.PlayOneShot (hurtClip, 1f);
-	}
-
-	public void EnterLadderZone() {
-		onLadder = true;
-		rb2D.gravityScale = 0f;
-		anim.SetBool ("Climbing", true);
-	}
-
-	public void ExitLadderZone() {
-		onLadder = false;
-		rb2D.gravityScale = gravityStore;
-		anim.SetBool("Climbing", false);
-	}
-	*/
+*/		
 }

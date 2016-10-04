@@ -25,12 +25,12 @@ public class Player : MonoBehaviour {
 
 	Animator anim;
 	PlayerController controller;
-	Renderer rend;
+	SpriteRenderer rend;
 
 	void Start () {
 		anim = GetComponent<Animator>();
 		controller = GetComponent<PlayerController> ();
-		rend = GetComponent<Renderer> ();
+		rend = GetComponent<SpriteRenderer> ();
 
 		gravity = -(2f * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2f);
 		minJumpVelocity = Mathf.Sqrt (2f * Mathf.Abs (gravity) * minJumpHeight);
@@ -96,6 +96,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void SetAnimatorStates() {
+		//Turn sprite
+		rend.flipX = (velocity.x < 0) ? true : false;
+
 		anim.SetFloat("Speed", Mathf.Abs(input.x));
 		anim.SetFloat("ClimbSpeed", Mathf.Abs(input.y));
 
@@ -134,16 +137,5 @@ public class Player : MonoBehaviour {
 
 		audioSource.PlayOneShot (hurtClip, 1f);
 	}
-
-	public void EnterLadderZone() {
-		onLadder = true;
-		rb2D.gravityScale = 0f;
-		anim.SetBool ("Climbing", true);
-	}
-
-	public void ExitLadderZone() {
-		onLadder = false;
-		rb2D.gravityScale = gravityStore;
-		anim.SetBool("Climbing", false);
-	}*/
+	*/
 }

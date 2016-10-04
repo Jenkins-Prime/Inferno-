@@ -6201,6 +6201,10 @@ Prefab:
       propertyPath: triggerMask.m_Bits
       value: 15360
       objectReference: {fileID: 0}
+    - target: {fileID: 21245734, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000013386217518, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
