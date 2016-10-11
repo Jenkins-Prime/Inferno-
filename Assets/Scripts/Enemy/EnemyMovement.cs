@@ -3,8 +3,10 @@ using System.Collections;
 
 [RequireComponent(typeof (EnemyController))]
 public class EnemyMovement : MonoBehaviour {
-	[SerializeField] Vector3 localWaypointStart;
-	[SerializeField] Vector3 localWaypointEnd;
+	[Header("Waypoints:")]
+	[SerializeField] float localWaypointStart;
+	[SerializeField] float localWaypointEnd;
+	[Header("Movement Variables:")]
 	[SerializeField] float moveSpeed = 1f;
 	[SerializeField] float jumpHeight = 0.2f;
 	[SerializeField] float timeToJumpApex = 0.1f;
@@ -24,18 +26,17 @@ public class EnemyMovement : MonoBehaviour {
 		rend = GetComponent<SpriteRenderer> ();
 		controller = GetComponent<EnemyController> ();
 
-		if (localWaypointEnd.x < localWaypointStart.x) {
-			globalWaypointLeft = localWaypointEnd + transform.position;
-			globalWaypointRight = localWaypointStart + transform.position;
+		moveDirection = 0;
+		if (localWaypointEnd < localWaypointStart) {
+			globalWaypointLeft = new Vector3(localWaypointEnd + transform.position.x, transform.position.y, transform.position.z);
+			globalWaypointRight = new Vector3(localWaypointStart + transform.position.x, transform.position.y, transform.position.z);
 			targetWaypoint = globalWaypointLeft;
-			moveDirection = Mathf.Sign (localWaypointEnd.x - localWaypointStart.x);
-		} else if (localWaypointEnd.x > localWaypointStart.x) {
-			globalWaypointLeft = localWaypointStart + transform.position;
-			globalWaypointRight = localWaypointEnd + transform.position;
+			moveDirection = Mathf.Sign (localWaypointEnd - localWaypointStart);
+		} else if (localWaypointEnd > localWaypointStart) {
+			globalWaypointLeft = new Vector3(localWaypointStart + transform.position.x, transform.position.y, transform.position.z);
+			globalWaypointRight = new Vector3(localWaypointEnd + transform.position.x, transform.position.y, transform.position.z);
 			targetWaypoint = globalWaypointRight;
-			moveDirection = Mathf.Sign (localWaypointEnd.x - localWaypointStart.x);
-		} else {
-			moveDirection = 0;
+			moveDirection = Mathf.Sign (localWaypointEnd - localWaypointStart);
 		}
 			
 		rend.flipX = (moveDirection == -1);
@@ -78,7 +79,7 @@ public class EnemyMovement : MonoBehaviour {
 		if (Application.isPlaying) {
 			Gizmos.DrawLine (globalWaypointLeft, globalWaypointRight);
 		} else {
-			Gizmos.DrawLine (localWaypointStart + transform.position, localWaypointEnd + transform.position);
+			Gizmos.DrawLine (new Vector3(localWaypointStart + transform.position.x, transform.position.y), new Vector3(localWaypointEnd + transform.position.x, transform.position.y));
 		}
 	}
 }

@@ -10,10 +10,11 @@ GameObject:
   - 4: {fileID: 423480}
   - 212: {fileID: 21271252}
   - 95: {fileID: 9519220}
-  - 58: {fileID: 5877924}
   - 114: {fileID: 11428258}
   - 114: {fileID: 11449966}
-  - 114: {fileID: 11441386}
+  - 61: {fileID: 61000011044852454}
+  - 114: {fileID: 114000012030081632}
+  - 114: {fileID: 114000010185850568}
   m_Layer: 10
   m_Name: EyeBat
   m_TagString: Enemy
@@ -28,26 +29,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.109, y: -1.464, z: 0}
+  m_LocalPosition: {x: 13.853, y: -5.406, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5877924
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198578}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.01, y: 0.01}
-  serializedVersion: 2
-  m_Radius: 0.1
 --- !u!95 &9519220
 Animator:
   serializedVersion: 3
@@ -71,7 +58,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50386137c76b6974fbd03bc2bb5a7c66, type: 3}
   m_Name: 
@@ -79,29 +66,13 @@ MonoBehaviour:
   enemyHealth: 3
   deathEffect: {fileID: 186778, guid: 56096669fc7a1384fbdb8cc07b342253, type: 2}
   pointsOnDeath: 15
---- !u!114 &11441386
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a7ffc1a3807764699d73f318d38275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.6
-  playerRange: 1.5
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!114 &11449966
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
   m_Name: 
@@ -151,3 +122,50 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198578}
   m_IsPrefabParent: 1
+--- !u!61 &61000011044852454
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.22, y: 0.3}
+--- !u!114 &114000010185850568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611f2f22ecdb6574c87f75e9af786f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localWaypointStart: {x: -0.5, y: -0.5}
+  localWaypointEnd: {x: 0.5, y: 1}
+  moveSpeed: 1
+--- !u!114 &114000012030081632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c9d30e5d04ef38499a697a7ac7b8aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  col: {fileID: 0}
