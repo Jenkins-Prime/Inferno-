@@ -3,10 +3,20 @@ using System.Collections;
 
 [RequireComponent(typeof (EnemyController))]
 public class EnemyFlyingMovement : MonoBehaviour {
+	[Header("Waypoints:")]
 	[SerializeField] Vector2 localWaypointStart;
 	[SerializeField] Vector2 localWaypointEnd;
+	[Header("Movement Params:")]
 	[SerializeField] float moveSpeed = 1f;
+	[SerializeField] float chaseSpeed = 2f;
+	[Header("Chasing Params:")]
+	[SerializeField] bool canChase;
+	[SerializeField] LayerMask playerMask;
+	[SerializeField] float detectRadius = 1f;
+	[SerializeField] float chaseRadius = 2f;
 
+	bool isChasing;
+	Vector3 initPosition;
 	Vector3 velocity;
 	Vector3 globalWaypointLeftDown;
 	Vector3 globalWaypointRightUp;
@@ -20,6 +30,7 @@ public class EnemyFlyingMovement : MonoBehaviour {
 		rend = GetComponent<SpriteRenderer> ();
 		controller = GetComponent<EnemyController> ();
 
+		initPosition = transform.position;
 		targetWaypoint = transform.position;
 		//Check the X-Axis
 		if (localWaypointEnd.x < localWaypointStart.x) {
@@ -50,10 +61,18 @@ public class EnemyFlyingMovement : MonoBehaviour {
 	}
 
 	void Update () {
-		if (CheckEnemyDirectionChange ())
-			ChangeEnemyDirection ();
+		if (canChase)
+			ChasePlayer ();
 
-		velocity = moveDirection * moveSpeed;
+		if (!isChasing) {
+			if (CheckEnemyDirectionChange ())
+				ChangeEnemyDirection ();
+
+			moveDirection = targetWaypoint - transform.position;
+			moveDirection.Normalize ();
+			velocity = moveDirection * moveSpeed;
+		}
+
 		controller.Move (velocity * Time.deltaTime);
 	}
 
@@ -74,8 +93,27 @@ public class EnemyFlyingMovement : MonoBehaviour {
 		moveDirection = targetWaypoint - transform.position;
 		moveDirection.Normalize ();
 	}
+
+	void ChasePlayer() {
+		isChasing = false;
+
+		Collider2D col = Physics2D.OverlapCircle (transform.position, detectRadius, playerMask);
+		if (col) {
+			if (Vector3.Distance (initPosition, col.transform.position) < chaseRadius) {
+				moveDirection = col.transform.position - transform.position;
+				moveDirection.Normalize ();
+				velocity = moveDirection * chaseSpeed;
+				isChasing = true;
+
+				Debug.DrawRay (transform.position, col.transform.position - transform.position, Color.red);
+			}
+		}
+	}
 	
 	void OnDrawGizmos() {
+		if(canChase)
+			Gizmos.DrawWireSphere (initPosition, chaseRadius);
+		
 		Gizmos.color = Color.cyan;
 		if (Application.isPlaying) {
 			Gizmos.DrawLine (globalWaypointLeftDown, globalWaypointRightUp);

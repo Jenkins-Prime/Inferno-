@@ -150,6 +150,13 @@ MonoBehaviour:
   localWaypointStart: {x: -0.5, y: -0.5}
   localWaypointEnd: {x: 0.5, y: 1}
   moveSpeed: 1
+  chaseSpeed: 2
+  canChase: 1
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  detectRadius: 2
+  chaseRadius: 3
 --- !u!114 &114000012030081632
 MonoBehaviour:
   m_ObjectHideFlags: 1

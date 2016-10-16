@@ -2,11 +2,11 @@
 using System.Collections;
 
 [RequireComponent(typeof (EnemyController))]
-public class EnemyMovement : MonoBehaviour {
+public class EnemyGroundMovement : MonoBehaviour {
 	[Header("Waypoints:")]
 	[SerializeField] float localWaypointStart;
 	[SerializeField] float localWaypointEnd;
-	[Header("Movement Variables:")]
+	[Header("Movement Params:")]
 	[SerializeField] float moveSpeed = 1f;
 	[SerializeField] float jumpHeight = 0.2f;
 	[SerializeField] float timeToJumpApex = 0.1f;
