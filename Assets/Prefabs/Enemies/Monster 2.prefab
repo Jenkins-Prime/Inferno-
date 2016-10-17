@@ -12,7 +12,6 @@ GameObject:
   - 95: {fileID: 9589456}
   - 61: {fileID: 6125878}
   - 114: {fileID: 11403840}
-  - 114: {fileID: 11486868}
   - 114: {fileID: 114000011364541266}
   - 114: {fileID: 114000011305454426}
   m_Layer: 10
@@ -80,18 +79,6 @@ MonoBehaviour:
   enemyHealth: 1
   deathEffect: {fileID: 186778, guid: 56096669fc7a1384fbdb8cc07b342253, type: 2}
   pointsOnDeath: 10
---- !u!114 &11486868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103932}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 100
 --- !u!212 &21201672
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -147,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb7560491cc8194cb499316d692ae08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localWaypointStart: {x: 0, y: 0, z: 0}
-  localWaypointEnd: {x: 1, y: 0, z: 0}
+  localWaypointStart: 0
+  localWaypointEnd: 0
   moveSpeed: 1
   jumpHeight: 0.2
   timeToJumpApex: 0.1
@@ -171,3 +158,7 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   col: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  damageAmount: 1

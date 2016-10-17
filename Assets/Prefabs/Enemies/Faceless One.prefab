@@ -27,7 +27,6 @@ GameObject:
   - 95: {fileID: 9547836}
   - 61: {fileID: 6166166}
   - 114: {fileID: 11460502}
-  - 114: {fileID: 11453282}
   - 114: {fileID: 11404696}
   - 114: {fileID: 114000011264741670}
   - 114: {fileID: 114000010233296134}
@@ -112,18 +111,6 @@ MonoBehaviour:
   player: {fileID: 0}
   launchPoint: {fileID: 489896}
   waitBetweenShots: 3
---- !u!114 &11453282
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 169130}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 100
 --- !u!114 &11460502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb7560491cc8194cb499316d692ae08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localWaypointStart: {x: 0, y: 0, z: 0}
-  localWaypointEnd: {x: 1, y: 0, z: 0}
+  localWaypointStart: 0
+  localWaypointEnd: 0
   moveSpeed: 1
   jumpHeight: 0.4
   timeToJumpApex: 0.2
@@ -217,3 +204,7 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   col: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  damageAmount: 1

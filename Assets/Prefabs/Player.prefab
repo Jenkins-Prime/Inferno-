@@ -46,7 +46,6 @@ GameObject:
   - 61: {fileID: 6189968}
   - 114: {fileID: 11481592}
   - 114: {fileID: 114000010782811614}
-  - 114: {fileID: 114000013386217518}
   - 82: {fileID: 8272150}
   m_Layer: 9
   m_Name: Player
@@ -236,10 +235,8 @@ MonoBehaviour:
   col: {fileID: 0}
   triggerMask:
     serializedVersion: 2
-    m_Bits: 531456
+    m_Bits: 15360
   playerInput: {x: 0, y: 0}
-  isDead: 0
-  canMove: 0
 --- !u!212 &21236016
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -350,24 +347,10 @@ MonoBehaviour:
   minJumpHeight: 0.2
   maxJumpHeight: 1
   timeToJumpApex: 0.4
+  knockBackSpeed: 2
+  knockBackLength: 0.2
+  hurtClip: {fileID: 8300000, guid: 1053e8294aaf05a40a07b31d60aa9952, type: 3}
+  jumpClip: {fileID: 8300000, guid: 92300500dfe10174cb9d84f03753be74, type: 3}
   input: {x: 0, y: 0}
---- !u!114 &114000013386217518
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136726}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f8e95eb2c584d44abfd7812e3310f4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crossbowProjectile: {fileID: 0}
-  hasSword: 0
-  hasCrossbow: 0
-  swordSprite: {fileID: 0}
-  crossbowSprite: {fileID: 0}
-  NoneSprite: {fileID: 0}
-  currentWeapon: 0
-  maxAmmo: 0
-  projectileOrigin: {fileID: 0}
+  canMove: 0
+  knockBack: 0

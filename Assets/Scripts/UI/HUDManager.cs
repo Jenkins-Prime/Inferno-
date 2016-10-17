@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class HUDManager : MonoBehaviour {
 	[SerializeField] Slider healthBar;
 	[SerializeField] Text lifeText;
-	[SerializeField] Text timeText;
 	[SerializeField] Text scoreText;
 
 	public void SetHealthUI(int amount) {
@@ -18,9 +17,5 @@ public class HUDManager : MonoBehaviour {
 
 	public void SetScoreUI(int amount) {
 		scoreText.text = amount.ToString ();
-	}
-
-	public void SetTimeUI(int amount) {
-		timeText.text = amount.ToString ();
 	}
 }

@@ -11,7 +11,6 @@ GameObject:
   - 212: {fileID: 21271252}
   - 95: {fileID: 9519220}
   - 114: {fileID: 11428258}
-  - 114: {fileID: 11449966}
   - 61: {fileID: 61000011044852454}
   - 114: {fileID: 114000012030081632}
   - 114: {fileID: 114000010185850568}
@@ -66,18 +65,6 @@ MonoBehaviour:
   enemyHealth: 3
   deathEffect: {fileID: 186778, guid: 56096669fc7a1384fbdb8cc07b342253, type: 2}
   pointsOnDeath: 15
---- !u!114 &11449966
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198578}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 100
 --- !u!212 &21271252
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -176,3 +163,7 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   col: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  damageAmount: 1

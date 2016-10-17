@@ -3,10 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyController : RaycastController {
+	public LayerMask playerMask;
+	public int damageAmount = 1;
 	public CollisionInfo collisions;
+
+	Player player;
+	LevelManager levelManager;
 
 	public override void Start() {
 		base.Start ();
+
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 	}
 	
 	public void Move (Vector3 velocity) {
@@ -18,6 +26,11 @@ public class EnemyController : RaycastController {
 		if (velocity.x != 0)
 			HorizontalCollisions (ref velocity);
 			
+		if (collisions.damagePlayer && player.canMove && !player.knockBack) {
+			player.PlayerKnockBack (transform.position);
+			levelManager.DecreaseHealth (damageAmount);
+		}
+
 		transform.Translate (velocity);
 	}
 
@@ -39,6 +52,12 @@ public class EnemyController : RaycastController {
 				collisions.left = (directionX == -1);
 				collisions.right = (directionX == 1);
 			}
+
+			//Detect Player
+			hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, playerMask);
+			if (hit) {
+				collisions.damagePlayer = true;
+			}
 		}
 
 		rayOrigin = (directionX == -1) ? raycastOrigins.topLeft : raycastOrigins.topRight;
@@ -47,6 +66,12 @@ public class EnemyController : RaycastController {
 			collisions.wallInFront = true;
 		} else if((collisions.left || collisions.right) && collisions.below) {
 			collisions.canJump = true;
+		}
+
+		//Detect Player
+		hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, playerMask);
+		if (hit) {
+			collisions.damagePlayer = true;
 		}
 	}
 
@@ -66,6 +91,12 @@ public class EnemyController : RaycastController {
 				collisions.below = (directionY == -1);
 				collisions.above = (directionY == 1);
 			}
+
+			//Detect Player
+			hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, playerMask);
+			if (hit) {
+				collisions.damagePlayer = true;
+			}
 		}
 	}
 
@@ -74,12 +105,14 @@ public class EnemyController : RaycastController {
 		public bool left, right;
 		public bool canJump;
 		public bool wallInFront;
+		public bool damagePlayer;
 
 		public void Reset() {
 			above = below = false;
 			left = right = false;
 			canJump = false;
 			wallInFront = false;
+			damagePlayer = false;
 		}
 	}
 }

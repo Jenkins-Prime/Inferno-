@@ -1179,18 +1179,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000014215574156, guid: a33f972980b7aaf41a3c8c1c1f95f66b,
     type: 2}
   m_PrefabInternal: {fileID: 2116592838}
---- !u!114 &457117631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 457117629}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 100
 --- !u!114 &457117633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5409,6 +5397,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012030081632, guid: 6bbe33671035364428f393bd082cb48f,
+        type: 2}
+      propertyPath: damageAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012030081632, guid: 6bbe33671035364428f393bd082cb48f,
+        type: 2}
+      propertyPath: playerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6bbe33671035364428f393bd082cb48f, type: 2}
   m_IsPrefabParent: 0
@@ -6178,6 +6176,16 @@ Prefab:
       propertyPath: localWaypointEnd
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010347773554, guid: a242cffcdf9759e4caa6a43b6fefaaba,
+        type: 2}
+      propertyPath: playerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010347773554, guid: a242cffcdf9759e4caa6a43b6fefaaba,
+        type: 2}
+      propertyPath: damageAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a242cffcdf9759e4caa6a43b6fefaaba, type: 2}
   m_IsPrefabParent: 0
@@ -6291,16 +6299,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11481592, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: triggerMask.m_Bits
-      value: 15360
-      objectReference: {fileID: 0}
-    - target: {fileID: 21245734, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000013386217518, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &2041218777

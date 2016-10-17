@@ -2,25 +2,23 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
-{
-	//public bool isPaused;
+public class PauseMenu : MonoBehaviour {
 	public GameObject pauseMenuCanvas;
 
-	PlayerController pController;
+	Player player;
 
     void Start() {
-		pController = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
     }
 
     void Update() {
 		if (InputManager.PauseButton()) {
 			if (Time.timeScale == 0.0f)	{ //Resume Game
 				Time.timeScale = 1.0f;
-				pController.canMove = true;
+				player.canMove = true;
 			} else { //Pause Game
 				Time.timeScale = 0.0f;
-				pController.canMove = false;
+				player.canMove = false;
 			}
         }
     }

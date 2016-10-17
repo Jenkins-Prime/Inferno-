@@ -5,11 +5,8 @@ public class LevelManager : MonoBehaviour {
 	public GameObject deathParticle;
 	public GameObject respawnParticle;
 
-//	[SerializeField] int maxScore = 100; //not sure if useful
-
 	[SerializeField] float deathDelay = 1f;
 	[SerializeField] float respawnDelay = 2f;
-	[SerializeField] int pointPenaltyOnDeath = 100;
 
 	int curLives;
 	int curHealth;
@@ -19,25 +16,20 @@ public class LevelManager : MonoBehaviour {
 	Player player;
 	HUDManager hudManager;
 
-	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
+
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+		hudManager = GameObject.FindGameObjectWithTag ("HUD").GetComponent<HUDManager> ();
 
 		curLives = GameController.instance.playerData.curLives;
 		curHealth = GameController.instance.playerData.maxHealth;
 		curScore = 0;
 
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-		hudManager = GameObject.FindGameObjectWithTag ("HUD").GetComponent<HUDManager> ();
-
-		//InvokeRepeating("CountTime", 0f, 1f);
+		hudManager.SetHealthUI (curHealth);
+		hudManager.SetLifeUI (curLives);
+		hudManager.SetScoreUI (curScore);
 	}
-
-	//If we are going to use an update() then add input check for the levelLoader here
-	//Temp solution
-	void Update() {
-	}
-
 
 	//Maybe move those two to gamecontroller
 	public void IncreaseLife(int amount) {
@@ -49,10 +41,10 @@ public class LevelManager : MonoBehaviour {
 		hudManager.SetLifeUI(curLives);
 		//Save playerprefs
 	}
+
 	//this one too
 	public void DecreaseLife(int amount) {
 		curLives -= amount;
-
 		if (curLives < 0) {
 			//Gameover sequence
 			//save playerprefs
@@ -94,20 +86,6 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("Activated Checkpoint" + curCheckPoint.position);
 	}
 		
-
-	//===== Coroutines =====
-	/*IEnumerator CountTime() {
-		curTime--;
-
-		//update ui
-
-		if (curTime < 0) {
-			DecreaseLife (1);
-		}
-
-		yield return null;
-	}*/
-
 	IEnumerator RespawnPlayer() {
 		//Death part
 		player.KillPlayer(true);

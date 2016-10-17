@@ -12,13 +12,13 @@ public class DialogueSystem : MonoBehaviour
 
     private Text dialogue;
     private bool isTalking;
-    private PlayerController pController;
+    private Player player;
 
     void Awake() {
         npcName = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(2).GetComponent<Text>();
         npcSprite = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(1).GetComponent<Image>();
         dialogue = GameObject.FindGameObjectWithTag("Dialogue").transform.GetChild(3).GetComponent<Text>();
-        pController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     void Start() {
@@ -40,7 +40,7 @@ public class DialogueSystem : MonoBehaviour
         dialogue.text = npcDialogue;
         isTalking = true;
        	Time.timeScale = 0.0f;
-		pController.canMove = false;
+		player.canMove = false;
     }
 
     public void StopDialogue() {
@@ -48,7 +48,7 @@ public class DialogueSystem : MonoBehaviour
         dialogue.text = "";
         isTalking = false;
         Time.timeScale = 1.0f;
-		pController.canMove = true;
+		player.canMove = true;
     }
 
 
