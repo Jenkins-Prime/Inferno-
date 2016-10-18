@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 	[HideInInspector] public bool canMove;
 	[HideInInspector] public bool knockBack;
 	bool jump;
+	bool hasDoubleJumped;
 
 	float knockBackTimer;
 	Vector2 knockBackVelocity;
@@ -84,6 +85,10 @@ public class Player : MonoBehaviour {
 				if (controller.collisions.below || controller.collisions.onLadderAbove) {
 					velocity.y = maxJumpVelocity;
 					jump = true;
+					audioSource.PlayOneShot (jumpClip, 1.0f);
+				} else if (!hasDoubleJumped) {
+					velocity.y = maxJumpVelocity;
+					hasDoubleJumped = true;
 					audioSource.PlayOneShot(jumpClip, 1.0f);
 				}
 			}
@@ -93,6 +98,10 @@ public class Player : MonoBehaviour {
 					velocity.y = minJumpVelocity;
 				}
 				jump = false;
+			}
+
+			if (controller.collisions.below || controller.collisions.onLadderAbove) {
+				hasDoubleJumped = false;
 			}
 		}
 	}
