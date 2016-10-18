@@ -33,24 +33,21 @@ public class PlayerController : RaycastController {
 		if (velocity.y != 0) {
 			VerticalCollisions (ref velocity);
 		}
-
+			
 		transform.Translate (velocity);
 
 		if (standingOnPlatform) {
 			collisions.below = true;
 		}
 	}
-
-
+		
 	public void OnTriggerCheck() {
-		collisions.prevOnLadder = collisions.onLadder;
-
 		Collider2D triggerCol = Physics2D.OverlapArea(col.bounds.min, col.bounds.max, triggerMask);
 		if (triggerCol != null) {
 			string layerName = LayerMask.LayerToName (triggerCol.gameObject.layer);
 
 			switch (layerName) {
-			case "Enemy": //Not sure if necessary
+			case "Enemy":
 				DamagePlayer dmg = triggerCol.GetComponent<DamagePlayer> ();
 				if (dmg != null)
 					dmg.DealDamage ();
@@ -212,7 +209,6 @@ public class PlayerController : RaycastController {
 
 		public bool climbingSlope;
 		public bool descendingSlope;
-		public bool prevOnLadder;
 		public bool onLadder;
 		public bool onLadderBelow;
 		public bool onLadderAbove;
