@@ -17,6 +17,9 @@ TagManager:
   - Switch
   - Destructible
   - Ladder
+  - Platforms
+  - Checkpoint
+  - Pickup
   layers:
   - Default
   - TransparentFX

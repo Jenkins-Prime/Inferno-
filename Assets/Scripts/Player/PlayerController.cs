@@ -40,43 +40,6 @@ public class PlayerController : RaycastController {
 			collisions.below = true;
 		}
 	}
-		
-	public void OnTriggerCheck() {
-		Collider2D triggerCol = Physics2D.OverlapArea(col.bounds.min, col.bounds.max, triggerMask);
-		if (triggerCol != null) {
-			string layerName = LayerMask.LayerToName (triggerCol.gameObject.layer);
-
-			switch (layerName) {
-			case "Enemy":
-				DamagePlayer dmg = triggerCol.GetComponent<DamagePlayer> ();
-				if (dmg != null)
-					dmg.DealDamage ();
-				break;
-			case "Pickup":
-				Pickup pickup = triggerCol.GetComponent<Pickup> ();
-				if (pickup != null)
-					pickup.Collect ();
-				break;
-			case "Checkpoint":
-				Checkpoint checkpoint = triggerCol.GetComponent<Checkpoint> ();
-				if (checkpoint != null)
-					checkpoint.SetCheckpoint ();
-				break;
-			case "Ladder":
-				Ladder ladder = triggerCol.GetComponent<Ladder> ();
-				if (ladder != null) {
-					collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
-					collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
-					collisions.onLadder = !collisions.onLadderAbove;
-				}
-				break;
-			}
-		} else {
-			collisions.onLadderAbove = false;
-			collisions.onLadderBelow = false;
-			collisions.onLadder = false;
-		}
-	}
 
 	void HorizontalCollisions(ref Vector3 velocity) {
 		float directionX = Mathf.Sign (velocity.x);
@@ -200,6 +163,43 @@ public class PlayerController : RaycastController {
 					}
 				}
 			}
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		switch (other.tag) {
+		case "Enemy":
+			DamagePlayer dmg = other.GetComponent<DamagePlayer> ();
+			if (dmg != null)
+				dmg.DealDamage ();
+			Debug.Log ("AEnemy");
+			break;
+		case "Pickup":
+			Pickup pickup = other.GetComponent<Pickup> ();
+			if (pickup != null)
+				pickup.Collect ();
+			break;
+		case "Checkpoint":
+			Checkpoint checkpoint = other.GetComponent<Checkpoint> ();
+			if (checkpoint != null)
+				checkpoint.SetCheckpoint ();
+			break;
+		case "Ladder":
+			Ladder ladder = other.GetComponent<Ladder> ();
+			if (ladder != null) {
+				collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
+				collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
+				collisions.onLadder = !collisions.onLadderAbove;
+			}
+			break;
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.tag == "Ladder") {
+			collisions.onLadderAbove = false;
+			collisions.onLadderBelow = false;
+			collisions.onLadder = false;
 		}
 	}
 

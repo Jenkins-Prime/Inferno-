@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 114000012493342808}
   m_Layer: 11
   m_Name: Score Souls
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

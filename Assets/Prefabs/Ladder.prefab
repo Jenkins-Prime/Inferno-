@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 114000012647043114}
   m_Layer: 13
   m_Name: Ladder
-  m_TagString: Untagged
+  m_TagString: Ladder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

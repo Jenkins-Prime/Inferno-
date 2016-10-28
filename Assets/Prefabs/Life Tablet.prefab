@@ -11,10 +11,10 @@ GameObject:
   - 212: {fileID: 21271344}
   - 95: {fileID: 9554872}
   - 61: {fileID: 6168536}
-  - 114: {fileID: 11461934}
-  m_Layer: 12
+  - 114: {fileID: 114000013485394368}
+  m_Layer: 11
   m_Name: Life Tablet
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,18 +63,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11461934
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 123334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5523d50a5893964bb9a43796a011635, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifePickupEffect: {fileID: 139974, guid: 58f821f19d8c9834da8dd006471233ba, type: 2}
 --- !u!212 &21271344
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -84,17 +72,20 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -116,3 +107,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 123334}
   m_IsPrefabParent: 1
+--- !u!114 &114000013485394368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6413529956678db41a4b979cc8cec1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupType: 2
+  particle: {fileID: 139974, guid: 58f821f19d8c9834da8dd006471233ba, type: 2}
+  soundEffect: {fileID: 8300000, guid: 4454001782672c84d9bac941956b4ca3, type: 3}
+  amountToAdd: 1

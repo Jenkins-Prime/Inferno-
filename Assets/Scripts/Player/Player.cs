@@ -59,7 +59,6 @@ public class Player : MonoBehaviour {
 
 			input = InputManager.MainStick ();
 
-			controller.OnTriggerCheck ();
 			JumpCheck ();
 			Move ();
 

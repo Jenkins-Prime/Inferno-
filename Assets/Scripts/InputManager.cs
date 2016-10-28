@@ -41,4 +41,8 @@ public static class InputManager {
 	public static bool PauseButton() {
 		return Input.GetButtonDown ("Cancel");
 	}
+
+	public static bool ActionButton() {
+		return Input.GetButton (KeyCode.G.ToString ()); //Change this
+	}
 }
