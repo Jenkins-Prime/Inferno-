@@ -1,12 +1,15 @@
 fileFormatVersion: 2
-guid: 8728a88b7d206f04b98cb28b440d7a24
-timeCreated: 1478274429
+guid: 3f643aa5300f20f4d83141b502fc1988
+timeCreated: 1478273600
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Spike_0
-    21300002: Spike_1
-    21300004: Spike_2
+    21300000: Platforms_0
+    21300002: Platforms_1
+    21300004: Platforms_2
+    21300006: Platforms_3
+    21300008: Platforms_4
+    21300010: Platforms_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,39 +59,78 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spike_0
+      name: Platforms_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 34
-        height: 32
+        y: 9
+        width: 3
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spike_1
+      name: Platforms_1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 0
-        width: 14
-        height: 32
+        x: 3
+        y: 9
+        width: 26
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Spike_2
+      name: Platforms_2
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 14
-        height: 32
+        x: 29
+        y: 9
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Platforms_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 9
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Platforms_4
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 9
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Platforms_5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 9
+        width: 3
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
