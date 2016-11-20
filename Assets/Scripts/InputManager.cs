@@ -45,4 +45,16 @@ public static class InputManager {
 	public static bool ActionButton() {
 		return Input.GetButton (KeyCode.G.ToString ()); //Change this
 	}
+
+	public static bool EquipWeaponButton() {
+		return Input.GetButtonDown ("Weapon Equip");
+	}
+
+	public static bool PreviousWeaponButton() { //change to include both prev & next with one input, negative-positive
+		return Input.GetButtonDown ("Weapon Previous");
+	}
+
+	public static bool NextWeaponButton() {
+		return Input.GetButtonDown ("Weapon Next");
+	}
 }

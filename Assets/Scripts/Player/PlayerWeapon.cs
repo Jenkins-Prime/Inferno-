@@ -26,10 +26,7 @@ public class PlayerWeapon : MonoBehaviour
     private bool isAttacking;
 
 
-
-
-
-    void Awake()
+	void Awake()
     {
         weaponImage = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(1).GetComponent<Image>();
         ammoAmount = GameObject.FindGameObjectWithTag("Weapon").transform.GetChild(2).GetComponent<Text>();
@@ -143,11 +140,11 @@ public class PlayerWeapon : MonoBehaviour
 
         ammoAmount.text = currentAmmo.ToString();
     }
-}
-
-public enum Weapons
-{
-    NONE,
-    SWORD,
-    CROSSBOW
+		
+	public enum Weapons
+	{
+		NONE,
+		SWORD,
+		CROSSBOW
+	}
 }

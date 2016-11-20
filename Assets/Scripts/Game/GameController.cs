@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour {
 		}
 
 		saveId = 0; //TODO: change this, make it by adding to the stack of loaded saves
+		//playerData; reset
 		currentFloor = 0;
 		currentLevel = 0;
 		floors [currentFloor].isUnlocked = true;
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = new FileStream (Application.persistentDataPath + "/game" + saveId + ".sav", FileMode.Open);
 
+			playerData = (PlayerData)bf.Deserialize (file);
 			currentFloor = (int)bf.Deserialize (file);
 			currentLevel = (int)bf.Deserialize (file);
 			floors = (List<Floor>)bf.Deserialize (file);
@@ -84,6 +86,7 @@ public class GameController : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = new FileStream (Application.persistentDataPath + "/game" + saveId + ".sav", FileMode.Create);
 
+		bf.Serialize (file, playerData);
 		bf.Serialize (file, currentFloor);
 		bf.Serialize (file, currentLevel);
 		bf.Serialize (file, floors);
@@ -110,6 +113,9 @@ public class PlayerData {
 
 	public int maxLives = 10;
 	public int maxHealth = 5;
+
+	public bool hasScythe = false;
+	public bool hasCrossbow = false;
 }
 
 [System.Serializable]

@@ -4,6 +4,7 @@ using System.Collections;
 public class LevelManager : MonoBehaviour {
 	public GameObject deathParticle;
 	public GameObject respawnParticle;
+	public Transform curCheckPoint;
 
 	[SerializeField] float deathDelay = 1f;
 	[SerializeField] float respawnDelay = 2f;
@@ -11,7 +12,6 @@ public class LevelManager : MonoBehaviour {
 	int curLives;
 	int curHealth;
 	int curScore;
-	public Transform curCheckPoint;
 
 	Player player;
 	HUDManager hudManager;

@@ -2,7 +2,12 @@
 using System.Collections;
 
 public class Pickup : MonoBehaviour {
-	public enum PickupType {Coin, Health, Life, Scythe, Crossbow};
+	public enum PickupType {
+		Coin,
+		Health,
+		Life,
+		Weapon,
+	};
 	public PickupType pickupType;
 
 	public GameObject particle;
@@ -10,9 +15,11 @@ public class Pickup : MonoBehaviour {
 	public int amountToAdd;
 
 	LevelManager levelManager;
+	PlayerAttack playerAttack;
 
 	void Start () {
 		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
+		playerAttack = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerAttack> ();
 	}
 
 	public void Collect() {
@@ -26,12 +33,8 @@ public class Pickup : MonoBehaviour {
 		case PickupType.Life:
 			levelManager.IncreaseLife (amountToAdd);
 			break;
-		case PickupType.Scythe:
-
-			break;
-
-		case PickupType.Crossbow:
-
+		case PickupType.Weapon:
+			playerAttack.AddWeapon (amountToAdd); //0 = Scythe, 1 = Crossbow
 			break;
 		}
 

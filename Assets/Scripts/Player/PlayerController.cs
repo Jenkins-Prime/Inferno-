@@ -5,7 +5,6 @@ public class PlayerController : RaycastController {
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
 
-	public LayerMask triggerMask;
 	public CollisionInfo collisions;
 	[HideInInspector]
 	public Vector2 playerInput;
