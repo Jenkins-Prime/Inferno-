@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 88af1a64c328b2d449b99cd7af4bbae5
-timeCreated: 1474597121
-licenseType: Free
+timeCreated: 1480269179
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: DemonPrince-Spritesheet_0
@@ -62,6 +62,23 @@ TextureImporter:
     21300110: DemonPrince-Spritesheet_55
     21300112: DemonPrince-Spritesheet_56
     21300114: DemonPrince-Spritesheet_57
+    21300116: DemonPrince-Spritesheet_58
+    21300118: DemonPrince-Spritesheet_59
+    21300120: DemonPrince-Spritesheet_60
+    21300122: DemonPrince-Spritesheet_61
+    21300124: DemonPrince-Spritesheet_62
+    21300126: DemonPrince-Spritesheet_63
+    21300128: DemonPrince-Spritesheet_64
+    21300130: DemonPrince-Spritesheet_65
+    21300132: DemonPrince-Spritesheet_66
+    21300134: DemonPrince-Spritesheet_67
+    21300136: DemonPrince-Spritesheet_68
+    21300138: DemonPrince-Spritesheet_69
+    21300140: DemonPrince-Spritesheet_70
+    21300142: DemonPrince-Spritesheet_71
+    21300144: DemonPrince-Spritesheet_72
+    21300146: DemonPrince-Spritesheet_73
+    21300148: DemonPrince-Spritesheet_74
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -844,6 +861,240 @@ TextureImporter:
         serializedVersion: 2
         x: 896
         y: 896
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 639
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 639
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 639
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 495
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 367
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 367
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_63
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 367
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 367
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 238
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_66
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 238
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_67
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 238
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_68
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 238
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_69
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 110
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_70
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 110
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_71
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 110
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_72
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 110
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_73
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 767
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DemonPrince-Spritesheet_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 767
         width: 128
         height: 128
       alignment: 7
