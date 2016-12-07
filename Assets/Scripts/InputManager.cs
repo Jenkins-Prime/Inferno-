@@ -22,7 +22,7 @@ public static class InputManager {
 		return Input.GetButtonUp ("Jump");
 	}
 
-	public static bool FireButton() {
+	public static bool AttackButton() {
 		return Input.GetButtonDown ("Fire1");
 	}
 

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 	float accelerationTimeAirborne = 0.2f;
 	float accelerationTimeGrounded = 0.1f;
-	Vector3 velocity;
+	public Vector3 velocity;
 
 	[HideInInspector] public Vector2 input;
 	[HideInInspector] public bool canMove;

@@ -53,9 +53,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 123176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096e86d8660c7674289df02f8cf95526, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b4f734e2aadfac4d9343511718dda07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killPlayer: 0
   damageAmount: 1
 --- !u!212 &21223198
 SpriteRenderer:

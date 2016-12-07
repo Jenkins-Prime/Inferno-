@@ -30,7 +30,7 @@ public class BulletController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.tag == "Enemy") {
-			other.GetComponent<EnemyHealthManager>().giveDamage(damageToGive);
+			other.GetComponent<EnemyHealthManager>().GiveDamage(damageToGive);
 		} else if (other.tag == "Destructible")  {
 			Destroy (other.gameObject); //improve with adding fx/particles
 		}
