@@ -3,43 +3,58 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour {
-	[SerializeField] Slider healthBar;
-	[SerializeField] Text lifeText;
-	[SerializeField] Text scoreText;
-	[SerializeField] Image scytheContainer;
+	[Header ("MP Bar")]
+	[SerializeField] Image MPBar;
+
+	[Header ("Weapons")]
+	//Scythe
+	[SerializeField] Image scytheOutline;
+	[SerializeField] Image scytheBackground;
 	[SerializeField] Image scytheWeapon;
-	[SerializeField] Image crossbowContainer;
+	//Crossbow
+	[SerializeField] Image crossbowOutline;
+	[SerializeField] Image crossbowBackground;
 	[SerializeField] Image crossbowWeapon;
 	[SerializeField] Text crossbowAmmo;
 
-	//remove this
+	[Header ("Collectibles")]
+	[SerializeField] Text blueSouls;
+	[SerializeField] Text keys;
+
+	[Header ("Health")]
+	[SerializeField] Slider healthBar;
+
+	[Header ("Lives")]
+	[SerializeField] Text lifeText;
+
+	[SerializeField] Text scoreText; //TODO: remove that line 
+
+	Color32 lightBlue = new Color32(0, 44, 255, 255);
+	Color32 darkBlue = new Color32(0, 0, 128, 255);
+	Color32 gold = new Color32(255, 220, 0, 255);
+	Color32 darkGreen = new Color32 (0, 180, 0, 255);
+
 	void Start() {
-		scytheContainer.color = Color.black;
-		scytheWeapon.enabled = false;
+		scytheOutline.color = lightBlue;
+		scytheBackground.color = darkBlue;
+		scytheWeapon.enabled = false; //import pls
 
-		crossbowContainer.color = Color.black;
-		crossbowWeapon.enabled = false;
-		crossbowAmmo.enabled = false;
+		crossbowOutline.color = lightBlue;
+		crossbowBackground.color = darkBlue;
+		crossbowWeapon.enabled = false; //import pls
+		crossbowAmmo.enabled = false; //import pls
 	}
 
-	public void SetHealthUI(int amount) {
-		healthBar.value = (float)amount;
-	}
-
-	public void SetLifeUI(int amount) {
-		lifeText.text = amount.ToString ();
-	}
-
-	public void SetScoreUI(int amount) {
-		scoreText.text = amount.ToString ();
-	}
+	//method for the mp bar goes here
 
 	public void AddWeapon(int id) {
 		if (id == 0) {
-			scytheContainer.color = Color.yellow;
+			scytheOutline.color = Color.yellow;
+			scytheBackground.color = gold;
 			scytheWeapon.enabled = true;
 		} else if (id == 1) {
-			crossbowContainer.color = Color.yellow;
+			crossbowOutline.color = Color.yellow;
+			crossbowBackground.color = gold;
 			crossbowWeapon.enabled = true;
 			crossbowAmmo.enabled = true;
 		}
@@ -48,15 +63,19 @@ public class HUDManager : MonoBehaviour {
 	public void SelectWeapon(bool select, int id) {
 		if (select) {
 			if (id == 0) {
-				scytheContainer.color = Color.yellow;
+				scytheOutline.color = Color.yellow;
+				scytheBackground.color = gold;
 			} else if (id == 1) {
-				crossbowContainer.color = Color.yellow;
+				crossbowOutline.color = Color.yellow;
+				crossbowBackground.color = gold;
 			}
 		} else {
 			if (id == 0) {
-				scytheContainer.color = Color.white;
+				scytheOutline.color = lightBlue;
+				scytheBackground.color = darkBlue;
 			} else if (id == 1) {
-				crossbowContainer.color = Color.white;
+				crossbowOutline.color = lightBlue;
+				crossbowBackground.color = darkBlue;
 			}
 		}
 	}
@@ -64,16 +83,45 @@ public class HUDManager : MonoBehaviour {
 	public void EquipWeapon(bool equip, int id) {
 		if (equip) {
 			if (id == 0) {
-				scytheContainer.color = Color.green;
+				scytheOutline.color = Color.green;
+				scytheBackground.color = darkGreen;
 			} else if (id == 1) {
-				crossbowContainer.color = Color.green;
+				crossbowOutline.color = Color.green;
+				crossbowBackground.color = darkGreen;
 			}
 		} else {
 			if (id == 0) {
-				scytheContainer.color = Color.yellow;
+				scytheOutline.color = Color.yellow;
+				scytheBackground.color = gold;
 			} else if (id == 1) {
-				crossbowContainer.color = Color.yellow;
+				crossbowOutline.color = Color.yellow;
+				crossbowBackground.color = gold;
 			}
 		}
+	}
+
+	public void SetAmmo(int amount) {
+		crossbowAmmo.text = amount.ToString ();
+	}
+
+	public void SetBlueSouls(int amount) {
+		blueSouls.text = amount.ToString ();
+	}
+
+	public void SetKeys(int amount) {
+		keys.text = amount.ToString ();
+	}
+
+	public void SetHealthUI(int amount) {
+		//healthBar.value = (float)amount;
+	}
+
+	public void SetLifeUI(int amount) {
+		lifeText.text = amount.ToString ();
+	}
+
+	//!!!!TODO: Remove that method !!!!
+	public void SetScoreUI(int amount) {
+		//scoreText.text = amount.ToString ();
 	}
 }
