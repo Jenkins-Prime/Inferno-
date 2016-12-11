@@ -16,31 +16,49 @@ public class LookAtPlayer : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update () 
+	{
 		lookX = player.transform.position.x;
 		lookY = player.transform.position.y;
+	}
 
-		if (lookX > portrait.transform.position.x) 
-		{
-			eyes.transform.position = new Vector3 (transform.position.x + moveBy, transform.position.y, transform.position.z);
-		}
+	void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.tag == "Player") {
 
-		if (lookY > portrait.transform.position.y) 
-		{
-			eyes.transform.position = new Vector3 (transform.position.x, transform.position.y + moveBy, transform.position.z);
-		}
-	
-		if (lookX < portrait.transform.position.x) 
-		{
-			eyes.transform.position = new Vector3 (transform.position.x - moveBy, transform.position.y, transform.position.z);
-		}
+			if (lookX > portrait.transform.position.x) {
+				eyes.transform.position = new Vector3 (transform.position.x + moveBy, transform.position.y, transform.position.z);
+
+				if (lookY > portrait.transform.position.y) {
+					eyes.transform.position = new Vector3 (transform.position.x + moveBy, transform.position.y + moveBy, transform.position.z);
+				}
+			}
+
+			if (lookY > portrait.transform.position.y) {
+				eyes.transform.position = new Vector3 (transform.position.x, transform.position.y + moveBy, transform.position.z);
+
+				if (lookX > portrait.transform.position.x) {
+					eyes.transform.position = new Vector3 (transform.position.x + moveBy, transform.position.y + moveBy, transform.position.z);
+				}
+			}
+
+			if (lookX < portrait.transform.position.x) {
+				eyes.transform.position = new Vector3 (transform.position.x - moveBy, transform.position.y, transform.position.z);
+
+				if (lookY < portrait.transform.position.y) {
+					eyes.transform.position = new Vector3 (transform.position.x - moveBy, transform.position.y - moveBy, transform.position.z);
+				}
+			}
 
 
-		if (lookY < portrait.transform.position.y) 
-		{
-			
-			eyes.transform.position = new Vector3 (transform.position.x, transform.position.y - moveBy, transform.position.z);
+			if (lookY < portrait.transform.position.y) {
+
+				eyes.transform.position = new Vector3 (transform.position.x, transform.position.y - moveBy, transform.position.z);
+
+				if (lookX < portrait.transform.position.x) {
+					eyes.transform.position = new Vector3 (transform.position.x - moveBy, transform.position.y - moveBy, transform.position.z);
+				}
+			}
 		}
 	}
 }
