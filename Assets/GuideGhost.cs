@@ -6,14 +6,13 @@ public class GuideGhost : MonoBehaviour {
 	public Transform[] points;
     public Transform startPoint;
     public Transform endPoint;
-	public int moveSpeed;
+	public float moveSpeed;
 	private Animator anim;
-    public float distance;
 	public bool isMoving;
 	public bool isEvil;
     public GameObject[] evilReward;
     public GameObject[] goodReward;
-    public float disdtance;
+    public float distance;
 
     private int currentPoint;
     private float startTime;
@@ -32,15 +31,13 @@ public class GuideGhost : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        if (Vector2.Distance(player.position, transform.position) < distance)
-        {
-            isMoving = true;
-        }
+       
 
-        if (isMoving)
+        if (Vector2.Distance(player.position, transform.position) < distance)
         {
             Move();
         }
+
        
 	}
 
@@ -63,6 +60,7 @@ public class GuideGhost : MonoBehaviour {
             currentPoint++;
             SetMovePoints();
         }
+
 
     }
 }

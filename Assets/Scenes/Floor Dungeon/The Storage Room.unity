@@ -810,13 +810,12 @@ MonoBehaviour:
   - {fileID: 596446531}
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
-  moveSpeed: 2
-  distance: 1
+  moveSpeed: 1
   isMoving: 0
   isEvil: 0
   evilReward: []
   goodReward: []
-  disdtance: 0
+  distance: 0.5
 --- !u!1001 &158583925
 Prefab:
   m_ObjectHideFlags: 0
@@ -2834,7 +2833,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 596446530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6429062, y: -0.60457134, z: 0}
+  m_LocalPosition: {x: 10.21, y: -0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -6674,7 +6673,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1263375716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.127098, y: 0.25642872, z: 0}
+  m_LocalPosition: {x: 0.74, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -6846,7 +6845,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1290392226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.591095, y: 0.25642872, z: 0}
+  m_LocalPosition: {x: 6.5, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
