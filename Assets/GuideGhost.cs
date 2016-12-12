@@ -4,52 +4,65 @@ using System.Collections;
 public class GuideGhost : MonoBehaviour {
 
 	public Transform[] points;
+    public Transform startPoint;
+    public Transform endPoint;
 	public int moveSpeed;
 	private Animator anim;
-	public bool isTriggered;
+    public float distance;
 	public bool isMoving;
-	public Transform currentPoint;
-	public int pointSelection;
 	public bool isEvil;
     public GameObject[] evilReward;
     public GameObject[] goodReward;
+    public float disdtance;
 
+    private int currentPoint;
+    private float startTime;
+    private float pointLength;
+    private float pointDisdtance;
+
+    private Transform player;
 	// Use this for initialization
-	void Start () {
-		currentPoint = points[pointSelection];
+	void Start () 
+    {
+        currentPoint = 0;
+        SetMovePoints();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (isTriggered && isMoving)
-            {
-			transform.position = Vector3.MoveTowards(transform.position, currentPoint.position, Time.deltaTime * moveSpeed);
-
-			if(currentPoint == points[pointSelection])
-				{
-					isTriggered = false;
-					isMoving = false;
-				}
-		}
-	
-	}
-
-	void OnTriggerEnter2D (Collider2D other)
-	{
-		for (int index = 0; index < points.Length; index++)
+        if (Vector2.Distance(player.position, transform.position) < distance)
         {
-            if (currentPoint == points[index])
-            {
-                isTriggered = false;
-                isMoving = false;
-            }
+            isMoving = true;
         }
 
-        if (transform.position == currentPoint.position) 
-		{
-			pointSelection++;
-			currentPoint = points[pointSelection];
-		}
+        if (isMoving)
+        {
+            Move();
+        }
+       
 	}
+
+    private void SetMovePoints()
+    {
+        startPoint = points[currentPoint];
+        endPoint = points[currentPoint + 1];
+        startTime = Time.time;
+        pointLength = Vector2.Distance(startPoint.position, endPoint.position);
+    }
+
+    private void Move()
+    {
+        pointDisdtance = (Time.time - startTime) * moveSpeed;
+        float journey = pointDisdtance / pointLength;
+        transform.position = Vector2.Lerp(startPoint.position, endPoint.position, journey);
+
+        if (journey >= 1.0f && currentPoint + 1 < points.Length - 1)
+        {
+            currentPoint++;
+            SetMovePoints();
+        }
+
+    }
 }
