@@ -26,7 +26,7 @@ public class NPCScript : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             dialogueSystem.npcSprite.sprite = npcImage;
-            dialogueSystem.npcName.text = npcName;
+            //dialogueSystem.npcName.text = npcName;
             dialogueSystem.npcDialogue = dialogue.text;
             bblanim.SetBool("IsColliding", true);
             dialogueSystem.canInteract = true;
