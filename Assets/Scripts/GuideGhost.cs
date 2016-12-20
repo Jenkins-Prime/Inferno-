@@ -37,7 +37,6 @@ public class GuideGhost : MonoBehaviour
         if (currentPoint < points.Length - 1)
         {
             currentPoint++;
-            
         }
         else
         {
