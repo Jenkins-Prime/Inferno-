@@ -22,6 +22,8 @@ public class Powerup : MonoBehaviour
 
     protected virtual void StopPowerUp(AudioClip audio){}
 
+    protected virtual void DestroyPowerup(AudioClip audio) { }
+
     private IEnumerator StartTimer()
     {
         UsePowerUp(new AudioClip());
@@ -39,8 +41,14 @@ public class Powerup : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             CollectPowerUp(new AudioClip());
-
+            DiableObject();
         }
+    }
+
+    private void DiableObject()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
 }

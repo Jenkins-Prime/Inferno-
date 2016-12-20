@@ -39,5 +39,10 @@ public class Invisibility : Powerup
         player.enabled = true;
     }
 
-    
+    protected override void DestroyPowerup(AudioClip audio)
+    {
+        Destroy(gameObject);
+    }
+
+
 }
