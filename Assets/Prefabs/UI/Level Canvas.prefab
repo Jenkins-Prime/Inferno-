@@ -2892,7 +2892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250c719b1e02de046a6eea3664cb3c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MPBar: {fileID: 0}
+  MPBar: {fileID: 114000010469839842}
   scytheOutline: {fileID: 114000011963036064}
   scytheBackground: {fileID: 114000013253988598}
   scytheWeapon: {fileID: 114000011202491916}
@@ -2900,8 +2900,8 @@ MonoBehaviour:
   crossbowBackground: {fileID: 114000010959559654}
   crossbowWeapon: {fileID: 114000011690870726}
   crossbowAmmo: {fileID: 114000012265057558}
-  blueSouls: {fileID: 0}
-  keys: {fileID: 0}
+  blueSouls: {fileID: 114000012448552292}
+  keys: {fileID: 114000014154060376}
   healthBar: {fileID: 0}
   lifeText: {fileID: 114000013314870772}
   scoreText: {fileID: 0}
