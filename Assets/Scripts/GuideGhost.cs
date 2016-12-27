@@ -12,9 +12,7 @@ public class GuideGhost : MonoBehaviour
     public GameObject[] evilReward;
     public GameObject[] goodReward;
     public float distance;
-
     private int currentPoint;
-
     private Transform player;
 
 	void Start () 
@@ -41,7 +39,7 @@ public class GuideGhost : MonoBehaviour
         else
         {
             currentPoint = points.Length - 1;
-            Debug.Log("End reached");
+            //SpawnItems(3.0f);  
         }
     }
 
@@ -51,11 +49,9 @@ public class GuideGhost : MonoBehaviour
 
         if (Vector2.Distance(transform.position, points[currentPoint].position) < distance)
         {
-            transform.position = points[currentPoint].position;
             isMoving = false;
             SetMovePoints();
-    }
-        
+        } 
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -63,7 +59,39 @@ public class GuideGhost : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             isMoving = true;
-        }
-        
+        }   
     }
+
+    private void SpawnItems(float duration)
+    {
+        float random = Random.value;
+
+        if (random < 0.6)
+        {
+            isEvil = false;
+            SpawnGoodReward();
+        }
+        else
+        {
+            isEvil = true;
+            SpawnBadReward();
+        }
+
+        Destroy(gameObject, duration);
+    }
+
+    private void SpawnGoodReward()
+    {
+        int goodItems = Random.Range(0, goodReward.Length);
+        GameObject items = Instantiate(goodReward[goodItems]);
+    }
+
+    private void SpawnBadReward()
+    {
+        int badItems = Random.Range(0, evilReward.Length);
+        GameObject items = Instantiate(goodReward[badItems]);
+    }
+
 }
+
+

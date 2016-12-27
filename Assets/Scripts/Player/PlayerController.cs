@@ -6,6 +6,7 @@ public class PlayerController : RaycastController {
 	float maxDescendAngle = 75;
 
 	public CollisionInfo collisions;
+    public LayerMask block;
 	[HideInInspector]
 	public Vector2 playerInput;
 
@@ -16,6 +17,15 @@ public class PlayerController : RaycastController {
 	public void Move(Vector3 velocity,bool standingOnPlatform) {
 		Move (velocity, Vector2.zero, standingOnPlatform);
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            MoveBlock();
+        }
+    }
+
 
 	public void Move(Vector3 velocity, Vector2 input,bool standingOnPlatform = false) {
 		UpdateRaycastOrigins ();
@@ -193,6 +203,16 @@ public class PlayerController : RaycastController {
 			break;
 		}
 	}
+
+    private void MoveBlock()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 10.0f, block);
+
+        if (hit)
+        {
+            Debug.Log("Hit");
+        }
+    }
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.tag == "Ladder") {

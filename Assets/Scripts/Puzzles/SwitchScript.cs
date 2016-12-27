@@ -1,39 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwitchScript : MonoBehaviour {
+public class SwitchScript : Switch
+{
+    private Animator switchAnimator;
+    [SerializeField]
+    private string switchAnimationName;
+    [SerializeField]
+    private string targetAnimationName;
+    [SerializeField]
+    private Animator targetAnimator;
 
-	public TargetScript target;
-	private Animator anim;
-	public bool sticks;
-
-
-
-	// Use this for initialization
-	void Start () {
-	
-		anim = GetComponent<Animator>();
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+    void Awake()
+    {
+       switchAnimator = GetComponent<Animator>();
 	}
 
-	void OnTriggerStay2D()
-	{
-		anim.SetBool ("active", true);
-		target.SwitchActive();
+    protected override void SwitchHit(AudioClip audio)
+    {
+        isHit = true;
+        switchAnimator.SetBool(switchAnimationName, true);
+        Debug.Log("Hit Switch");
+        OnUse(new AudioClip());
+    }
 
-	}
+    protected override void OnUse(AudioClip audio)
+    {
+        Debug.Log("Opened Gate");
+        targetAnimator.SetBool(targetAnimationName, true);
 
-	void OnTriggerExit2D()
-	{
-		if (sticks)
-			return;
-		anim.SetBool ("active", false);
-		target.SwitchInactive();
-	}
+    }
+
+    protected override void OnExit(AudioClip audio)
+    {
+        switchAnimator.SetBool(switchAnimationName, false);
+        targetAnimator.SetBool(targetAnimationName, false);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Block")
+        {
+            SwitchHit(new AudioClip());
+        }
+    }
+
+    void OnTriggerExit2D()
+    {
+        OnExit(new AudioClip());
+    }
 
 }

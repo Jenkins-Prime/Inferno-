@@ -39,10 +39,9 @@ GameObject:
   - 212: {fileID: 212000013630494208}
   - 95: {fileID: 95000012764739692}
   - 61: {fileID: 61000011607066830}
-  - 114: {fileID: 114000010737418988}
   m_Layer: 8
   m_Name: Gate
-  m_TagString: Ground
+  m_TagString: Event
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,17 +298,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010737418988
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011472590964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da90039368d02ae4e92a25e932dfde94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212000010049483426
 SpriteRenderer:
   m_ObjectHideFlags: 1

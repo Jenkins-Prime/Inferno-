@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class LookAtPlayer : MonoBehaviour {
-	public Transform portrait;
 	public Transform eyes;
     public float moveBy = 0.010f;
 	public float xOffset = 0.2f;
@@ -14,7 +13,6 @@ public class LookAtPlayer : MonoBehaviour {
 
 	void Start () {
 		player = FindObjectOfType<Player> ().transform;
-
 		moveX = transform.position.x;
 		moveY = transform.position.y;
 	}
@@ -23,18 +21,18 @@ public class LookAtPlayer : MonoBehaviour {
 		if (other.tag == "Player") {
 
 			//Check X
-			if (player.position.x > portrait.position.x + xOffset) {
+			if (player.position.x > gameObject.transform.position.x + xOffset) {
 				moveX = transform.position.x + moveBy;
-			} else if (player.position.x < portrait.position.x - xOffset) {
+			} else if (player.position.x < gameObject.transform.position.x - xOffset) {
 				moveX = transform.position.x - moveBy;
 			} else { //inside the range = don't move the eyes on the X axis
 				moveX = transform.position.x;
 			}
 				
 			//Check Y
-			if (player.position.y > portrait.position.y + yOffset) {
+			if (player.position.y > gameObject.transform.position.y + yOffset) {
 				moveY = transform.position.y + moveBy;
-			} else if (player.position.y < portrait.position.y - yOffset) {
+			} else if (player.position.y < gameObject.transform.position.y - yOffset) {
 				moveY = transform.position.y - moveBy;
 			} else { //inside the range = don't move the eyes on the Y axis
 				moveY = transform.position.y;

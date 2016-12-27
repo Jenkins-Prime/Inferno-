@@ -21,6 +21,7 @@ TagManager:
   - Checkpoint
   - Pickup
   - LevelNode
+  - Event
   layers:
   - Default
   - TransparentFX
@@ -43,7 +44,7 @@ TagManager:
   - IngoreCollisions
   - Projectiles
   - Switches
-  - 
+  - Block
   - 
   - 
   - 
