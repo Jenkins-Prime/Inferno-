@@ -27,7 +27,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Souls [U.I]
+  m_Name: Souls (UI)
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -54,7 +54,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102000010548301642}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 336, y: 96, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
