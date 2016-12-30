@@ -21,9 +21,10 @@ GameObject:
   - 4: {fileID: 4000013097065946}
   - 212: {fileID: 212000011617762320}
   - 95: {fileID: 95000013773498166}
-  m_Layer: 0
+  - 114: {fileID: 114000014238147626}
+  m_Layer: 11
   m_Name: Confusion
-  m_TagString: Untagged
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +59,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000014238147626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011301052866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd25ffa425024e4985983592a31787b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpDuration: 3
 --- !u!212 &212000011617762320
 SpriteRenderer:
   m_ObjectHideFlags: 1

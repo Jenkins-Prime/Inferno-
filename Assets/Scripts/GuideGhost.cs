@@ -7,8 +7,9 @@ public class GuideGhost : MonoBehaviour
 	public Transform[] points;
 	public float moveSpeed;
 	private Animator anim;
-	public bool isMoving;
+	private bool isMoving;
 	public bool isEvil;
+    private bool hasReachedEnd;
     public GameObject[] evilReward;
     public GameObject[] goodReward;
     public float distance;
@@ -20,6 +21,7 @@ public class GuideGhost : MonoBehaviour
         currentPoint = -1;
         SetMovePoints();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        hasReachedEnd = false;
 	}
 	
 	void Update () 
@@ -39,7 +41,6 @@ public class GuideGhost : MonoBehaviour
         else
         {
             currentPoint = points.Length - 1;
-            //SpawnItems(3.0f);  
         }
     }
 
@@ -62,7 +63,7 @@ public class GuideGhost : MonoBehaviour
         }   
     }
 
-    private void SpawnItems(float duration)
+    private void SpawnItems()
     {
         float random = Random.value;
 
@@ -76,20 +77,18 @@ public class GuideGhost : MonoBehaviour
             isEvil = true;
             SpawnBadReward();
         }
-
-        Destroy(gameObject, duration);
     }
 
     private void SpawnGoodReward()
     {
         int goodItems = Random.Range(0, goodReward.Length);
-        GameObject items = Instantiate(goodReward[goodItems]);
+        GameObject items = Instantiate(goodReward[goodItems], transform.position, transform.rotation) as GameObject;
     }
 
     private void SpawnBadReward()
     {
         int badItems = Random.Range(0, evilReward.Length);
-        GameObject items = Instantiate(goodReward[badItems]);
+        GameObject items = Instantiate(goodReward[badItems], transform.position, transform.rotation) as GameObject;
     }
 
 }

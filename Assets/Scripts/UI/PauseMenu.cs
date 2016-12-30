@@ -12,7 +12,8 @@ public class PauseMenu : MonoBehaviour {
     }
 
     void Update() {
-		if (InputManager.PauseButton()) {
+		if (InputManager.Instance.PauseButton())
+        {
 			if (Time.timeScale == 0.0f)	{ //Resume Game
 				Time.timeScale = 1.0f;
 				player.canMove = true;

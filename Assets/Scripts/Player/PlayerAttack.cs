@@ -39,16 +39,17 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	void Update () {
-		if (InputManager.AttackButton () && hasEquiped && !anim.GetBool ("Attack")) {
+		if (InputManager.Instance.AttackButton () && hasEquiped && !anim.GetBool ("Attack")) {
 			WeaponAttack ();
-		} else if (InputManager.EquipWeaponButton() && weaponCount> 0) {
+		} else if (InputManager.Instance.EquipWeaponButton() && weaponCount> 0) {
 			WeaponEquip ();
-		} else if (InputManager.PreviousWeaponButton ()) {
+		} else if (InputManager.Instance.SwitchWeapon()) {
 			WeaponPrevious ();
-		} else if (InputManager.NextWeaponButton ()) {
+		} else if (InputManager.Instance.SwitchWeapon()) {
 			WeaponNext ();
 		}
 	}
+
 
 	void WeaponAttack() {
 		if (curWeapon == Weapons.Scythe) {

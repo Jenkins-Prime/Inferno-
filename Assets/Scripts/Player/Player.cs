@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
 			if (controller.collisions.above || controller.collisions.below)
 				velocity.y = 0;
 
-			input = InputManager.MainStick ();
+			input = InputManager.Instance.MainStick ();
 
 			JumpCheck ();
 			Move ();
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
 
 	void JumpCheck () {
 		if (!controller.collisions.onLadder) {
-			if (InputManager.JumpButton ()) {
+			if (InputManager.Instance.JumpButton ()) {
 				if (controller.collisions.below || controller.collisions.onLadderAbove) {
 					velocity.y = maxJumpVelocity;
 					jump = true;
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-			if (InputManager.ReleaseJumpButton ()) {
+			if (InputManager.Instance.ReleaseJumpButton ()) {
 				if (velocity.y > minJumpVelocity) {
 					velocity.y = minJumpVelocity;
 				}

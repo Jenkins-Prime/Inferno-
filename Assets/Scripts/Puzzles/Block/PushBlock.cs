@@ -38,14 +38,13 @@ public class PushBlock : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == tagName)
+        if (collider.gameObject.tag == "Player" && Input.GetAxis("Horizontal") > 0)
         {
             playerAnimator.SetBool("isPushing", true);
         }
-    }
-
-    void OnCollisionExit2D()
-    {
-        playerAnimator.SetBool("isPushing", false);
+        else
+        {
+            playerAnimator.SetBool("isPushing", false);
+        }
     }
 }

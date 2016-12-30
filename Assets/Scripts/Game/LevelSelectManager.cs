@@ -77,7 +77,7 @@ public class LevelSelectManager : MonoBehaviour {
 	}
 
 	void CheckInput() {
-		Vector2 input = InputManager.MainStick ();
+		Vector2 input = InputManager.Instance.MainStick ();
 
 		if (input.x > 0 && levels[current].rightNode != null && GameController.instance.GetLevelData (levels[current].rightNode.id).isUnlocked) {//levels[levels[current].rightNode.id].isUnlocked) { //Pressed Right
 			SetNextPosition (levels[current].rightNode.id);
@@ -93,7 +93,7 @@ public class LevelSelectManager : MonoBehaviour {
 			SetNextPosition (levels[current].upNode.id);
 		} else if (input.y < 0 && levels[current].downNode != null && GameController.instance.GetLevelData (levels[current].downNode.id).isUnlocked) {//levels[levels[current].downNode.id].isUnlocked) { //Pressed down
 			SetNextPosition (levels[current].downNode.id);
-		} else if (InputManager.ConfirmButton()) { //Pressed confirm button to play level
+		} else if (InputManager.Instance.ConfirmButton()) { //Pressed confirm button to play level
 			GameController.instance.currentLevel = current;
 			GameController.instance.SaveGame();
 			SceneManager.LoadScene (GameController.instance.GetLevelData (current).sceneName); //levels[current].sceneName); 

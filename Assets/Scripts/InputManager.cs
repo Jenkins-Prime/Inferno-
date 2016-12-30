@@ -1,60 +1,92 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class InputManager {
-	static float MainStickX() {
+public class InputManager
+{
+    private static InputManager instance;
+
+    private InputManager() {}
+
+    public static InputManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new InputManager();
+            }
+
+            return instance;
+        }
+    }
+
+	public float MainStickX()
+    {
 		return Input.GetAxisRaw ("Horizontal");
 	}
 
-	static float MainStickY() {
+    public float MainStickY()
+    {
 		return Input.GetAxisRaw ("Vertical");
 	}
 
-	public static Vector2 MainStick() {
+	public Vector2 MainStick()
+    {
 		return new Vector2 (MainStickX(), MainStickY());
 	}
 
-	public static bool JumpButton() {
+	public bool JumpButton()
+    {
 		return Input.GetButtonDown ("Jump");
 	}
 
-	public static bool ReleaseJumpButton() {
+	public bool ReleaseJumpButton()
+    {
 		return Input.GetButtonUp ("Jump");
 	}
 
-	public static bool AttackButton() {
+	public bool AttackButton()
+    {
 		return Input.GetButtonDown ("Fire1");
 	}
 
-	public static bool MeleeButton() {
+	public bool MeleeButton()
+    {
 		return Input.GetButtonDown ("Fire2");
 	}
 
-	public static bool ConfirmButton() {
+	public bool ConfirmButton()
+    {
 		return Input.GetButtonDown ("Submit");
 	}
 
-	public static bool TalkButton() {
-		return Input.GetButtonDown(KeyCode.F.ToString()); //change this lol
+	public bool TalkButton()
+    {
+		return Input.GetButtonDown("Talk");
 	}
 
-	public static bool PauseButton() {
+	public bool PauseButton()
+    {
 		return Input.GetButtonDown ("Cancel");
 	}
 
-	public static bool ActionButton() {
-		return Input.GetButton (KeyCode.G.ToString ()); //Change this
+	public bool ActionButton()
+    {
+		return Input.GetButtonDown("Action");
 	}
 
-	public static bool EquipWeaponButton() {
+	public bool EquipWeaponButton()
+    {
 		return Input.GetButtonDown ("Weapon Equip");
 	}
 
-	public static bool PreviousWeaponButton() { //change to include both prev & next with one input, negative-positive
-		return Input.GetButtonDown ("Weapon Previous");
+	public bool SwitchWeapon()
+    { 
+		return Input.GetButtonDown ("Switch Weapon");
 	}
 
-	public static bool NextWeaponButton() {
+	public bool NextWeaponButton()
+    {
 		return Input.GetButtonDown ("Weapon Next");
 	}
 }
