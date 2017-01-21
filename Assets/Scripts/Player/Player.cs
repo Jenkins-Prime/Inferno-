@@ -112,7 +112,7 @@ public class Player : MonoBehaviour {
 				targetVelocityX = input.x * climbSpeed;
 			else
 				targetVelocityX = input.x * moveSpeed;
-		
+
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 			if (controller.collisions.onLadder) {
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour {
 		} else {
 			velocity = knockBackVelocity;
 		}
-	
+
 		controller.Move (velocity * Time.deltaTime, input);
 	}
 
@@ -141,7 +141,7 @@ public class Player : MonoBehaviour {
 
 		if (controller.collisions.below || controller.collisions.onLadderAbove || controller.collisions.onLadderBelow)
 			anim.SetBool ("Grounded", true);
-		 else {
+		else {
 			anim.SetBool ("Grounded", false);
 		}
 

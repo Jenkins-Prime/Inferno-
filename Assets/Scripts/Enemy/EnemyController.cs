@@ -8,13 +8,13 @@ public class EnemyController : RaycastController {
 	public CollisionInfo collisions;
 
 	Player player;
-	LevelManager levelManager;
+	//LevelManager levelManager; replace health on player's function calls
 
 	public override void Start() {
 		base.Start ();
 
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
+		//levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 	}
 	
 	public void Move (Vector3 velocity) {
@@ -28,7 +28,7 @@ public class EnemyController : RaycastController {
 			
 		if (collisions.damagePlayer && player.canMove && !player.knockBack) {
 			player.PlayerKnockBack (transform.position);
-			levelManager.DecreaseHealth (damageAmount);
+			//levelManager.DecreaseHealth (damageAmount);
 		}
 
 		transform.Translate (velocity);
