@@ -1,69 +1,69 @@
 fileFormatVersion: 2
 guid: 88af1a64c328b2d449b99cd7af4bbae5
-timeCreated: 1480269179
+timeCreated: 1485117941
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: DemonPrince-Spritesheet_0
-    21300002: DemonPrince-Spritesheet_1
-    21300004: DemonPrince-Spritesheet_2
-    21300006: DemonPrince-Spritesheet_3
-    21300008: DemonPrince-Spritesheet_4
-    21300010: DemonPrince-Spritesheet_5
-    21300012: DemonPrince-Spritesheet_6
-    21300014: DemonPrince-Spritesheet_7
-    21300016: DemonPrince-Spritesheet_8
-    21300018: DemonPrince-Spritesheet_9
-    21300020: DemonPrince-Spritesheet_10
-    21300022: DemonPrince-Spritesheet_11
-    21300024: DemonPrince-Spritesheet_12
-    21300026: DemonPrince-Spritesheet_13
-    21300028: DemonPrince-Spritesheet_14
-    21300030: DemonPrince-Spritesheet_15
+    21300000: Player@Idle_0
+    21300002: Player@Idle_1
+    21300004: Player@Idle_2
+    21300006: Player@Idle_3
+    21300008: Player@Walk_0
+    21300010: Player@Walk_1
+    21300012: Player@Walk_3
+    21300014: Player@Walk_4
+    21300016: Player@Jump
+    21300018: Player@Climb_0
+    21300020: Player@Climb_1
+    21300022: Player@Push_0
+    21300024: Player@Push_1
+    21300026: Player@Push_2
+    21300028: Player@Hurt_0
+    21300030: Player@Hurt_1
     21300032: DemonPrince-Spritesheet_16
     21300034: DemonPrince-Spritesheet_17
     21300036: DemonPrince-Spritesheet_18
     21300038: DemonPrince-Spritesheet_19
-    21300040: DemonPrince-Spritesheet_20
-    21300042: DemonPrince-Spritesheet_21
-    21300044: DemonPrince-Spritesheet_22
+    21300040: Player@Swim_0
+    21300042: Player@Swim_1
+    21300044: Player@Crouch_0
     21300046: DemonPrince-Spritesheet_23
     21300048: DemonPrince-Spritesheet_24
     21300050: DemonPrince-Spritesheet_25
     21300052: DemonPrince-Spritesheet_26
     21300054: DemonPrince-Spritesheet_27
     21300056: DemonPrince-Spritesheet_28
-    21300058: DemonPrince-Spritesheet_29
-    21300060: DemonPrince-Spritesheet_30
-    21300062: DemonPrince-Spritesheet_31
+    21300058: Player@Crouch_2
+    21300060: Player@Pickup-Walk_0
+    21300062: Player@Pickup-Walk_2
     21300064: DemonPrince-Spritesheet_32
     21300066: DemonPrince-Spritesheet_33
     21300068: DemonPrince-Spritesheet_34
     21300070: DemonPrince-Spritesheet_35
     21300072: DemonPrince-Spritesheet_36
-    21300074: DemonPrince-Spritesheet_37
-    21300076: DemonPrince-Spritesheet_38
-    21300078: DemonPrince-Spritesheet_39
+    21300074: Player@Pickup_3
+    21300076: Player@Pickup_2
+    21300078: Player@Pickup-Walk_1
     21300080: DemonPrince-Spritesheet_40
-    21300082: DemonPrince-Spritesheet_41
-    21300084: DemonPrince-Spritesheet_42
-    21300086: DemonPrince-Spritesheet_43
-    21300088: DemonPrince-Spritesheet_44
-    21300090: DemonPrince-Spritesheet_45
+    21300082: Player@Pickup-Walk_3
+    21300084: Player@Transform_4
+    21300086: Player@Pickup_1
+    21300088: Player@Pickup_0
+    21300090: Player@Crouch_1
     21300092: DemonPrince-Spritesheet_46
     21300094: DemonPrince-Spritesheet_47
     21300096: DemonPrince-Spritesheet_48
     21300098: DemonPrince-Spritesheet_49
-    21300100: DemonPrince-Spritesheet_50
-    21300102: DemonPrince-Spritesheet_51
-    21300104: DemonPrince-Spritesheet_52
-    21300106: DemonPrince-Spritesheet_53
-    21300108: DemonPrince-Spritesheet_54
-    21300110: DemonPrince-Spritesheet_55
+    21300100: Player@Transform_0
+    21300102: Player@Transform_1
+    21300104: Player@Transform_2
+    21300106: Player@Transform_3
+    21300108: Player@Transform_6
+    21300110: Player@Transform_5
     21300112: DemonPrince-Spritesheet_56
     21300114: DemonPrince-Spritesheet_57
     21300116: DemonPrince-Spritesheet_58
-    21300118: DemonPrince-Spritesheet_59
+    21300118: Player@Transform-Travel_0
     21300120: DemonPrince-Spritesheet_60
     21300122: DemonPrince-Spritesheet_61
     21300124: DemonPrince-Spritesheet_62
@@ -77,14 +77,14 @@ TextureImporter:
     21300140: DemonPrince-Spritesheet_70
     21300142: DemonPrince-Spritesheet_71
     21300144: DemonPrince-Spritesheet_72
-    21300146: DemonPrince-Spritesheet_73
-    21300148: DemonPrince-Spritesheet_74
-  serializedVersion: 2
+    21300146: Player@Transform-Travel_1
+    21300148: Player@Transform-Travel_2
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -96,10 +96,8 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 2048
@@ -110,9 +108,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -120,19 +116,40 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 128
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_0
+      name: Player@Idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -141,11 +158,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_1
+      name: Player@Idle_1
       rect:
         serializedVersion: 2
         x: 128
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -154,11 +171,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_2
+      name: Player@Idle_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -167,11 +184,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_3
+      name: Player@Idle_3
       rect:
         serializedVersion: 2
         x: 384
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -180,11 +197,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_4
+      name: Player@Walk_0
       rect:
         serializedVersion: 2
         x: 512
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -193,11 +210,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_5
+      name: Player@Walk_1
       rect:
         serializedVersion: 2
         x: 640
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -206,11 +223,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_6
+      name: Player@Walk_3
       rect:
         serializedVersion: 2
         x: 768
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -219,11 +236,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_7
+      name: Player@Walk_4
       rect:
         serializedVersion: 2
         x: 896
-        y: 1920
+        y: 1130
         width: 128
         height: 128
       alignment: 7
@@ -232,11 +249,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_8
+      name: Player@Jump
       rect:
         serializedVersion: 2
         x: 0
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -245,11 +262,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_9
+      name: Player@Climb_0
       rect:
         serializedVersion: 2
         x: 128
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -258,11 +275,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_10
+      name: Player@Climb_1
       rect:
         serializedVersion: 2
         x: 256
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -271,11 +288,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_11
+      name: Player@Push_0
       rect:
         serializedVersion: 2
         x: 384
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -284,11 +301,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_12
+      name: Player@Push_1
       rect:
         serializedVersion: 2
         x: 512
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -297,11 +314,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_13
+      name: Player@Push_2
       rect:
         serializedVersion: 2
         x: 640
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -310,11 +327,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_14
+      name: Player@Hurt_0
       rect:
         serializedVersion: 2
         x: 768
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -323,11 +340,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_15
+      name: Player@Hurt_1
       rect:
         serializedVersion: 2
         x: 896
-        y: 1792
+        y: 1002
         width: 128
         height: 128
       alignment: 7
@@ -340,7 +357,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1664
+        y: 874
         width: 128
         height: 128
       alignment: 7
@@ -353,7 +370,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 1664
+        y: 874
         width: 128
         height: 128
       alignment: 7
@@ -366,7 +383,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 1664
+        y: 874
         width: 128
         height: 128
       alignment: 7
@@ -379,7 +396,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 1664
+        y: 874
         width: 128
         height: 128
       alignment: 7
@@ -388,24 +405,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_21
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1536
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_22
+      name: Player@Swim_1
       rect:
         serializedVersion: 2
         x: 128
-        y: 1536
+        y: 746
         width: 128
         height: 128
       alignment: 7
@@ -414,11 +418,24 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_23
+      name: Player@Crouch_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 618
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Crouch_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 1536
+        y: 618
         width: 128
         height: 128
       alignment: 7
@@ -427,11 +444,37 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_24
+      name: Player@Pickup-Walk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 362
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Pickup-Walk_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 362
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Pickup_3
       rect:
         serializedVersion: 2
         x: 384
-        y: 1536
+        y: 490
         width: 128
         height: 128
       alignment: 7
@@ -440,11 +483,50 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_25
+      name: Player@Pickup_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 490
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Pickup-Walk_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 362
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Pickup-Walk_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 362
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Transform_4
       rect:
         serializedVersion: 2
         x: 512
-        y: 1536
+        y: 234
         width: 128
         height: 128
       alignment: 7
@@ -453,11 +535,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_26
+      name: Player@Pickup_1
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1536
+        x: 128
+        y: 490
         width: 128
         height: 128
       alignment: 7
@@ -466,11 +548,89 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_27
+      name: Player@Pickup_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 490
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Crouch_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 618
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Transform_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 234
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Transform_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 234
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Transform_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 234
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Transform_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 234
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player@Transform_6
       rect:
         serializedVersion: 2
         x: 768
-        y: 1536
+        y: 234
         width: 128
         height: 128
       alignment: 7
@@ -479,89 +639,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_28
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 1536
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_29
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_30
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_31
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_32
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_33
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_34
+      name: Player@Transform_5
       rect:
         serializedVersion: 2
         x: 640
-        y: 1408
+        y: 234
         width: 128
         height: 128
       alignment: 7
@@ -570,37 +652,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_35
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_36
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 1408
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_37
+      name: Player@Transform-Travel_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
+        y: 88
         width: 128
         height: 128
       alignment: 7
@@ -609,11 +665,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_38
+      name: Player@Transform-Travel_1
       rect:
         serializedVersion: 2
         x: 128
-        y: 1280
+        y: 88
         width: 128
         height: 128
       alignment: 7
@@ -622,11 +678,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_39
+      name: Player@Transform-Travel_2
       rect:
         serializedVersion: 2
         x: 256
-        y: 1280
+        y: 88
         width: 128
         height: 128
       alignment: 7
@@ -635,466 +691,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DemonPrince-Spritesheet_40
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 1280
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_41
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1280
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_42
+      name: Player@Swim_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_43
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_44
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_45
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_46
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_47
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_48
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_49
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_50
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_51
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_52
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_53
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_54
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_55
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_56
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_57
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 896
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 639
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_58
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 639
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_59
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 639
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_60
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 495
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_61
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 367
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_62
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 367
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_63
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 367
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_64
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 367
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_65
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 238
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_66
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 238
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_67
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 238
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_68
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 238
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_69
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 110
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_70
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 110
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_71
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 110
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_72
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 110
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_73
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 767
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DemonPrince-Spritesheet_74
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 767
+        y: 746
         width: 128
         height: 128
       alignment: 7
