@@ -35,7 +35,7 @@ public class EnemyMoveGround : EnemyMove {
 		if (controller.collisions.above || controller.collisions.below)
 			velocity.y = 0f;
 
-		if (controller.collisions.canJump) {
+		if (controller.canJump) {
 			velocity.y = jumpVelocity;
 		}
 	}
@@ -48,7 +48,7 @@ public class EnemyMoveGround : EnemyMove {
 
 	protected override void PatrolCheck() {
 		if (patrol != null)
-			moveDirection.x = patrol.UpdateMoveDirection (moveDirection.x, controller.collisions.wallInFront);
+			moveDirection.x = patrol.UpdateMoveDirection (moveDirection.x, controller.wallInFront);
 	}
 
 	//===== Chasing Method =====
@@ -74,7 +74,7 @@ public class EnemyMoveGround : EnemyMove {
 	protected override void Move() {
 		velocity.x = moveDirection.x * moveSpeed;
 		velocity.y += gravity * Time.deltaTime;
-		controller.Move (velocity * Time.deltaTime);
+		controller.Move (velocity * Time.deltaTime, false);
 	}
 
 	//===== Animation Method =====

@@ -25,7 +25,7 @@ public class EnemyMoveFlying : EnemyMove {
 
 	protected override void PatrolCheck() {
 		if (patrol != null)
-			moveDirection = patrol.UpdateMoveDirection (moveDirection, controller.collisions.wallInFront, controller.collisions.above || controller.collisions.below);
+			moveDirection = patrol.UpdateMoveDirection (moveDirection, controller.wallInFront, controller.collisions.above || controller.collisions.below);
 	}
 
 	//===== Chasing Methods =====
@@ -50,7 +50,7 @@ public class EnemyMoveFlying : EnemyMove {
 	//===== Movement Method =====
 	protected override void Move() {
 		velocity = moveDirection * moveSpeed;
-		controller.Move (velocity * Time.deltaTime);
+		controller.Move (velocity * Time.deltaTime, false);
 	}
 
 	//===== Animation Method =====

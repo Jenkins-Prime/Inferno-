@@ -1,56 +1,23 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class PlayerController : RaycastController {
-	float maxClimbAngle = 80;
-	float maxDescendAngle = 75;
+public abstract class ActorController : RaycastController {
+	protected float maxClimbAngle = 80;
+	protected float maxDescendAngle = 75;
 
 	public CollisionInfo collisions;
-    public LayerMask block;
-	[HideInInspector]
-	public Vector2 playerInput;
+	public Vector2 playerInput; //What does that do?
 
-	public override void Start() {
+	protected override void Start () {
 		base.Start ();
 	}
 
-	public void Move(Vector3 velocity,bool standingOnPlatform) {
-		Move (velocity, Vector2.zero, standingOnPlatform);
-	}
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            MoveBlock();
-        }
-    }
-
-
-	public void Move(Vector3 velocity, Vector2 input,bool standingOnPlatform = false) {
-		UpdateRaycastOrigins ();
-		collisions.Reset ();
-		collisions.velocityOld = velocity;
-		playerInput = input;
-
-		if (velocity.y < 0) {
-			DescendSlope (ref velocity);
-		}
-		if (velocity.x != 0) {
-			HorizontalCollisions (ref velocity);
-		}
-		if (velocity.y != 0) {
-			VerticalCollisions (ref velocity);
-		}
-			
-		transform.Translate (velocity);
-
-		if (standingOnPlatform) {
-			collisions.below = true;
-		}
-	}
-
-	void HorizontalCollisions(ref Vector3 velocity) {
+	//change to protected
+	public abstract void Move (Vector3 velocity, bool standingOnPlatform);
+	public abstract void Move (Vector3 velocity, Vector2 input, bool standingOnPlatform = false);
+		
+	protected virtual void HorizontalCollisions(ref Vector3 velocity) {
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs(velocity.x) + skinWidth;
 
@@ -98,7 +65,7 @@ public class PlayerController : RaycastController {
 		}
 	}
 
-	void VerticalCollisions(ref Vector3 velocity) {
+	protected virtual void VerticalCollisions(ref Vector3 velocity) {
 		float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs(velocity.y) + skinWidth;
 
@@ -112,7 +79,7 @@ public class PlayerController : RaycastController {
 			if (hit) {
 				velocity.y = (hit.distance - skinWidth) * directionY;
 				rayLength = hit.distance;
-					
+
 				if (collisions.climbingSlope) {
 					velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad * Mathf.Sign (velocity.x));
 				}
@@ -138,7 +105,7 @@ public class PlayerController : RaycastController {
 		}
 	}
 
-	void ClimbSlope(ref Vector3 velocity, float slopeAngle) {
+	protected virtual void ClimbSlope(ref Vector3 velocity, float slopeAngle) {
 		float moveDistance = Mathf.Abs (velocity.x);
 		float climbVelocityY = Mathf.Sin (slopeAngle * Mathf.Deg2Rad) * moveDistance;
 
@@ -151,7 +118,7 @@ public class PlayerController : RaycastController {
 		}
 	}
 
-	void DescendSlope(ref Vector3 velocity) {
+	protected virtual void DescendSlope(ref Vector3 velocity) {
 		float directionX = Mathf.Sign (velocity.x);
 		Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomRight : raycastOrigins.bottomLeft;
 		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
@@ -175,67 +142,16 @@ public class PlayerController : RaycastController {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		switch (other.tag) {
-		case "Enemy":
-			DamagePlayer dmg = other.GetComponent<DamagePlayer> ();
-			if (dmg != null)
-				dmg.DealDamage ();
-			Debug.Log ("AEnemy");
-			break;
-		case "Pickup":
-			Pickup pickup = other.GetComponent<Pickup> ();
-			if (pickup != null)
-				pickup.Collect ();
-			break;
-		case "Checkpoint":
-			Checkpoint checkpoint = other.GetComponent<Checkpoint> ();
-			if (checkpoint != null)
-				checkpoint.SetCheckpoint ();
-			break;
-		case "Ladder":
-			Ladder ladder = other.GetComponent<Ladder> ();
-			if (ladder != null) {
-				collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
-				collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
-				collisions.onLadder = !collisions.onLadderAbove;
-			}
-			break;
-		}
-	}
-
-    private void MoveBlock()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 10.0f, block);
-
-        if (hit)
-        {
-            Debug.Log("Hit");
-        }
-    }
-
-	void OnTriggerExit2D(Collider2D other) {
-		if (other.tag == "Ladder") {
-			collisions.onLadderAbove = false;
-			collisions.onLadderBelow = false;
-			collisions.onLadder = false;
-		}
-	}
-
 	public struct CollisionInfo {
 		public bool above, below;
 		public bool left, right;
-
 		public bool climbingSlope;
 		public bool descendingSlope;
-		public bool onLadder;
-		public bool onLadderBelow;
-		public bool onLadderAbove;
 
 		public float slopeAngle, slopeAngleOld;
 		public Vector3 velocityOld;
 
-		public void Reset() {
+		public void Reset(Vector3 vel) {
 			above = below = false;
 			left = right = false;
 			climbingSlope = false;
@@ -243,6 +159,8 @@ public class PlayerController : RaycastController {
 
 			slopeAngleOld = slopeAngle;
 			slopeAngle = 0;
+
+			velocityOld = vel;
 		}
 	}
 }

@@ -79,9 +79,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void JumpCheck () {
-		if (!controller.collisions.onLadder) {
+		if (!controller.onLadder) {
 			if (InputManager.Instance.JumpButton ()) {
-				if (controller.collisions.below || controller.collisions.onLadderAbove) {
+				if (controller.collisions.below || controller.onLadderAbove) {
 					velocity.y = maxJumpVelocity;
 					jump = true;
 					audioSource.PlayOneShot (jumpClip, 1.0f);
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
 				jump = false;
 			}
 
-			if (controller.collisions.below || controller.collisions.onLadderAbove) {
+			if (controller.collisions.below || controller.onLadderAbove) {
 				hasDoubleJumped = false;
 			}
 		}
@@ -108,16 +108,16 @@ public class Player : MonoBehaviour {
 	void Move() {
 		if (KnockBackCheck ()) {
 			float targetVelocityX;
-			if (controller.collisions.onLadder)
+			if (controller.onLadder)
 				targetVelocityX = input.x * climbSpeed;
 			else
 				targetVelocityX = input.x * moveSpeed;
 
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
-			if (controller.collisions.onLadder) {
+			if (controller.onLadder) {
 				velocity.y = input.y * climbSpeed;
-			} else if (controller.collisions.onLadderAbove) {
+			} else if (controller.onLadderAbove) {
 				if (input.y < 0)
 					velocity.y = input.y * climbSpeed;
 				else if (!jump)
@@ -139,13 +139,13 @@ public class Player : MonoBehaviour {
 		anim.SetFloat("Speed", Mathf.Abs(input.x));
 		anim.SetFloat("ClimbSpeed", Mathf.Abs(input.y));
 
-		if (controller.collisions.below || controller.collisions.onLadderAbove || controller.collisions.onLadderBelow)
+		if (controller.collisions.below || controller.onLadderAbove || controller.onLadderBelow)
 			anim.SetBool ("Grounded", true);
 		else {
 			anim.SetBool ("Grounded", false);
 		}
 
-		anim.SetBool ("Climbing", controller.collisions.onLadder && !controller.collisions.onLadderBelow);
+		anim.SetBool ("Climbing", controller.onLadder && !controller.onLadderBelow);
 	}
 
 	//===== Public functions used from other scripts =====
