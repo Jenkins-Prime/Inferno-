@@ -39,6 +39,7 @@ ModelImporter:
     100062: mesh_0031
     100064: mesh_0032
     100066: mesh_0033
+    100068: mesh_0034
     400000: //RootNode
     400002: mesh_0001
     400004: mesh_0002
@@ -73,6 +74,7 @@ ModelImporter:
     400062: mesh_0031
     400064: mesh_0032
     400066: mesh_0033
+    400068: mesh_0034
     2300000: mesh_0001
     2300002: mesh_0002
     2300004: mesh_0003
@@ -106,6 +108,7 @@ ModelImporter:
     2300060: mesh_0031
     2300062: mesh_0032
     2300064: mesh_0033
+    2300066: mesh_0034
     3300000: mesh_0001
     3300002: mesh_0002
     3300004: mesh_0003
@@ -139,6 +142,7 @@ ModelImporter:
     3300060: mesh_0031
     3300062: mesh_0032
     3300064: mesh_0033
+    3300066: mesh_0034
     4300000: mesh_0001
     4300002: mesh_0002
     4300004: mesh_0003
@@ -172,6 +176,7 @@ ModelImporter:
     4300060: mesh_0031
     4300062: mesh_0032
     4300064: mesh_0033
+    4300066: mesh_0034
     11400000: mesh_0001
     11400002: mesh_0002
     11400004: mesh_0003
@@ -205,6 +210,7 @@ ModelImporter:
     11400060: mesh_0031
     11400062: mesh_0032
     11400064: mesh_0033
+    11400066: mesh_0034
   materials:
     importMaterials: 0
     materialName: 0
@@ -251,6 +257,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -261,7 +268,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
