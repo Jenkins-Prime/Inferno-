@@ -5,9 +5,9 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 489896}
+  - component: {fileID: 489896}
   m_Layer: 10
   m_Name: LaunchPoint
   m_TagString: Untagged
@@ -20,16 +20,16 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 449520}
-  - 212: {fileID: 21286372}
-  - 95: {fileID: 9547836}
-  - 61: {fileID: 6166166}
-  - 114: {fileID: 11460502}
-  - 114: {fileID: 11404696}
-  - 114: {fileID: 114000011264741670}
-  - 114: {fileID: 114000010233296134}
+  - component: {fileID: 449520}
+  - component: {fileID: 21286372}
+  - component: {fileID: 9547836}
+  - component: {fileID: 6166166}
+  - component: {fileID: 11460502}
+  - component: {fileID: 11404696}
+  - component: {fileID: 114000011264741670}
+  - component: {fileID: 114000010233296134}
   m_Layer: 10
   m_Name: Faceless One
   m_TagString: Enemy
@@ -46,11 +46,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.294, y: -6.495, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 489896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &489896
 Transform:
   m_ObjectHideFlags: 1
@@ -60,10 +60,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.12, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 449520}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6166166
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -139,7 +139,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -147,7 +149,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 1
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -177,14 +179,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 169130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb7560491cc8194cb499316d692ae08, type: 3}
+  m_Script: {fileID: 11500000, guid: 5729455a6bba7b344985693549ab5e30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localWaypointStart: 0
-  localWaypointEnd: 0
   moveSpeed: 1
-  jumpHeight: 0.4
-  timeToJumpApex: 0.2
+  jumpHeight: 0.2
+  timeToJumpApex: 0.1
 --- !u!114 &114000011264741670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 169130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c9d30e5d04ef38499a697a7ac7b8aea, type: 3}
+  m_Script: {fileID: 11500000, guid: a4dae79747a300f47b0d609788e7bf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMask:
@@ -204,7 +204,4 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   col: {fileID: 0}
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  damageAmount: 1
+  playerInput: {x: 0, y: 0}

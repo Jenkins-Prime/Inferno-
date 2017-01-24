@@ -8,14 +8,14 @@ public class BulletController : MonoBehaviour {
 	public int damageToGive;
 
 	Rigidbody2D rb2D;
-	PlayerController pController;
+	ActorController controller;
 
 	// Use this for initialization
 	void Start () {
 		rb2D = GetComponent<Rigidbody2D>();
-		pController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+		controller = GameObject.FindGameObjectWithTag("Player").GetComponent<ActorController>();
 
-		if(pController.transform.localScale.x < 0) {
+		if(controller.transform.localScale.x < 0) {
 			transform.localRotation = Quaternion.Euler (0, 180, 0);
 			speed = -speed;
 		} else {

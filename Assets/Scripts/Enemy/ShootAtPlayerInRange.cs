@@ -7,7 +7,7 @@ public class ShootAtPlayerInRange : MonoBehaviour {
 
 	public GameObject enemyProjectile;
 
-	public PlayerController player;
+	public ActorController player;
 
 	public Transform launchPoint;
 
@@ -17,14 +17,14 @@ public class ShootAtPlayerInRange : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = FindObjectOfType<PlayerController>();
+		player = FindObjectOfType<ActorController>();
 
 		shotCounter = waitBetweenShots;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		player = FindObjectOfType<PlayerController> ();
+		player = FindObjectOfType<ActorController> ();
 		Debug.DrawLine (new Vector3(transform.position.x - playerRange, transform.position.y, transform.position.z), new Vector3(transform.position.x + playerRange, transform.position.y, transform.position.z));
 		shotCounter -= Time.deltaTime;
 

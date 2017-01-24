@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof (EnemyController))]
+[RequireComponent(typeof (ActorController))]
 public abstract class EnemyMove : MonoBehaviour {
 	[SerializeField] protected float moveSpeed = 1f;
 
@@ -11,14 +11,14 @@ public abstract class EnemyMove : MonoBehaviour {
 
 	protected SpriteRenderer rend;
 	protected Animator anim;
-	protected EnemyController controller;
+	protected ActorController controller;
 	protected EnemyPatrol patrol;
 	protected EnemyChase chase;
 
 	protected virtual void Start () {
 		rend = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
-		controller = GetComponent<EnemyController> ();
+		controller = GetComponent<ActorController> ();
 		patrol = GetComponent<EnemyPatrol> ();
 		chase = GetComponent<EnemyChase> ();
 	}

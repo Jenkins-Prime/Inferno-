@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(PlayerController))]
+[RequireComponent (typeof(ActorController))]
 public class Player : MonoBehaviour {
 	[Header("Movement Variables")]
 	[SerializeField] float moveSpeed = 3f;
@@ -35,13 +35,13 @@ public class Player : MonoBehaviour {
 
 	Animator anim;
 	AudioSource audioSource;
-	PlayerController controller;
+	ActorController controller;
 	SpriteRenderer rend;
 
 	void Start () {
 		anim = GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
-		controller = GetComponent<PlayerController> ();
+		controller = GetComponent<ActorController> ();
 		rend = GetComponent<SpriteRenderer> ();
 
 		gravity = -(2f * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2f);
@@ -79,9 +79,9 @@ public class Player : MonoBehaviour {
 	}
 
 	void JumpCheck () {
-		if (!controller.onLadder) {
+		if (!controller.collisions.onLadder) {
 			if (InputManager.Instance.JumpButton ()) {
-				if (controller.collisions.below || controller.onLadderAbove) {
+				if (controller.collisions.below || controller.collisions.onLadderAbove) {
 					velocity.y = maxJumpVelocity;
 					jump = true;
 					audioSource.PlayOneShot (jumpClip, 1.0f);
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour {
 				jump = false;
 			}
 
-			if (controller.collisions.below || controller.onLadderAbove) {
+			if (controller.collisions.below || controller.collisions.onLadderAbove) {
 				hasDoubleJumped = false;
 			}
 		}
@@ -108,16 +108,16 @@ public class Player : MonoBehaviour {
 	void Move() {
 		if (KnockBackCheck ()) {
 			float targetVelocityX;
-			if (controller.onLadder)
+			if (controller.collisions.onLadder)
 				targetVelocityX = input.x * climbSpeed;
 			else
 				targetVelocityX = input.x * moveSpeed;
 
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
-			if (controller.onLadder) {
+			if (controller.collisions.onLadder) {
 				velocity.y = input.y * climbSpeed;
-			} else if (controller.onLadderAbove) {
+			} else if (controller.collisions.onLadderAbove) {
 				if (input.y < 0)
 					velocity.y = input.y * climbSpeed;
 				else if (!jump)
@@ -139,13 +139,13 @@ public class Player : MonoBehaviour {
 		anim.SetFloat("Speed", Mathf.Abs(input.x));
 		anim.SetFloat("ClimbSpeed", Mathf.Abs(input.y));
 
-		if (controller.collisions.below || controller.onLadderAbove || controller.onLadderBelow)
+		if (controller.collisions.below || controller.collisions.onLadderAbove || controller.collisions.onLadderBelow)
 			anim.SetBool ("Grounded", true);
 		else {
 			anim.SetBool ("Grounded", false);
 		}
 
-		anim.SetBool ("Climbing", controller.onLadder && !controller.onLadderBelow);
+		anim.SetBool ("Climbing", controller.collisions.onLadder && !controller.collisions.onLadderBelow);
 	}
 
 	//===== Public functions used from other scripts =====

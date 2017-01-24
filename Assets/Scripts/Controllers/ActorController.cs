@@ -2,29 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActorController : RaycastController {
-	protected float maxClimbAngle = 80;
-	protected float maxDescendAngle = 75;
+[RequireComponent(typeof(Rigidbody2D))]
+public class ActorController : RaycastController {
+	float maxClimbAngle = 80;
+	float maxDescendAngle = 75;
 
+	Rigidbody2D rb;
 	public CollisionInfo collisions;
-	public Vector2 playerInput; //What does that do?
+	public Vector2 playerInput; //Used for CameraController
+
+	protected override void Awake () {
+		base.Awake ();
+
+		//Set up rigidbody
+		rb = GetComponent<Rigidbody2D> ();
+		if (rb == null)
+			rb = gameObject.AddComponent<Rigidbody2D> ();
+		rb.isKinematic = true;
+	}
 
 	protected override void Start () {
 		base.Start ();
 	}
 
-	//change to protected
-	public abstract void Move (Vector3 velocity, bool standingOnPlatform);
-	public abstract void Move (Vector3 velocity, Vector2 input, bool standingOnPlatform = false);
-		
+	public void Move(Vector3 velocity,bool standingOnPlatform) {
+		Move (velocity, Vector2.zero, standingOnPlatform);
+	}
+
+	public void Move(Vector3 velocity, Vector2 input,bool standingOnPlatform = false) {
+		UpdateRaycastOrigins ();
+		collisions.Reset (velocity);
+		playerInput = input;
+
+		if (velocity.y < 0) {
+			DescendSlope (ref velocity);
+		}
+		if (velocity.x != 0) {
+			HorizontalCollisions (ref velocity);
+		}
+		if (velocity.y != 0) {
+			VerticalCollisions (ref velocity);
+		}
+
+		transform.Translate (velocity);
+
+		if (standingOnPlatform) { //Check this at later point
+			collisions.below = true;
+		}
+	}
+
 	protected virtual void HorizontalCollisions(ref Vector3 velocity) {
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs(velocity.x) + skinWidth;
 
+		Vector2 rayOrigin;
+		RaycastHit2D hit;
+
 		for (int i = 0; i < horizontalRayCount; i++) {
-			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+			rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
 			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+			hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
@@ -62,6 +99,15 @@ public abstract class ActorController : RaycastController {
 					collisions.right = (directionX == 1);
 				}
 			}
+		}
+
+		//Used for enemy patrolling
+		rayOrigin = (directionX == -1) ? raycastOrigins.topLeft : raycastOrigins.topRight;
+		hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+		if (hit) {
+			collisions.wallInFront = true;
+		} else if ((collisions.left || collisions.right) && collisions.below) {
+			collisions.canJump = true;
 		}
 	}
 
@@ -142,11 +188,62 @@ public abstract class ActorController : RaycastController {
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D other) {
+		switch (other.tag) {
+		case "Enemy":
+			DamagePlayer dmg = other.GetComponent<DamagePlayer> ();
+			if (dmg != null)
+				dmg.DealDamage ();
+			break;
+		case "Pickup":
+			Pickup pickup = other.GetComponent<Pickup> ();
+			if (pickup != null)
+				pickup.Collect ();
+			break;
+		case "Checkpoint":
+			Checkpoint checkpoint = other.GetComponent<Checkpoint> ();
+			if (checkpoint != null)
+				checkpoint.SetCheckpoint ();
+			break;
+		case "Ladder":
+			Ladder ladder = other.GetComponent<Ladder> ();
+			if (ladder != null) {
+				collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
+				collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
+				collisions.onLadder = !collisions.onLadderAbove;
+			}
+			break;
+		case "Player": //Not efficient at all, if enemy stays inside the player while in knockback it will never register a hit
+			Player player = other.GetComponent<Player> ();
+			if (player != null) {
+				if (player.canMove && !player.knockBack) {
+					player.PlayerKnockBack (transform.position);
+				}
+			}
+			break;
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.tag == "Ladder") {
+			collisions.onLadderAbove = false;
+			collisions.onLadderBelow = false;
+			collisions.onLadder = false;
+		}
+	}
+
 	public struct CollisionInfo {
 		public bool above, below;
 		public bool left, right;
 		public bool climbingSlope;
 		public bool descendingSlope;
+
+		public bool onLadder;
+		public bool onLadderBelow;
+		public bool onLadderAbove;
+
+		public bool wallInFront;
+		public bool canJump;
 
 		public float slopeAngle, slopeAngleOld;
 		public Vector3 velocityOld;
@@ -156,6 +253,9 @@ public abstract class ActorController : RaycastController {
 			left = right = false;
 			climbingSlope = false;
 			descendingSlope = false;
+
+			wallInFront = false;
+			canJump = false;
 
 			slopeAngleOld = slopeAngle;
 			slopeAngle = 0;

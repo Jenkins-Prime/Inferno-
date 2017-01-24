@@ -10,16 +10,16 @@ public class EnemyBulletController : MonoBehaviour {
 	//public int pointsForKill;
 
 	Rigidbody2D rb2D;
-	PlayerController pController;
+	ActorController controller;
 	LevelManager levelManager;
 
 	// Use this for initialization
 	void Start () {
 		rb2D = GetComponent<Rigidbody2D>();
-		pController = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerController> ();
+		controller = GameObject.FindGameObjectWithTag ("Player").GetComponent<ActorController> ();
 		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 
-		if(pController.transform.localScale.x < transform.position.x) {
+		if(controller.transform.localScale.x < transform.position.x) {
 			transform.localRotation = Quaternion.Euler (0, 180, 0);
 			speed = -speed;
 		} else {

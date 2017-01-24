@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof (EnemyController))]
+[RequireComponent(typeof (ActorController))]
 public abstract class EnemyAttack : MonoBehaviour {
-	protected EnemyController controller;
+	protected ActorController controller;
 
 	protected virtual void Start () {
-		controller = GetComponent<EnemyController> ();
+		controller = GetComponent<ActorController> ();
 	}
 }

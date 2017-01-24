@@ -3,12 +3,13 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-	public PlayerController target;
 	public float verticalOffset = 0f;
 	public float lookAheadDistX = 1f;
 	public float lookSmoothTimeX = 0.5f;
 	public float verticalSmoothTime = 0f;
 	public Vector2 focusAreaSize;
+
+	ActorController target;
 
 	FocusArea focusArea;
 
@@ -21,6 +22,7 @@ public class CameraController : MonoBehaviour
 	bool lookAheadStopped;
 
 	void Start() {
+		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<ActorController> ();
 		focusArea = new FocusArea (target.col.bounds, focusAreaSize);
 	}
 

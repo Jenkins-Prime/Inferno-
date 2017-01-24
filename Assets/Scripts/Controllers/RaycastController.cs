@@ -9,16 +9,15 @@ public abstract class RaycastController : MonoBehaviour {
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
 
-	[HideInInspector]
-	public float horizontalRaySpacing;
-	[HideInInspector]
-	public float verticalRaySpacing;
+	[HideInInspector] public float horizontalRaySpacing;
+	[HideInInspector] public float verticalRaySpacing;
+	[HideInInspector] public BoxCollider2D col;
 
-	public BoxCollider2D col;
 	public RaycastOrigins raycastOrigins;
 
 	protected virtual void Awake() {
 		col = GetComponent<BoxCollider2D> ();
+		col.isTrigger = true;
 	}
 
 	protected virtual void Start() {
