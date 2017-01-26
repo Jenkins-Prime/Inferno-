@@ -3,13 +3,15 @@ guid: 47006eaad110d36458283cf1f728ad17
 timeCreated: 1472318549
 licenseType: Pro
 TrueTypeFontImporter:
-  serializedVersion: 3
+  serializedVersion: 4
   fontSize: 16
   forceTextureCase: -2
-  characterSpacing: 1
-  characterPadding: 0
+  characterSpacing: 0
+  characterPadding: 1
   includeFontData: 1
-  fontNames: []
+  fontName: Lunchtime Doubly So
+  fontNames:
+  - Lunchtime Doubly So
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

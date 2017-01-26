@@ -33,12 +33,13 @@ public class EnemyPatrol : MonoBehaviour {
 	public float UpdateMoveDirection(float currentDirection, bool wallInFront) {
 		float moveDir = currentDirection;
 
-		if (moveDir != 0f && Mathf.Abs (transform.position.x - nextWaypoint.x) < 0.05f || wallInFront) {
-			if (prevWaypoint.x != nextWaypoint.x)
-				moveDir = Mathf.Sign (prevWaypoint.x - nextWaypoint.x);
-			else //to avoid bugs when target is set to [0,0]
-				moveDir = 0f;
+		if (prevWaypoint.x != nextWaypoint.x) {
+			moveDir = Mathf.Sign (nextWaypoint.x - transform.position.x);
+		} else { //to avoid bugs when target is set to [0,0]
+			moveDir = 0f;
+		}
 
+		if (moveDir != 0f && Mathf.Abs (transform.position.x - nextWaypoint.x) < 0.05f || wallInFront) {
 			SwitchWaypoints ();
 		}
 			
@@ -48,13 +49,14 @@ public class EnemyPatrol : MonoBehaviour {
 	public Vector2 UpdateMoveDirection(Vector2 currentDirection, bool wallInFront, bool aboveBelow) {
 		Vector2 moveDir = currentDirection;
 
-		if (moveDir != Vector2.zero && Vector3.Distance (transform.position, nextWaypoint) < 0.05f || wallInFront || aboveBelow) {
-			if (prevWaypoint.x != nextWaypoint.x)
-				moveDir = prevWaypoint - nextWaypoint;
-			else //to avoid bugs when target is set to [0,0]
-				moveDir = Vector2.zero;
-			moveDir.Normalize ();
+		if (prevWaypoint.x != nextWaypoint.x) {
+			moveDir = nextWaypoint - transform.position;
+		} else { //to avoid bugs when target is set to [0,0]
+			moveDir = Vector2.zero;
+		}
+		moveDir.Normalize ();
 
+		if (moveDir != Vector2.zero && Vector3.Distance (transform.position, nextWaypoint) < 0.05f || wallInFront || aboveBelow) {
 			SwitchWaypoints ();
 		}
 

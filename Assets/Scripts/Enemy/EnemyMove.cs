@@ -12,15 +12,15 @@ public abstract class EnemyMove : MonoBehaviour {
 	protected SpriteRenderer rend;
 	protected Animator anim;
 	protected ActorController controller;
-	protected EnemyPatrol patrol;
 	protected EnemyChase chase;
+	protected EnemyPatrol patrol;
 
 	protected virtual void Start () {
 		rend = GetComponent<SpriteRenderer> ();
 		anim = GetComponent<Animator> ();
 		controller = GetComponent<ActorController> ();
-		patrol = GetComponent<EnemyPatrol> ();
 		chase = GetComponent<EnemyChase> ();
+		patrol = GetComponent<EnemyPatrol> ();
 	}
 
 	protected abstract void Update ();
