@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMoveGround : EnemyMove {
-	[SerializeField] float jumpHeight = 0.2f;
-	[SerializeField] float timeToJumpApex = 0.1f;
+	[SerializeField] float jumpHeight = 0.4f;
+	[SerializeField] float timeToJumpApex = 0.2f;
 
 	float gravity;
 	float jumpVelocity;
@@ -20,19 +20,17 @@ public class EnemyMoveGround : EnemyMove {
 	}
 
 	protected override void Update () {
-		GravityCheck (); //Handle gravity
-
+		//Don't go through floors/ceilings
+		/*
+		if (controller.collisions.above || controller.collisions.below) //Not sure if userfull
+			velocity.y = 0f;
+		*/
 		Move ();
 		Animate ();
 	}
 
 	void GravityCheck() {
-		if (controller.collisions.above || controller.collisions.below)
-			velocity.y = 0f;
-
-		if (controller.collisions.canJump) {
-			velocity.y = jumpVelocity;
-		}
+		
 	}
 
 	//===== Movement Method =====
@@ -41,20 +39,33 @@ public class EnemyMoveGround : EnemyMove {
 		moveDirection.x = 0f;
 		state = MoveState.Idle;
 
-		if (enemyChase != null) {
-			if (enemyChase.Chase (ref moveDirection.x)) {
-				state = MoveState.Chase;	
+		if (enemyManipulate != null) {
+			if (enemyManipulate.CanControlEnemy ()) {
+				enemyManipulate.GetInput (ref moveDirection.x, ref controller.collisions.canJump);
+				state = MoveState.Manipulate;
 			}
 		}
 
-		if (enemyPatrol != null && state != MoveState.Chase) {
-			if (enemyPatrol.Patrol (ref moveDirection.x, controller.collisions.wallInFront)) {
-				state = MoveState.Patrol;
+		if (state != MoveState.Manipulate) {
+			if (enemyChase != null) {
+				if (enemyChase.Chase (ref moveDirection.x)) {
+					state = MoveState.Chase;	
+				}
+			}
+
+			if (enemyPatrol != null && state != MoveState.Chase) {
+				if (enemyPatrol.Patrol (ref moveDirection.x, controller.collisions.wallInFront)) {
+					state = MoveState.Patrol;
+				}
 			}
 		}
 
 		//Update velocity and move
 		velocity.x = moveDirection.x * moveSpeed;
+
+		if (controller.collisions.canJump) {
+			velocity.y = jumpVelocity;
+		}
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime, false);
 	}

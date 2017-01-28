@@ -18,15 +18,25 @@ public class EnemyMoveFlying : EnemyMove {
 		moveDirection = Vector2.zero;
 		state = MoveState.Idle;
 
-		if (enemyChase != null) {
-			if (enemyChase.Chase (ref moveDirection)) {
-				state = MoveState.Chase;	
+		//EnemyManipulate check
+		if (enemyManipulate != null) {
+			if (enemyManipulate.CanControlEnemy ()) {
+				enemyManipulate.GetInput (ref moveDirection);
+				state = MoveState.Manipulate;
 			}
 		}
 
-		if (enemyPatrol != null && state != MoveState.Chase) {
-			if (enemyPatrol.Patrol (ref moveDirection, controller.collisions.wallInFront || controller.collisions.above || controller.collisions.below)) {
-				state = MoveState.Patrol;
+		if (state != MoveState.Manipulate) {
+			if (enemyChase != null) { //EnemyChase check
+				if (enemyChase.Chase (ref moveDirection)) {
+					state = MoveState.Chase;	
+				}
+			}
+
+			if (enemyPatrol != null && state != MoveState.Chase) { //EnemyPatrol check
+				if (enemyPatrol.Patrol (ref moveDirection, controller.collisions.wallInFront || controller.collisions.above || controller.collisions.below)) {
+					state = MoveState.Patrol;
+				}
 			}
 		}
 

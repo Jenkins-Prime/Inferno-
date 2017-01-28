@@ -12,7 +12,7 @@ public abstract class EnemyMove : MonoBehaviour {
 	protected Vector3 velocity;
 	protected Vector2 moveDirection;
 
-	protected enum MoveState {Idle, Patrol, Chase};
+	protected enum MoveState {Idle, Patrol, Chase, Manipulate};
 	protected MoveState state;
 
 	protected SpriteRenderer rend;
@@ -20,6 +20,7 @@ public abstract class EnemyMove : MonoBehaviour {
 	protected ActorController controller;
 	protected EnemyPatrol enemyPatrol;
 	protected EnemyChase enemyChase;
+	protected EnemyManipulate enemyManipulate;
 
 	protected virtual void Start () {
 		rend = GetComponent<SpriteRenderer> ();
@@ -37,10 +38,12 @@ public abstract class EnemyMove : MonoBehaviour {
 	protected abstract void Animate();
 
 	public void AddEnemyComponent<T>() {
-		if(typeof(T) == typeof(EnemyPatrol)) {
-			enemyPatrol = GetComponent<EnemyPatrol>();
+		if (typeof(T) == typeof(EnemyPatrol)) {
+			enemyPatrol = GetComponent<EnemyPatrol> ();
 		} else if (typeof(T) == typeof(EnemyChase)) {
-			enemyChase = GetComponent<EnemyChase>();
+			enemyChase = GetComponent<EnemyChase> ();
+		} else if (typeof(T) == typeof(EnemyManipulate)) {
+			enemyManipulate = GetComponent<EnemyManipulate> ();
 		}
 	}
 
@@ -49,11 +52,13 @@ public abstract class EnemyMove : MonoBehaviour {
 			enemyPatrol = null;
 		} else if (typeof(T) == typeof(EnemyChase)) {
 			enemyChase = null;
+		} else if (typeof(T) == typeof(EnemyManipulate)) {
+			enemyManipulate = null;
 		}
 	}
 
 	void OnDrawGizmosSelected() {
 		if(Application.isPlaying)
-			Handles.Label (new Vector3(rend.bounds.center.x ,rend.bounds.max.y + 0.2f,0f), state.ToString ());
+			Handles.Label (new Vector3(rend.bounds.center.x - 0.1f, rend.bounds.max.y + 0.2f, 0f), state.ToString ());
 	}
 }

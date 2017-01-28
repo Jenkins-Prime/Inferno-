@@ -95,19 +95,7 @@ NavMeshSettings:
 GameObject:
   m_PrefabParentObject: {fileID: 154272, guid: a242cffcdf9759e4caa6a43b6fefaaba, type: 2}
   m_PrefabInternal: {fileID: 1677926123}
---- !u!114 &308721075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 308721072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8581157917c32d4478c1bae1883b73e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetWaypoint: {x: 1, y: 0}
---- !u!114 &308721080
+--- !u!114 &308721073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -120,7 +108,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectRadius: 1
   chaseRadius: 2
---- !u!114 &308721081
+--- !u!114 &308721074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 308721072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8581157917c32d4478c1bae1883b73e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWaypoint: {x: 1, y: 0}
+--- !u!114 &308721075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -132,8 +132,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  jumpHeight: 0.2
-  timeToJumpApex: 0.1
+  jumpHeight: 0.4
+  timeToJumpApex: 0.2
+--- !u!114 &308721082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 308721072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc21c1babb540542be58d42c9a07c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlMode: 0
 --- !u!1001 &585372449
 Prefab:
   m_ObjectHideFlags: 0
