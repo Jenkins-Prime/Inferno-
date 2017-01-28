@@ -17,18 +17,13 @@ public class EnemyMoveGround : EnemyMove {
 
 	protected override void Start () {
 		base.Start();
-
-		PatrolInit ();
 	}
 
 	protected override void Update () {
-		GravityCheck (); //Handle gravity (can be done in playercontroller?)
-
-		if(!ChaseCheck()) //If detects player then chase him
-			PatrolCheck(); //else patrol
+		GravityCheck (); //Handle gravity
 
 		Move ();
-		AnimateEnemy ();
+		Animate ();
 	}
 
 	void GravityCheck() {
@@ -40,46 +35,40 @@ public class EnemyMoveGround : EnemyMove {
 		}
 	}
 
-	//===== Patrolling Methods =====
-	protected override void PatrolInit() {
-		if (patrol != null)
-			moveDirection.x = patrol.SetMoveDirection ().x;
-	}
+	//===== Movement Method =====
+	protected override void Move() {
+		//Check state and update move direction
+		moveDirection.x = 0f;
+		state = MoveState.Idle;
 
-	protected override void PatrolCheck() {
-		if (patrol != null)
-			moveDirection.x = patrol.UpdateMoveDirection (moveDirection.x, controller.collisions.wallInFront);
-	}
-
-	//===== Chasing Method =====
-	protected override bool ChaseCheck() {
-		if (chase != null) {
-			if (chase.DetectPlayer (ref moveDirection.x)) { //If it detects player then chase him
-				return true;
-			} else if (chase.IsChasing()) { //else if player has escape then return back to previous point
-				if (patrol == null) {
-					chase.ReturnFromChase (ref moveDirection.x, transform.position); //stop if there is not a patrol component
-				} else {
-					chase.ReturnFromChase (ref moveDirection.x, patrol.GetNextWaypoint ());
-				}
-
-				return true;
+		if (enemyChase != null) {
+			if (enemyChase.Chase (ref moveDirection.x)) {
+				state = MoveState.Chase;	
 			}
 		}
 
-		return false;
-	}
+		if (enemyPatrol != null && state != MoveState.Chase) {
+			if (enemyPatrol.Patrol (ref moveDirection.x, controller.collisions.wallInFront)) {
+				state = MoveState.Patrol;
+			}
+		}
 
-	//===== Movement Method =====
-	protected override void Move() {
+		//Update velocity and move
 		velocity.x = moveDirection.x * moveSpeed;
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime, false);
 	}
 
 	//===== Animation Method =====
-	protected override void AnimateEnemy() {
-		rend.flipX = (moveDirection.x == -1); //Update sprite
+	protected override void Animate() {
+		//Update Sprite
+		if (moveDirection.x > 0f)
+			rend.flipX = false;
+		else if (moveDirection.x < 0f)
+			rend.flipX = true;			
+		else
+			rend.flipX = initSpriteDirection;
+
 		anim.SetBool("isMoving", moveDirection.x != 0f);
 	}
 }

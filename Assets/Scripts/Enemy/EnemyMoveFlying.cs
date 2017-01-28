@@ -5,57 +5,46 @@ using UnityEngine;
 public class EnemyMoveFlying : EnemyMove {
 	protected override void Start () {
 		base.Start ();
-
-		PatrolInit ();
 	}
 
 	protected override void Update () {
-		if(!ChaseCheck()) //If detects player then chase him
-			PatrolCheck(); //else patrol
-
 		Move ();
-		AnimateEnemy ();
-	}
-
-	//===== Patrolling Methods =====
-	protected override void PatrolInit() {
-		if (patrol != null)
-			moveDirection = patrol.SetMoveDirection ();
-	}
-
-	protected override void PatrolCheck() {
-		if (patrol != null)
-			moveDirection = patrol.UpdateMoveDirection (moveDirection, controller.collisions.wallInFront, controller.collisions.above || controller.collisions.below);
-	}
-
-	//===== Chasing Methods =====
-	protected override bool ChaseCheck() {
-		if (chase != null) {
-			if (chase.DetectPlayer (ref moveDirection)) { //If it detects player then chase him
-				return true;
-			} else if (chase.IsChasing()) { //else if player has escape then return back to previous point
-				if (patrol == null) {
-					chase.ReturnFromChase (ref moveDirection, transform.position); //stop if there is not a patrol component
-				} else {
-					chase.ReturnFromChase (ref moveDirection, patrol.GetNextWaypoint ());
-				}
-
-				return true;
-			}
-		}
-
-		return false;
+		Animate ();
 	}
 
 	//===== Movement Method =====
 	protected override void Move() {
+		//Check state and update move direction
+		moveDirection = Vector2.zero;
+		state = MoveState.Idle;
+
+		if (enemyChase != null) {
+			if (enemyChase.Chase (ref moveDirection)) {
+				state = MoveState.Chase;	
+			}
+		}
+
+		if (enemyPatrol != null && state != MoveState.Chase) {
+			if (enemyPatrol.Patrol (ref moveDirection, controller.collisions.wallInFront || controller.collisions.above || controller.collisions.below)) {
+				state = MoveState.Patrol;
+			}
+		}
+
+		//Update velocity and move
 		velocity = moveDirection * moveSpeed;
 		controller.Move (velocity * Time.deltaTime, false);
 	}
 
 	//===== Animation Method =====
-	protected override void AnimateEnemy() {
-		rend.flipX = (moveDirection.x == -1); //Update sprite
+	protected override void Animate() {
+		//Update Sprite
+		if (moveDirection.x > 0f)
+			rend.flipX = false;
+		else if (moveDirection.x < 0f)
+			rend.flipX = true;			
+		else
+			rend.flipX = initSpriteDirection;
+
 		anim.SetBool("isMoving", moveDirection != Vector2.zero);
 	}
 }
