@@ -75,18 +75,9 @@ public class InputManager
 		return Input.GetButtonDown("Action");
 	}
 
-	public bool EquipWeaponButton()
+    public bool PossessEnemy()
     {
-		return Input.GetButtonDown ("Weapon Equip");
-	}
+        return Input.GetButtonDown("PossessEnemy");
+    }
 
-	public bool SwitchWeapon()
-    { 
-		return Input.GetButtonDown ("Switch Weapon");
-	}
-
-	public bool NextWeaponButton()
-    {
-		return Input.GetButtonDown ("Weapon Next");
-	}
 }

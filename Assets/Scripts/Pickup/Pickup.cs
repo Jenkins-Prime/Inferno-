@@ -15,11 +15,9 @@ public class Pickup : MonoBehaviour {
 	public int amountToAdd;
 
 	LevelManager levelManager;
-	PlayerAttack playerAttack;
 
 	void Start () {
 		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
-		playerAttack = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerAttack> ();
 	}
 
 	public void Collect() {
@@ -32,9 +30,6 @@ public class Pickup : MonoBehaviour {
 			break;
 		case PickupType.Life:
 			levelManager.IncreaseLife (amountToAdd);
-			break;
-		case PickupType.Weapon:
-			playerAttack.AddWeapon (amountToAdd); //0 = Scythe, 1 = Crossbow
 			break;
 		}
 

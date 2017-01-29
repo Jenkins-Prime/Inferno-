@@ -5,7 +5,6 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	[Header("Movement Variables")]
 	[SerializeField] float moveSpeed = 3f;
-	[SerializeField] float climbSpeed = 2f;
 	[SerializeField] float minJumpHeight = 0.2f;
 	[SerializeField] float maxJumpHeight = 1f;
 	[SerializeField] float timeToJumpApex = 0.4f;
@@ -28,7 +27,6 @@ public class Player : MonoBehaviour {
 	[HideInInspector] public bool canMove;
 	[HideInInspector] public bool knockBack;
 	bool jump;
-	bool hasDoubleJumped;
 
 	float knockBackTimer;
 	Vector2 knockBackVelocity;
@@ -52,80 +50,74 @@ public class Player : MonoBehaviour {
 		canMove = true;
 	}
 
-	void Update () {
-		if (canMove) {
-			if (controller.collisions.above || controller.collisions.below)
-				velocity.y = 0;
-
+	void Update ()
+    {
+		if (canMove)
+        {
+            if (controller.collisions.above || controller.collisions.below)
+            {
+                velocity.y = 0;
+            }
+				
 			input = InputManager.Instance.MainStick ();
 
 			JumpCheck ();
 			Move ();
-
 			SetAnimatorStates ();
 		}
 	}
 
-	bool KnockBackCheck() {
-		if (knockBack) {
-			if (knockBackTimer > 0) {
+	bool KnockBackCheck()
+    {
+		if (knockBack)
+        {
+			if (knockBackTimer > 0)
+            {
 				knockBackTimer -= Time.deltaTime;
-			} else {
+			} else
+            {
 				knockBack = false;
 			}
 		}
-
 		return !knockBack; //true if knockback ended
 	}
 
 	void JumpCheck () {
-		if (!controller.collisions.onLadder) {
-			if (InputManager.Instance.JumpButton ()) {
-				if (controller.collisions.below || controller.collisions.onLadderAbove) {
+		if (!controller.collisions.onLadder)
+        {
+			if (InputManager.Instance.JumpButton ())
+            {
+				if (controller.collisions.below || controller.collisions.onLadderAbove)
+                {
 					velocity.y = maxJumpVelocity;
 					jump = true;
 					audioSource.PlayOneShot (jumpClip, 1.0f);
-				} else if (!hasDoubleJumped) {
-					velocity.y = maxJumpVelocity;
-					hasDoubleJumped = true;
-					audioSource.PlayOneShot(jumpClip, 1.0f);
 				}
 			}
 
-			if (InputManager.Instance.ReleaseJumpButton ()) {
-				if (velocity.y > minJumpVelocity) {
+			if (InputManager.Instance.ReleaseJumpButton ())
+            {
+				if (velocity.y > minJumpVelocity)
+                {
 					velocity.y = minJumpVelocity;
 				}
-				jump = false;
-			}
 
-			if (controller.collisions.below || controller.collisions.onLadderAbove) {
-				hasDoubleJumped = false;
+				jump = false;
 			}
 		}
 	}
 
-	void Move() {
-		if (KnockBackCheck ()) {
+	void Move()
+    {
+		if (KnockBackCheck ())
+        {
 			float targetVelocityX;
-			if (controller.collisions.onLadder)
-				targetVelocityX = input.x * climbSpeed;
-			else
-				targetVelocityX = input.x * moveSpeed;
-
+		    targetVelocityX = input.x * moveSpeed;
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-
-			if (controller.collisions.onLadder) {
-				velocity.y = input.y * climbSpeed;
-			} else if (controller.collisions.onLadderAbove) {
-				if (input.y < 0)
-					velocity.y = input.y * climbSpeed;
-				else if (!jump)
-					velocity.y = 0f;
-			} else {
-				velocity.y += gravity * Time.deltaTime;
-			}
-		} else {
+			velocity.y += gravity * Time.deltaTime;
+		}
+        else
+        {
 			velocity = knockBackVelocity;
 		}
 
@@ -137,24 +129,27 @@ public class Player : MonoBehaviour {
 		rend.flipX = (velocity.x < 0) ? true : false;
 
 		anim.SetFloat("Speed", Mathf.Abs(input.x));
-		anim.SetFloat("ClimbSpeed", Mathf.Abs(input.y));
 
-		if (controller.collisions.below || controller.collisions.onLadderAbove || controller.collisions.onLadderBelow)
-			anim.SetBool ("Grounded", true);
-		else {
+        if (controller.collisions.below)
+        {
+            anim.SetBool("Grounded", true);
+        }
+		else
+        {
 			anim.SetBool ("Grounded", false);
 		}
-
-		anim.SetBool ("Climbing", controller.collisions.onLadder && !controller.collisions.onLadderBelow);
 	}
 
 	//===== Public functions used from other scripts =====
-	public void KillPlayer(bool kill) {
-		if (kill) { //kill player
+	public void KillPlayer(bool kill)
+    {
+		if (kill)
+        { //kill player
 			canMove = false;
 			velocity = Vector3.zero;
 			rend.enabled = false;
-		} else { //revive player
+		} else
+        { //revive player
 			canMove = true;
 			rend.enabled = true;
 			knockBack = false;
@@ -162,49 +157,19 @@ public class Player : MonoBehaviour {
 	}
 
 
-	public void PlayerKnockBack(Vector3 attacker) {
+	public void PlayerKnockBack(Vector3 attacker)
+    {
 		knockBack = true;
 		knockBackTimer = knockBackLength;
 
-		if (transform.position.x < attacker.x) {
+		if (transform.position.x < attacker.x)
+        {
 			knockBackVelocity = new Vector2 (-knockBackSpeed, knockBackSpeed);
-		} else {
+		} else
+        {
 			knockBackVelocity = new Vector2 (knockBackSpeed, knockBackSpeed);		
 		}
 
 		audioSource.PlayOneShot (hurtClip, 1f);
 	}
-
-	/*
-	void JumpCheck() {
-		if(InputManager.JumpButton() && !onLadder) { //Jump Check
-			if(grounded) { //First jump
-				audioSource.PlayOneShot(jumpClip, 1.0f);
-				jump = true;
-			} else if(!doubleJumped) { //Second Jump
-				audioSource.PlayOneShot(jumpClip, 0.5f);
-				doubleJumped = true;
-				jump = true;
-			}
-		}
-	}
-	  
-	void AttackCheck() {
-		if (InputManager.FireButton()) {
-			anim.SetBool ("Firing", true);
-
-			if(shotTimer <= 0) { //change this to bool values
-				Instantiate (bullet, firePoint.position, firePoint.rotation); //change this to .enable for cpu optimization
-				shotTimer = shotDelay;
-			}
-		} else if (InputManager.MeleeButton()) {
-			//Melee code here
-			//anim.SetBool("Sword", true);
-		}
-
-		//TODO: Move To a better place
-		if (shotTimer > 0)
-			shotTimer -= Time.deltaTime;
-	}
-*/		
 }

@@ -17,7 +17,6 @@ public class EnemyManipulate : MonoBehaviour {
 
 	void Awake() {
 		move = GetComponent<EnemyMove> ();
-
 		controlMode = false;
 	}
 
