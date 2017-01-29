@@ -28,7 +28,6 @@ public class LevelManager : MonoBehaviour {
 
 		hudManager.SetHealthUI (curHealth);
 		hudManager.SetLifeUI (curLives);
-		hudManager.SetScoreUI (curScore);
 	}
 
 	//Maybe move those two to gamecontroller
@@ -78,7 +77,6 @@ public class LevelManager : MonoBehaviour {
 
 	public void IncreaseScore(int amount) {
 		curScore += amount;
-		hudManager.SetScoreUI (curScore);
 	}
 
 	public void SetCheckPoint(Transform checkPoint) {
