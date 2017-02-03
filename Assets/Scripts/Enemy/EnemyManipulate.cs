@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(ActorController))]
-public class EnemyManipulate : MonoBehaviour {
-	[SerializeField] bool controlMode;
+public class EnemyManipulate : MonoBehaviour
+{
+	public bool controlMode;
 
 	EnemyMove move;
 	void OnEnable() {

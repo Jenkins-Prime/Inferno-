@@ -428,6 +428,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010782811614, guid: d5eff5ddbd1915440a08c315fba039bc,
+        type: 2}
+      propertyPath: detectLayer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010782811614, guid: d5eff5ddbd1915440a08c315fba039bc,
+        type: 2}
+      propertyPath: possessDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010581103522, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}
     - {fileID: 114000014152816366, guid: d5eff5ddbd1915440a08c315fba039bc, type: 2}

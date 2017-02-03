@@ -39,8 +39,10 @@ public class Player : MonoBehaviour {
 	AudioSource audioSource;
 	ActorController controller;
 	SpriteRenderer rend;
+    private EnemyManipulate enemy;
 
-	void Start () {
+
+    void Start () {
 		anim = GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
 		controller = GetComponent<ActorController> ();
@@ -185,25 +187,28 @@ public class Player : MonoBehaviour {
     private void PossessEnemy()
     {
         Ray2D ray = new Ray2D(transform.position, Vector2.right);
-        RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer);
 
-        if (hitInfo. collider != null)
+        if (Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer))
         {
-            
-            switch (hitInfo.collider.tag)
-            {
-                case "Enemy":
-                   ControlEnemy();
-                    break;
-                case "Ground":
-                    Debug.Log("Hit Ground");
-                    break;
-            }
+            ControlEnemy();
+        }
+        else
+        {
+            Debug.Log("Didn't hit anything, not possessing");
         }
     }
 
     private void ControlEnemy()
     {
-        Debug.Log("Possessing enemy");
+        Ray2D ray = new Ray2D(transform.position, Vector2.right);
+        RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer);
+
+        if (hitInfo.collider.tag == "Enemy")
+        {
+            hitInfo.transform.GetComponent<EnemyManipulate>().controlMode = true;
+            canMove = false;
+        }
+
+        
     }
 }

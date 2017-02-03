@@ -915,7 +915,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   detectLayer:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1024
   possessDistance: 100
   input: {x: 0, y: 0}
   canMove: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 256
   horizontalRayCount: 4
   verticalRayCount: 4
   horizontalRaySpacing: 0
