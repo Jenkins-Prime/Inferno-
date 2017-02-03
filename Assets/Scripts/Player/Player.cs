@@ -22,6 +22,10 @@ public class Player : MonoBehaviour {
 	float accelerationTimeAirborne = 0.2f;
 	float accelerationTimeGrounded = 0.1f;
 	public Vector3 velocity;
+    public LayerMask detectLayer;
+
+    [SerializeField]
+    private float possessDistance;
 
 	[HideInInspector] public Vector2 input;
 	[HideInInspector] public bool canMove;
@@ -64,8 +68,14 @@ public class Player : MonoBehaviour {
 			JumpCheck ();
 			Move ();
 			SetAnimatorStates ();
-		}
-	}
+
+            if (InputManager.Instance.PossessEnemy())
+            {
+                PossessEnemy();
+            }
+
+        }
+    }
 
 	bool KnockBackCheck()
     {
@@ -169,7 +179,31 @@ public class Player : MonoBehaviour {
         {
 			knockBackVelocity = new Vector2 (knockBackSpeed, knockBackSpeed);		
 		}
-
 		audioSource.PlayOneShot (hurtClip, 1f);
 	}
+
+    private void PossessEnemy()
+    {
+        Ray2D ray = new Ray2D(transform.position, Vector2.right);
+        RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer);
+
+        if (hitInfo. collider != null)
+        {
+            
+            switch (hitInfo.collider.tag)
+            {
+                case "Enemy":
+                   ControlEnemy();
+                    break;
+                case "Ground":
+                    Debug.Log("Hit Ground");
+                    break;
+            }
+        }
+    }
+
+    private void ControlEnemy()
+    {
+        Debug.Log("Possessing enemy");
+    }
 }
