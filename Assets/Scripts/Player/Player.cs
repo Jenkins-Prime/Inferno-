@@ -22,7 +22,9 @@ public class Player : MonoBehaviour {
 	float accelerationTimeAirborne = 0.2f;
 	float accelerationTimeGrounded = 0.1f;
 	public Vector3 velocity;
-    public LayerMask detectLayer;
+
+
+    public GameObject possessionBolt;
 
     [SerializeField]
     private float possessDistance;
@@ -39,21 +41,29 @@ public class Player : MonoBehaviour {
 	AudioSource audioSource;
 	ActorController controller;
 	SpriteRenderer rend;
-    private EnemyManipulate enemy;
+
+    public bool canFire;
 
 
-    void Start () {
-		anim = GetComponent<Animator>();
-		audioSource = GetComponent<AudioSource>();
-		controller = GetComponent<ActorController> ();
-		rend = GetComponent<SpriteRenderer> ();
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        controller = GetComponent<ActorController>();
+        rend = GetComponent<SpriteRenderer>();
+    }
+
+    void Start ()
+    {
 		gravity = -(2f * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2f);
 		minJumpVelocity = Mathf.Sqrt (2f * Mathf.Abs (gravity) * minJumpHeight);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
 		knockBackTimer = 0f;
 		canMove = true;
+        canFire = true;
+
 	}
 
 	void Update ()
@@ -71,11 +81,10 @@ public class Player : MonoBehaviour {
 			Move ();
 			SetAnimatorStates ();
 
-            if (InputManager.Instance.PossessEnemy())
+            if (InputManager.Instance.PossessEnemy() && canFire)
             {
-                PossessEnemy();
+                ShootBolt();
             }
-
         }
     }
 
@@ -160,7 +169,8 @@ public class Player : MonoBehaviour {
 			canMove = false;
 			velocity = Vector3.zero;
 			rend.enabled = false;
-		} else
+		}
+        else
         { //revive player
 			canMove = true;
 			rend.enabled = true;
@@ -181,34 +191,29 @@ public class Player : MonoBehaviour {
         {
 			knockBackVelocity = new Vector2 (knockBackSpeed, knockBackSpeed);		
 		}
+
 		audioSource.PlayOneShot (hurtClip, 1f);
 	}
 
-    private void PossessEnemy()
+    private void ShootBolt()
     {
-        Ray2D ray = new Ray2D(transform.position, Vector2.right);
-
-        if (Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer))
-        {
-            ControlEnemy();
-        }
-        else
-        {
-            Debug.Log("Didn't hit anything, not possessing");
-        }
+        GameObject bolt = Instantiate(possessionBolt) as GameObject;
+        bolt.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f);
+        bolt.name = "PossessionBolt";
     }
 
-    private void ControlEnemy()
-    {
-        Ray2D ray = new Ray2D(transform.position, Vector2.right);
-        RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer);
+    //private void ControlEnemy()
+    //{
+    //    Ray2D ray = new Ray2D(transform.position, Vector2.right);
+    //    RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance);
 
-        if (hitInfo.collider.tag == "Enemy")
-        {
-            hitInfo.transform.GetComponent<EnemyManipulate>().controlMode = true;
-            canMove = false;
-        }
+    //    if (hitInfo.collider.tag == "Enemy")
+    //    {
+    //        hitInfo.transform.GetComponent<EnemyManipulate>().controlMode = true;
+    //        transform.GetComponent<Player>().enabled = false;
+    //        rend.enabled = false;
+    //    }
+    //}
 
-        
-    }
+
 }
