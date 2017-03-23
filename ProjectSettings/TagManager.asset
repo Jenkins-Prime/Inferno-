@@ -23,6 +23,7 @@ TagManager:
   - LevelNode
   - Event
   - Possession Bolt
+  - ShopKeeper
   layers:
   - Default
   - TransparentFX
