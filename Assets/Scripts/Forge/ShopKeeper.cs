@@ -25,22 +25,14 @@ public class ShopKeeper : MonoBehaviour
     [SerializeField]
     private List<Text> itemDisplay;
     private Canvas shopMenu;
+
     
     private void Start()
     {
-        shopMenu = this.GetComponent<Canvas>();
-        itemDisplay = new List<Text>();
-        stock = new List<string>();
-        stock.Add("Health Orb");
-        
-        
+       // stock = new List<Product>();
+        //stock.Add(new Product(productName, 10.0f, ProductType.HEALTH));
     }
 
-    private void OnTriggerEnter2D(BoxCollider2D col)
-    {
-        
-        
-
-
-    }
 }
+
+
