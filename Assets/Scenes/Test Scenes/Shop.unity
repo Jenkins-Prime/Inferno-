@@ -218,6 +218,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1301005123 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1427253503032598, guid: bc27dbc191900ea4caabb7a283da240d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2040439351}
 --- !u!1 &1768588391
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,14 +332,14 @@ MonoBehaviour:
   - name: Health Orb
     description: Restores 3 Health
     price: 2 Souls
-    icon: {fileID: 0}
+    icon: {fileID: 21300004, guid: c7d10466c0e7a8d4e8a4c380d8af5f2c, type: 3}
   - name: Magic Potion
     description: Restores 3 magic
     price: 3 Souls
-    icon: {fileID: 0}
+    icon: {fileID: 21300014, guid: b0c0836207604184d93ab0422e5c4fd3, type: 3}
   items:
   - {fileID: 1427253503032598, guid: bc27dbc191900ea4caabb7a283da240d, type: 2}
-  - {fileID: 1427253503032598, guid: bc27dbc191900ea4caabb7a283da240d, type: 2}
+  - {fileID: 1301005123}
 --- !u!1 &1956285761
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +452,7 @@ Prefab:
     - target: {fileID: 224110887998938496, guid: bc27dbc191900ea4caabb7a283da240d,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 224110887998938496, guid: bc27dbc191900ea4caabb7a283da240d,
         type: 2}
