@@ -215,7 +215,7 @@ public class Player : MonoBehaviour {
             {
                 transform.parent = hitInfo.transform;
                 transform.position = hitInfo.transform.position;
-                hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = true;
+               // hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = true;
                 PossessEnemy();
             }
         }

@@ -24,6 +24,7 @@ TagManager:
   - Event
   - Possession Bolt
   - ShopKeeper
+  - ItemContainer
   layers:
   - Default
   - TransparentFX

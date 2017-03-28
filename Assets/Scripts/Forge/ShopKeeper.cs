@@ -6,33 +6,53 @@ using UnityEngine.UI;
 
 public class ShopKeeper : MonoBehaviour
 {
-
-//    Shop:
-//player enters shop
-//    can have different types of merchants
-//    one specializes in health
-//    one sales armor.
-
-//a UI shop manager to showcase all the items
-//need a list of items the shop owner has
-//Need a shopkeeper object
-//shopkeep can sell only(for now), has an inventory to sale, items in inventory have a price(value)
-
-//    Note: Perhaps base class item.cs can hold a field for "Value" and possibly "ItemName"
-
     [SerializeField]
-    private List<string> stock; //should hold a generic list of items
+    private List<Product> products;
     [SerializeField]
-    private List<Text> itemDisplay;
-    private Canvas shopMenu;
+    private List<GameObject> items;
+    private Text itemName;
+    private Text ItemDescription;
+    private Text itemPrice;
+    private Image itemicon;
+    
 
     
     private void Start()
     {
-       // stock = new List<Product>();
-        //stock.Add(new Product(productName, 10.0f, ProductType.HEALTH));
+        ItemInfo();
     }
 
-}
+    private void ItemInfo()
+    {
+        Transform items = transform.FindChild("ItemContainer");
+        for (int i = 0; i < products.Count; i++)
+        {
 
+            itemName = items.GetChild(i).GetChild(0).GetComponent<Text>();
+            ItemDescription = items.GetChild(i).GetChild(1).GetComponent<Text>();
+            itemPrice = items.GetChild(i).GetChild(2).GetComponent<Text>();
+            itemicon = items.GetChild(i).GetChild(3).GetComponent<Image>();
+            itemName.text = products[i].name;
+            ItemDescription.text =  products[i].description ;
+            itemPrice.text = products[i].price ;
+            itemicon.sprite = products[i].icon;
+        }
+    }
+
+
+ 
+}
+[System.Serializable]
+public class Product
+{
+    [SerializeField]
+    public string name = "Health Orb";
+    [SerializeField]
+    public string description = "Restores Health";
+    [SerializeField]
+    public string price = "2 Souls";
+    [SerializeField]
+    public Sprite icon;
+    
+}
 
