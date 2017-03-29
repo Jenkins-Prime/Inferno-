@@ -25,6 +25,7 @@ TagManager:
   - Possession Bolt
   - ShopKeeper
   - ItemContainer
+  - Canvas
   layers:
   - Default
   - TransparentFX
