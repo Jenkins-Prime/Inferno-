@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Fuzz-Bug_0
+  m_Name: Fuzz-Bug
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

@@ -22,9 +22,7 @@ public class Player : MonoBehaviour {
 	float accelerationTimeAirborne = 0.2f;
 	float accelerationTimeGrounded = 0.1f;
 	public Vector3 velocity;
-
-
-    public GameObject possessionBolt;
+    public LayerMask enemyLayer;
 
     [SerializeField]
     private float possessDistance;
@@ -42,7 +40,7 @@ public class Player : MonoBehaviour {
 	ActorController controller;
 	SpriteRenderer rend;
 
-    public bool canFire;
+    private bool isPossessed;
 
 
 
@@ -62,7 +60,7 @@ public class Player : MonoBehaviour {
 
 		knockBackTimer = 0f;
 		canMove = true;
-        canFire = true;
+        isPossessed = false;
 
 	}
 
@@ -81,11 +79,20 @@ public class Player : MonoBehaviour {
 			Move ();
 			SetAnimatorStates ();
 
-            if (InputManager.Instance.PossessEnemy() && canFire)
+            if (InputManager.Instance.PossessEnemy() && !isPossessed)
             {
                 ShootBolt();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.N) && isPossessed)
+        {
+            EjectEnemy();
+            isPossessed = false;
+            
+        }
+
+
     }
 
 	bool KnockBackCheck()
@@ -187,7 +194,8 @@ public class Player : MonoBehaviour {
 		if (transform.position.x < attacker.x)
         {
 			knockBackVelocity = new Vector2 (-knockBackSpeed, knockBackSpeed);
-		} else
+		}
+        else
         {
 			knockBackVelocity = new Vector2 (knockBackSpeed, knockBackSpeed);		
 		}
@@ -197,9 +205,38 @@ public class Player : MonoBehaviour {
 
     private void ShootBolt()
     {
-        GameObject bolt = Instantiate(possessionBolt) as GameObject;
-        bolt.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f);
-        bolt.name = "PossessionBolt";
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right, possessDistance, enemyLayer);
+
+        //bool isHit = Physics2D.Raycast(bolt.transform.position, Vector2.right, 100.0f, enemyLayer);
+
+        if (hitInfo.transform != null)
+        {
+            if (hitInfo.collider.tag == "Enemy")
+            {
+                transform.parent = hitInfo.transform;
+                transform.position = hitInfo.transform.position;
+               // hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = true;
+                PossessEnemy();
+            }
+        }
+    }
+
+    private void PossessEnemy()
+    {
+        rend.enabled = false;
+        isPossessed = true;
+        canMove = false;
+    }
+
+    private void EjectEnemy()
+    {
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right, possessDistance, enemyLayer);
+        hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = false;
+        rend.enabled = true;
+        isPossessed = false;
+        canMove = true;
+        transform.position = new Vector2(transform.position.x - 1.0f, transform.position.y);
+        transform.parent = null;
     }
 
     //private void ControlEnemy()

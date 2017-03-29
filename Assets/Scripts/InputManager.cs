@@ -80,4 +80,12 @@ public class InputManager
         return Input.GetButtonDown("PossessEnemy");
     }
 
+    public bool NextItem()
+    {
+        return Input.GetButtonDown("NextItem");
+    }
+    public bool PreviousItem()
+    {
+        return Input.GetButtonDown("PreviousItem");
+    }
 }

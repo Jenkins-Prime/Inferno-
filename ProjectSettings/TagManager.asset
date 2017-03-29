@@ -23,6 +23,9 @@ TagManager:
   - LevelNode
   - Event
   - Possession Bolt
+  - ShopKeeper
+  - ItemContainer
+  - Canvas
   layers:
   - Default
   - TransparentFX
