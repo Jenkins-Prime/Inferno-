@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DamagePlayer : MonoBehaviour {
 	[SerializeField] bool killPlayer = false;
-	[SerializeField] int damageAmount = 1;
+	[SerializeField] int damageAmount;
 
 	LevelManager levelManager;
 
@@ -11,11 +11,11 @@ public class DamagePlayer : MonoBehaviour {
 		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
 	}
 
-	public void DealDamage() {
-		if (killPlayer) {
-			levelManager.DecreaseLife (1);
-		} else {
-			levelManager.DecreaseHealth (damageAmount);
-		}
+	private void OnTriggerEnter2D(Collider2D col)
+    {
+	    if(col.tag == "Player")
+        {
+            levelManager.DecreaseHealth(damageAmount);
+        }	
 	}
 }

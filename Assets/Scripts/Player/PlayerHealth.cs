@@ -13,10 +13,15 @@ public class PlayerHealth : MonoBehaviour
     private int maxHealth;
     private int healthPerContainer;
 
-	void Start ()
-    {
-        healthPerContainer = 2;
+    public int CurrentHealth { get; set; }
+    public int MaxHealth { get; private set; }
+    public int HealthPerContainer { get; private set; }
 
+    void Start ()
+    {
+        HUDManager.Instance.LoseHealth += Damage;
+        HUDManager.Instance.GainHealth += AddHealth;
+        healthPerContainer = 2;
         currentHealth = startingHealth * healthPerContainer;
         maxHealth = maxHealthContainers * healthPerContainer;
         InitialiseHealth();
@@ -40,20 +45,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealth();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Damage(1);
-            UpdateHealth();
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            AddOrbs(2);
-        }
-    }
-
+   
     private void UpdateHealth()
     {
         bool isEmpty = false;
@@ -85,18 +77,19 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-
+    
     public void Damage(int amount)
     {
         currentHealth -= amount;
-
+        
         currentHealth = Mathf.Clamp(currentHealth, 0, startingHealth * healthPerContainer);
         UpdateHealth();
     }
 
-    public void AddOrbs(int amount)
+    public void AddHealth(int amount)
     {
         startingHealth += amount;
+        Debug.Log(amount.ToString());
         startingHealth = Mathf.Clamp(startingHealth, 0, maxHealthContainers);
         currentHealth = startingHealth * healthPerContainer;
         InitialiseHealth();

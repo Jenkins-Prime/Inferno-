@@ -188,41 +188,41 @@ public class ActorController : RaycastController {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		switch (other.tag) {
-		case "Enemy":
-			DamagePlayer dmg = other.GetComponent<DamagePlayer> ();
-			if (dmg != null)
-				dmg.DealDamage ();
-			break;
-		case "Pickup":
-			Pickup pickup = other.GetComponent<Pickup> ();
-			if (pickup != null)
-				pickup.Collect ();
-			break;
-		case "Checkpoint":
-			Checkpoint checkpoint = other.GetComponent<Checkpoint> ();
-			if (checkpoint != null)
-				checkpoint.SetCheckpoint ();
-			break;
-		case "Ladder":
-			Ladder ladder = other.GetComponent<Ladder> ();
-			if (ladder != null) {
-				collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
-				collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
-				collisions.onLadder = !collisions.onLadderAbove;
-			}
-			break;
-		case "Player": //Not efficient at all, if enemy stays inside the player while in knockback it will never register a hit
-			Player player = other.GetComponent<Player> ();
-			if (player != null) {
-				if (player.canMove && !player.knockBack) {
-					player.PlayerKnockBack (transform.position);
-				}
-			}
-			break;
-		}
-	}
+	//void OnTriggerEnter2D(Collider2D other) {
+	//	switch (other.tag) {
+	//	case "Enemy":
+	//		DamagePlayer dmg = other.GetComponent<DamagePlayer> ();
+	//		if (dmg != null)
+	//			//dmg.DealDamage ();
+	//		break;
+	//	case "Pickup":
+	//		Pickup pickup = other.GetComponent<Pickup> ();
+	//		if (pickup != null)
+	//			pickup.Collect ();
+	//		break;
+	//	case "Checkpoint":
+	//		Checkpoint checkpoint = other.GetComponent<Checkpoint> ();
+	//		if (checkpoint != null)
+	//			checkpoint.SetCheckpoint ();
+	//		break;
+	//	case "Ladder":
+	//		Ladder ladder = other.GetComponent<Ladder> ();
+	//		if (ladder != null) {
+	//			collisions.onLadderAbove = ladder.CheckPlayerPositionAbove (transform.position);
+	//			collisions.onLadderBelow = ladder.CheckPlayerPositionBelow (transform.position);
+	//			collisions.onLadder = !collisions.onLadderAbove;
+	//		}
+	//		break;
+	//	case "Player": //Not efficient at all, if enemy stays inside the player while in knockback it will never register a hit
+	//		Player player = other.GetComponent<Player> ();
+	//		if (player != null) {
+	//			if (player.canMove && !player.knockBack) {
+	//				player.PlayerKnockBack (transform.position);
+	//			}
+	//		}
+	//		break;
+	//	}
+	//}
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.tag == "Ladder") {

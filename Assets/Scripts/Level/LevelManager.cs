@@ -14,30 +14,35 @@ public class LevelManager : MonoBehaviour {
 	int curScore;
 
 	Player player;
-	HUDManager hudManager;
+    PlayerHealth playerHealth;
+	
 
-	void Start () {
+    private void OnEnable()
+    {
+        //HUDManager.Instance.LoseHealth += DecreaseHealth;
+        //HUDManager.Instance.GainHealth += IncreaseHealth;
+    }
+    void Start () {
 		Time.timeScale = 1f;
 
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-		hudManager = GameObject.FindGameObjectWithTag ("HUD").GetComponent<HUDManager> ();
+		playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
-		curLives = GameController.instance.playerData.curLives;
-		curHealth = GameController.instance.playerData.maxHealth;
-		curScore = 0;
+        curLives = GameController.instance.playerData.curLives;
+        curHealth = playerHealth.CurrentHealth;
 
-		hudManager.SetHealthUI (curHealth);
-		hudManager.SetLifeUI (curLives);
+
+        curScore = 0;
+
+		
 	}
 
 	//Maybe move those two to gamecontroller
 	public void IncreaseLife(int amount) {
-		curLives += amount;
-		if (curLives > GameController.instance.playerData.maxLives)
-			curLives = GameController.instance.playerData.maxLives;
-
+        
+       
 		//Do fx here
-		hudManager.SetLifeUI(curLives);
+	
 		//Save playerprefs
 	}
 
@@ -48,28 +53,27 @@ public class LevelManager : MonoBehaviour {
 			//Gameover sequence
 			//save playerprefs
 		} else {
-			StartCoroutine (RespawnPlayer ());
+			//StartCoroutine (RespawnPlayer ());
 		}
 
 		GameController.instance.playerData.curLives = curLives;
-		hudManager.SetLifeUI (curLives);
+		
 	}
 
 	public void IncreaseHealth(int amount) {
-		curHealth += amount;
-
-		if (curHealth > GameController.instance.playerData.maxHealth)
-			curHealth = GameController.instance.playerData.maxHealth;
+		//playerHealth.AddHealth(amount);
+        HUDManager.Instance.OnGainHealth(amount);
+   //     if (curHealth > GameController.instance.playerData.maxHealth)
+			//curHealth = GameController.instance.playerData.maxHealth;
 
 		//do fx here
-		hudManager.SetHealthUI(curHealth);
+		
 	}
 
 	public void DecreaseHealth(int amount) {
-		curHealth -= amount;
-
+        playerHealth.Damage(amount);
 		//do fx here
-		hudManager.SetHealthUI(curHealth);
+		
 
 		if (curHealth < 1)
 			DecreaseLife (1);
@@ -84,21 +88,21 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log("Activated Checkpoint" + curCheckPoint.position);
 	}
 		
-	IEnumerator RespawnPlayer() {
-		//Death part
-		player.KillPlayer(true);
-		Instantiate (deathParticle, player.transform.position, player.transform.rotation);
-		//ScoreManager.AddPoints(-pointPenaltyOnDeath); //not sure if useful removing score points
+	//IEnumerator RespawnPlayer() {
+	//	//Death part
+	//	player.KillPlayer(true);
+	//	Instantiate (deathParticle, player.transform.position, player.transform.rotation);
+	//	//ScoreManager.AddPoints(-pointPenaltyOnDeath); //not sure if useful removing score points
 
-		yield return new WaitForSeconds(deathDelay);
+	//	yield return new WaitForSeconds(deathDelay);
 
-		//Respawn particles part
-		player.transform.position = curCheckPoint.position;
-		Instantiate(respawnParticle, curCheckPoint.position, curCheckPoint.rotation);
-		yield return new WaitForSeconds(respawnDelay);
+	//	//Respawn particles part
+	//	player.transform.position = curCheckPoint.position;
+	//	Instantiate(respawnParticle, curCheckPoint.position, curCheckPoint.rotation);
+	//	yield return new WaitForSeconds(respawnDelay);
 
-		//Show player part
-		IncreaseHealth (GameController.instance.playerData.maxHealth);
-		player.KillPlayer (false);
-	}
+	//	//Show player part
+	//	IncreaseHealth (GameController.instance.playerData.maxHealth);
+	//	player.KillPlayer (false);
+	//}
 }
