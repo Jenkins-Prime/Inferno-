@@ -191,16 +191,12 @@ public class ActorController : RaycastController {
 	void OnTriggerEnter2D(Collider2D other) {
 		switch (other.tag) {
 		case "Enemy":
-			DamagePlayer dmg = other.GetComponent<DamagePlayer> ();
-			if (dmg != null)
-				dmg.DealDamage ();
+                EventManager.Instance.DecreaseHealth(1);
 			break;
 		case "Pickup":
-			Pickup pickup = other.GetComponent<Pickup> ();
-			if (pickup != null)
-				pickup.Collect ();
-			break;
-		case "Checkpoint":
+                EventManager.Instance.IncreaseHealth(1);
+                break;
+            case "Checkpoint":
 			Checkpoint checkpoint = other.GetComponent<Checkpoint> ();
 			if (checkpoint != null)
 				checkpoint.SetCheckpoint ();

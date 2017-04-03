@@ -13,10 +13,21 @@ public class PlayerHealth : MonoBehaviour
     private int maxHealth;
     private int healthPerContainer;
 
-	void Start ()
+    private void OnEnable()
+    {
+        EventManager.Instance.OnHealthDecrease += Damage;
+        EventManager.Instance.OnHealthIncrease += IncreaseHealth;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.OnHealthDecrease -= Damage;
+        EventManager.Instance.OnHealthIncrease -= IncreaseHealth;
+    }
+
+    void Start ()
     {
         healthPerContainer = 2;
-
         currentHealth = startingHealth * healthPerContainer;
         maxHealth = maxHealthContainers * healthPerContainer;
         InitialiseHealth();
@@ -38,20 +49,6 @@ public class PlayerHealth : MonoBehaviour
         }
 
         UpdateHealth();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Damage(1);
-            UpdateHealth();
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            AddOrbs(2);
-        }
     }
 
     private void UpdateHealth()
@@ -86,15 +83,21 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void Damage(int amount)
+    private void Damage(int amount)
     {
         currentHealth -= amount;
-
         currentHealth = Mathf.Clamp(currentHealth, 0, startingHealth * healthPerContainer);
         UpdateHealth();
     }
 
-    public void AddOrbs(int amount)
+    private void IncreaseHealth(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, startingHealth * healthPerContainer);
+        UpdateHealth();
+    }
+
+    private void IncreaseHealthAmount(int amount)
     {
         startingHealth += amount;
         startingHealth = Mathf.Clamp(startingHealth, 0, maxHealthContainers);

@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamagePlayer : MonoBehaviour {
-	[SerializeField] bool killPlayer = false;
-	[SerializeField] int damageAmount = 1;
+public class DamagePlayer : MonoBehaviour
+{
+	[SerializeField]
+    int damageAmount = 1;
 
-	LevelManager levelManager;
-
-	void Start () {
-		levelManager = GameObject.FindGameObjectWithTag ("LevelManager").GetComponent<LevelManager> ();
-	}
-
-	public void DealDamage() {
-		if (killPlayer) {
-			levelManager.DecreaseLife (1);
-		} else {
-			levelManager.DecreaseHealth (damageAmount);
-		}
-	}
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            EventManager.Instance.DecreaseHealth(damageAmount);
+        }
+    }
 }
