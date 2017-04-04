@@ -22,7 +22,6 @@ public class EventManager
     }
 
     public delegate void HealthEventHandler(int amount);
-
     public event HealthEventHandler OnHealthIncrease;
     public  event HealthEventHandler OnHealthDecrease;
 

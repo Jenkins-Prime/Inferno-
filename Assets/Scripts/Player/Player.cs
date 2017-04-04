@@ -205,18 +205,22 @@ public class Player : MonoBehaviour {
 
     private void ShootBolt()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right, possessDistance, enemyLayer);
-
-        //bool isHit = Physics2D.Raycast(bolt.transform.position, Vector2.right, 100.0f, enemyLayer);
-
-        if (hitInfo.transform != null)
+        float direction = Mathf.Sin(velocity.x);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right * direction, possessDistance, enemyLayer);
+      
+        if (hitInfo)
         {
             if (hitInfo.collider.tag == "Enemy")
             {
-                transform.parent = hitInfo.transform;
-                transform.position = hitInfo.transform.position;
-               // hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = true;
-                PossessEnemy();
+                var enemy = hitInfo.transform.gameObject.GetComponent<EnemyManipulate>();
+                if (enemy != null)
+                {
+                    transform.parent = hitInfo.transform;
+                    transform.position = hitInfo.transform.position;
+                    enemy.controlMode = true;
+                    PossessEnemy();
+                }
+               
             }
         }
     }
@@ -231,12 +235,17 @@ public class Player : MonoBehaviour {
     private void EjectEnemy()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right, possessDistance, enemyLayer);
-        hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = false;
-        rend.enabled = true;
-        isPossessed = false;
-        canMove = true;
-        transform.position = new Vector2(transform.position.x - 1.0f, transform.position.y);
-        transform.parent = null;
+
+        if (hitInfo)
+        {
+            hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = false;
+            rend.enabled = true;
+            isPossessed = false;
+            canMove = true;
+            transform.position = new Vector2(transform.position.x - 1.0f, transform.position.y);
+            transform.parent = null;
+        }
+        
     }
 
     //private void ControlEnemy()
