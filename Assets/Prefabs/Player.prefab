@@ -30,7 +30,6 @@ GameObject:
   - component: {fileID: 8272150}
   - component: {fileID: 11481592}
   - component: {fileID: 114000010782811614}
-  - component: {fileID: 114000010581103522}
   - component: {fileID: 114000014152816366}
   m_Layer: 9
   m_Name: Player
@@ -77,9 +76,20 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: 708722f070783624fa03a3f4d79a592c, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.4}
+  m_EdgeRadius: 0
 --- !u!82 &8272150
 AudioSource:
   m_ObjectHideFlags: 1
@@ -227,11 +237,16 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 88af1a64c328b2d449b99cd7af4bbae5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -263,24 +278,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114000010581103522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 136726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b79298127186454fbe30d2d3da4d25b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeCenter: {x: 0.3, y: 0.2, z: 0}
-  meleeRange: 0.24
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  bullet: {fileID: 112686, guid: e02db096322e9624abc577c7b204e95e, type: 2}
-  firePoint: {fileID: 498422}
 --- !u!114 &114000010782811614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  climbSpeed: 2
   minJumpHeight: 0.2
   maxJumpHeight: 1
   timeToJumpApex: 0.4
@@ -302,6 +298,10 @@ MonoBehaviour:
   hurtClip: {fileID: 8300000, guid: 1053e8294aaf05a40a07b31d60aa9952, type: 3}
   jumpClip: {fileID: 8300000, guid: 92300500dfe10174cb9d84f03753be74, type: 3}
   velocity: {x: 0, y: 0, z: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  possessDistance: 0
   input: {x: 0, y: 0}
   canMove: 0
   knockBack: 0
