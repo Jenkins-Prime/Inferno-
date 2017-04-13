@@ -15,6 +15,8 @@ public class EnemyPatrol : MonoBehaviour {
 	Vector3 prevWaypoint;
 	Vector3 nextWaypoint;
 
+	Vector2 prevDir;
+
 	EnemyMove move;
 	void OnEnable() {
 		move.AddEnemyComponent<EnemyPatrol> ();
@@ -39,6 +41,7 @@ public class EnemyPatrol : MonoBehaviour {
 		nextWaypoint = tmp;
 	}
 
+	//Patrol on the x axis only
 	public bool Patrol(ref float currentDirection, bool facingWall) {
 		if (targetWaypoint != storedTargetWaypoint) { //If the target has changed in inspector then change the patrol route
 			storedTargetWaypoint = targetWaypoint;
@@ -52,16 +55,9 @@ public class EnemyPatrol : MonoBehaviour {
 		}
 
 		//Update move direction
-		if (initPosition.x != globalWaypointEnd.x) {
-			currentDirection = Mathf.Sign (nextWaypoint.x - transform.position.x);
-		} else { //target = [0,0]
-			if (Mathf.Abs (initPosition.x - transform.position.x) > minDist*2f) { //Return to [0,0]
-				currentDirection = Mathf.Sign (nextWaypoint.x - transform.position.x);
-			} else { //Stop if it's near [0,0]
-				return false; //idle
-			}
-		}
+		currentDirection = UpdateMoveDirectionX();
 
+		Debug.Log (Mathf.Abs (transform.position.x - nextWaypoint.x));
 		if (Mathf.Abs (transform.position.x - nextWaypoint.x) < minDist || facingWall) {
 			SwitchWaypoints ();
 		}
@@ -69,6 +65,7 @@ public class EnemyPatrol : MonoBehaviour {
 		return true; //patrolling
 	}
 
+	//Patrol on both axis
 	public bool Patrol(ref Vector2 currentDirection, bool facingWallOrCeiling) {
 		if (targetWaypoint != storedTargetWaypoint) { //If the target has changed in inspector then change the patrol route
 			storedTargetWaypoint = targetWaypoint;
@@ -82,16 +79,7 @@ public class EnemyPatrol : MonoBehaviour {
 		}
 
 		//Update move direction
-		if (prevWaypoint != nextWaypoint) {
-			currentDirection = nextWaypoint - transform.position;
-		} else { //target = [0,0]
-			if (Vector2.Distance (initPosition, transform.position) > minDist*2f) { //Return to [0,0]
-				currentDirection = nextWaypoint - transform.position;
-			} else { //Stop if it's near [0,0]
-				currentDirection = Vector2.zero;
-				return false; //idle
-			}
-		}
+		currentDirection = UpdateMoveDirection();
 		currentDirection.Normalize ();
 
 		if (Vector3.Distance (transform.position, nextWaypoint) < minDist || facingWallOrCeiling) {
@@ -99,6 +87,90 @@ public class EnemyPatrol : MonoBehaviour {
 		}
 
 		return true; //patrolling
+	}
+
+	//Patrol on wall climbing (TODO: simplify the params)
+	public bool Patrol(ref Vector2 currentDirection, bool wallMoveLeft, bool wallMoveRight, bool wallMoveUp, bool wallMoveDown, bool left, bool right, bool above, bool below) {
+		if (targetWaypoint != storedTargetWaypoint) { //If the target has changed in inspector then change the patrol route
+			storedTargetWaypoint = targetWaypoint;
+			if (nextWaypoint == globalWaypointEnd) {
+				globalWaypointEnd = initPosition + targetWaypoint;
+				nextWaypoint = globalWaypointEnd;
+			} else {
+				globalWaypointEnd = initPosition + targetWaypoint;
+				prevWaypoint = globalWaypointEnd;
+			}
+		}
+
+		//Switch check here or inside below OR keep it like it is.
+
+		//Update move direction, and check which axis to move
+		prevDir = currentDirection;
+		currentDirection = UpdateMoveDirection ();
+
+		if (currentDirection.x < 0) { //going left
+			if (wallMoveLeft && !left) {
+				currentDirection.y = 0f;
+			}
+		} else if (currentDirection.x > 0) { //going right
+			if (wallMoveRight && !right) {
+				currentDirection.y = 0f;
+			}
+		}
+			
+		if (currentDirection.y > 0) { //going up
+			if (wallMoveUp && !above) {
+				currentDirection.x = 0f;
+
+			}
+		} else if (currentDirection.y < 0) { //going down
+			if (wallMoveDown && !below) {
+				currentDirection.x = 0f;
+			}
+		}
+
+		currentDirection.Normalize ();
+
+		//Debug.Log (currentDirection + " wLeft: " + wallMoveLeft + " left: " + left + " wUp: " + wallMoveUp);
+		//Wall checks
+
+		bool doSwitch = false;
+		Vector2 tmpD = currentDirection;
+
+
+		if((currentDirection.y == 0f) && (Mathf.Abs(transform.position.x - nextWaypoint.x) < minDist) ||
+		   (currentDirection.x == 0f) && (Mathf.Abs(transform.position.y - nextWaypoint.y) < minDist)) {
+			SwitchWaypoints ();
+		}
+
+		if (currentDirection != Vector2.zero)
+			return false; //not patrolling
+		else
+			return true; //patrolling
+	}
+
+	Vector2 UpdateMoveDirection() {
+		if ((prevWaypoint != nextWaypoint) || (Vector2.Distance (prevWaypoint, transform.position) > minDist)) {
+			return nextWaypoint - transform.position;
+		}
+			
+		return Vector2.zero;
+	}
+
+	float UpdateMoveDirectionX() { //TODO: check the initPosition to change to prevWaypoint
+		if ((prevWaypoint.x != globalWaypointEnd.x) || (Mathf.Abs (prevWaypoint.x - transform.position.x) > minDist)) {
+			return Mathf.Sign (nextWaypoint.x - transform.position.x);
+		}
+			
+		return 0f;
+	}
+
+	float UpdateMoveDirectionY() {
+		if ((prevWaypoint.y != globalWaypointEnd.y) || (Mathf.Abs (prevWaypoint.y - transform.position.y) > minDist)) {
+			return Mathf.Sign (nextWaypoint.y - transform.position.y);
+		}
+
+		return 0f;
 	}
 
 	void OnDrawGizmosSelected() {

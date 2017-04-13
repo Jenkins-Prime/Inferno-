@@ -15,22 +15,9 @@ public class EnemyMoveGround : EnemyMove {
 		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 	}
 
-	protected override void Start () {
-		base.Start();
-	}
-
 	protected override void Update () {
-		//Don't go through floors/ceilings
-		/*
-		if (controller.collisions.above || controller.collisions.below) //Not sure if userfull
-			velocity.y = 0f;
-		*/
 		Move ();
 		Animate ();
-	}
-
-	void GravityCheck() {
-		
 	}
 
 	//===== Movement Method =====
@@ -54,7 +41,7 @@ public class EnemyMoveGround : EnemyMove {
 			}
 
 			if (enemyPatrol != null && state != MoveState.Chase) {
-				if (enemyPatrol.Patrol (ref moveDirection.x, controller.collisions.wallInFront)) {
+				if (enemyPatrol.Patrol (ref moveDirection.x, controller.collisions.wallInFront)) { //change that pls
 					state = MoveState.Patrol;
 				}
 			}
@@ -63,9 +50,10 @@ public class EnemyMoveGround : EnemyMove {
 		//Update velocity and move
 		velocity.x = moveDirection.x * moveSpeed;
 
-		if (controller.collisions.canJump) {
+		if (controller.collisions.above || controller.collisions.below) //Don't go through floors/ceilings
+			velocity.y = 0f;
+		if (controller.collisions.canJump)
 			velocity.y = jumpVelocity;
-		}
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime, false);
 	}

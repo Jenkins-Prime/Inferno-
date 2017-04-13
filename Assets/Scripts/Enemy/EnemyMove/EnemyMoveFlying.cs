@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMoveFlying : EnemyMove {
-	protected override void Start () {
-		base.Start ();
-	}
-
 	protected override void Update () {
 		Move ();
 		Animate ();

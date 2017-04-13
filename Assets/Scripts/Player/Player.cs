@@ -22,10 +22,10 @@ public class Player : MonoBehaviour {
 	float accelerationTimeAirborne = 0.2f;
 	float accelerationTimeGrounded = 0.1f;
 	public Vector3 velocity;
-    public LayerMask enemyLayer;
+	public LayerMask detectLayer;
 
-    [SerializeField]
-    private float possessDistance;
+	[SerializeField]
+	private float possessDistance;
 
 	[HideInInspector] public Vector2 input;
 	[HideInInspector] public bool canMove;
@@ -39,71 +39,55 @@ public class Player : MonoBehaviour {
 	AudioSource audioSource;
 	ActorController controller;
 	SpriteRenderer rend;
-
-    private bool isPossessed;
-
+	private EnemyManipulate enemy;
 
 
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-        controller = GetComponent<ActorController>();
-        rend = GetComponent<SpriteRenderer>();
-    }
+	void Start () {
+		anim = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
+		controller = GetComponent<ActorController> ();
+		rend = GetComponent<SpriteRenderer> ();
 
-    void Start ()
-    {
 		gravity = -(2f * maxJumpHeight) / Mathf.Pow (timeToJumpApex, 2f);
 		minJumpVelocity = Mathf.Sqrt (2f * Mathf.Abs (gravity) * minJumpHeight);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
 		knockBackTimer = 0f;
 		canMove = true;
-        isPossessed = false;
-
 	}
 
 	void Update ()
-    {
+	{
 		if (canMove)
-        {
-            if (controller.collisions.above || controller.collisions.below)
-            {
-                velocity.y = 0;
-            }
-				
+		{
+			if (controller.collisions.above || controller.collisions.below)
+			{
+				velocity.y = 0;
+			}
+
 			input = InputManager.Instance.MainStick ();
 
 			JumpCheck ();
 			Move ();
 			SetAnimatorStates ();
 
-            if (InputManager.Instance.PossessEnemy() && !isPossessed)
-            {
-                ShootBolt();
-            }
-        }
+			if (InputManager.Instance.PossessEnemy())
+			{
+				PossessEnemy();
+			}
 
-        if (Input.GetKeyDown(KeyCode.N) && isPossessed)
-        {
-            EjectEnemy();
-            isPossessed = false;
-            
-        }
-
-
-    }
+		}
+	}
 
 	bool KnockBackCheck()
-    {
+	{
 		if (knockBack)
-        {
+		{
 			if (knockBackTimer > 0)
-            {
+			{
 				knockBackTimer -= Time.deltaTime;
 			} else
-            {
+			{
 				knockBack = false;
 			}
 		}
@@ -111,41 +95,41 @@ public class Player : MonoBehaviour {
 	}
 
 	void JumpCheck () {
-		if (!controller.collisions.onLadder)
-        {
-			if (InputManager.Instance.JumpButton ())
-            {
-				if (controller.collisions.below || controller.collisions.onLadderAbove)
-                {
-					velocity.y = maxJumpVelocity;
-					jump = true;
-					audioSource.PlayOneShot (jumpClip, 1.0f);
-				}
-			}
-
-			if (InputManager.Instance.ReleaseJumpButton ())
-            {
-				if (velocity.y > minJumpVelocity)
-                {
-					velocity.y = minJumpVelocity;
-				}
-
-				jump = false;
+		//	if (!controller.collisions.onLadder)
+		//  {
+		if (InputManager.Instance.JumpButton ())
+		{
+			if (controller.collisions.below /*|| controller.collisions.onLadderAbove*/)
+			{
+				velocity.y = maxJumpVelocity;
+				jump = true;
+				audioSource.PlayOneShot (jumpClip, 1.0f);
 			}
 		}
+
+		if (InputManager.Instance.ReleaseJumpButton ())
+		{
+			if (velocity.y > minJumpVelocity)
+			{
+				velocity.y = minJumpVelocity;
+			}
+
+			jump = false;
+		}
+		//}
 	}
 
 	void Move()
-    {
+	{
 		if (KnockBackCheck ())
-        {
+		{
 			float targetVelocityX;
-		    targetVelocityX = input.x * moveSpeed;
+			targetVelocityX = input.x * moveSpeed;
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 			velocity.y += gravity * Time.deltaTime;
 		}
-        else
-        {
+		else
+		{
 			velocity = knockBackVelocity;
 		}
 
@@ -158,27 +142,26 @@ public class Player : MonoBehaviour {
 
 		anim.SetFloat("Speed", Mathf.Abs(input.x));
 
-        if (controller.collisions.below)
-        {
-            anim.SetBool("Grounded", true);
-        }
+		if (controller.collisions.below)
+		{
+			anim.SetBool("Grounded", true);
+		}
 		else
-        {
+		{
 			anim.SetBool ("Grounded", false);
 		}
 	}
 
 	//===== Public functions used from other scripts =====
 	public void KillPlayer(bool kill)
-    {
+	{
 		if (kill)
-        { //kill player
+		{ //kill player
 			canMove = false;
 			velocity = Vector3.zero;
 			rend.enabled = false;
-		}
-        else
-        { //revive player
+		} else
+		{ //revive player
 			canMove = true;
 			rend.enabled = true;
 			knockBack = false;
@@ -187,79 +170,45 @@ public class Player : MonoBehaviour {
 
 
 	public void PlayerKnockBack(Vector3 attacker)
-    {
+	{
 		knockBack = true;
 		knockBackTimer = knockBackLength;
 
 		if (transform.position.x < attacker.x)
-        {
+		{
 			knockBackVelocity = new Vector2 (-knockBackSpeed, knockBackSpeed);
-		}
-        else
-        {
+		} else
+		{
 			knockBackVelocity = new Vector2 (knockBackSpeed, knockBackSpeed);		
 		}
-
 		audioSource.PlayOneShot (hurtClip, 1f);
 	}
 
-    private void ShootBolt()
-    {
-        float direction = Mathf.Sin(velocity.x);
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right * direction, possessDistance, enemyLayer);
-      
-        if (hitInfo)
-        {
-            if (hitInfo.collider.tag == "Enemy")
-            {
-                var enemy = hitInfo.transform.gameObject.GetComponent<EnemyManipulate>();
-                if (enemy != null)
-                {
-                    transform.parent = hitInfo.transform;
-                    transform.position = hitInfo.transform.position;
-                    enemy.controlMode = true;
-                    PossessEnemy();
-                }
-               
-            }
-        }
-    }
+	private void PossessEnemy()
+	{
+		Ray2D ray = new Ray2D(transform.position, Vector2.right);
 
-    private void PossessEnemy()
-    {
-        rend.enabled = false;
-        isPossessed = true;
-        canMove = false;
-    }
+		if (Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer))
+		{
+			ControlEnemy();
+		}
+		else
+		{
+			Debug.Log("Didn't hit anything, not possessing");
+		}
+	}
 
-    private void EjectEnemy()
-    {
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.right, possessDistance, enemyLayer);
+	private void ControlEnemy()
+	{
+		Ray2D ray = new Ray2D(transform.position, Vector2.right);
+		RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance, detectLayer);
 
-        if (hitInfo)
-        {
-            hitInfo.transform.gameObject.GetComponent<EnemyManipulate>().controlMode = false;
-            rend.enabled = true;
-            isPossessed = false;
-            canMove = true;
-            transform.position = new Vector2(transform.position.x - 1.0f, transform.position.y);
-            transform.parent = null;
-        }
-        
-    }
-
-    //private void ControlEnemy()
-    //{
-    //    Ray2D ray = new Ray2D(transform.position, Vector2.right);
-    //    RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, possessDistance);
-
-    //    if (hitInfo.collider.tag == "Enemy")
-    //    {
-    //        hitInfo.transform.GetComponent<EnemyManipulate>().controlMode = true;
-    //        transform.GetComponent<Player>().enabled = false;
-    //        rend.enabled = false;
-    //    }
-    //}
+		if (hitInfo.collider.tag == "Enemy")
+		{
+			hitInfo.transform.GetComponent<EnemyManipulate>().controlMode = true;
+			canMove = false;
+		}
 
 
+	}
 }
